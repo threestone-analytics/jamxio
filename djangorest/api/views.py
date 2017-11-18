@@ -3,10 +3,24 @@ from __future__ import unicode_literals
 
 from rest_framework import generics
 from .serializers import *
+from django.http import HttpResponse
 from .models import *
 from django.shortcuts import render
+import os
 
 # Create your views here.
+def GetDistrictInformation(request, district):
+	base = os.path.dirname(os.path.abspath(__file__))
+	print base
+	path = base + "/districts/" + district + ".json"
+	with open(path , 'r') as myfile:
+		data=myfile.read()
+	print data
+	response = HttpResponse(content=data)
+	response['Content-Type'] = 'application/json'
+	return response
+
+
 class CreateMunicipalityView(generics.ListCreateAPIView):
 	"""This class defines the create behavior of our rest api."""
 	queryset = Municipality.objects.all()

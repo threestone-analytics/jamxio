@@ -12,6 +12,7 @@ urlpatterns = {
     url(r'^sources/$', CreatePollutantSourceView.as_view(), name="create_source"),
     url(r'^sources/(?P<pk>[0-9]+)/$',
         DetailsPollutantSourceView.as_view(), name="details_source"),
+    url(r'^district/(?P<district>[\w\+%_& ]+)/$', GetDistrictInformation, name="get_district")
 }
 
 urlpatterns = format_suffix_patterns(urlpatterns)
