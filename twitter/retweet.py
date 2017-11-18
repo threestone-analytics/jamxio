@@ -20,7 +20,7 @@ for tweet in tweepy.Cursor(api.search, q='water polution').items():
         data['text'] = tweet.text
         match = re.search(pattern, tweet.text)
         if match:
-            data['url'] = match.group()
+            data['url'] = match.group(0)
         if tweet.place:
            data['coordinates'] = tweet.place.bounding_box.coordinates[0][0]
         print(data)
