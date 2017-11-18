@@ -30,6 +30,7 @@ class PollutantSource(models.Model):
 	longitude = models.DecimalField(blank=False, max_digits=10, decimal_places=8)
 	category = models.ForeignKey(Category)
 
-# class ResponsibleParty(models.Model):
+# class Report(models.Model):
+# 	description = models.TextField()
 
 		
