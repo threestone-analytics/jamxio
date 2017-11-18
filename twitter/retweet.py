@@ -11,9 +11,10 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-for tweet in tweepy.Cursor(api.search, q='Test location').items():
+for tweet in tweepy.Cursor(api.search, q='water polution').items():
     try:
         data = dict()
+        data['time'] = str(tweet.created_at)
         data['name'] = tweet.user.screen_name
         data['id'] = tweet.user.id
         data['text'] = tweet.text
