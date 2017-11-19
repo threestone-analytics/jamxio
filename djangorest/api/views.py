@@ -63,6 +63,19 @@ class DetailsPollutantSourceView(generics.RetrieveAPIView):
 	queryset = PollutantSource.objects.all()
 	serializer_class = PollutantSourceSerializer
 
+class CreateReportView(generics.ListCreateAPIView):
+	"""This class defines the create behavior of our rest api."""
+	queryset = Report.objects.all()
+	serializer_class = ReportPostSerializer
+
+	def perform_create(self, serializer):
+		serializer.save()
+
+class DetailsReportView(generics.RetrieveAPIView):
+	"""Only handles GET"""
+	queryset = Report.objects.all()
+	serializer_class = ReportGetSerializer
+
 
 
 

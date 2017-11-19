@@ -12,6 +12,9 @@ urlpatterns = {
     url(r'^sources/$', CreatePollutantSourceView.as_view(), name="create_source"),
     url(r'^sources/(?P<pk>[0-9]+)/$',
         DetailsPollutantSourceView.as_view(), name="details_source"),
+    url(r'^reports/$', CreateReportView.as_view(), name="create_report"),
+    url(r'^reports/(?P<pk>[0-9]+)/$',
+        DetailsReportView.as_view(), name="details_report"),
     url(r'^district/(?P<district>[\w\+%_& ]+)/$', GetDistrictInformation, name="get_district")
 }
 
