@@ -2,7 +2,8 @@ from keys import *
 import tweepy
 from time import sleep
 import json
-import re
+import re,sys
+import requests
 
 # Regex for URL
 pattern = re.compile('((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$')
@@ -24,9 +25,7 @@ for tweet in tweepy.Cursor(api.search, q='water polution').items():
         if tweet.place:
            data['coordinates'] = tweet.place.bounding_box.coordinates[0][0]
         print(data)
-        f = open("data.json", 'w')
-        f.write('\n')
-        json.dump(data, f)
+        requests.post('http://10.142.189.43:8080/twitterfeed', data=data)
         tweet.retweet()
         tweet.favorite()
         if not tweet.user.following:
