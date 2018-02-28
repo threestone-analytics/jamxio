@@ -13,52 +13,58 @@ class MunicipalityTestCase(TestCase):
 	"""This is a basic model for municipality"""
 
 	def setUp(self):
-		# old_count = Municipality.objects.count()
-		# self.municipality = Municipality()
-		# self.municipality.municipality = "Guadalajara"
-		# self.municipality.state = "Jalisco"
-		# self.municipality.country = "Mexico"
-		# self.municipality.save()
-		# new_count = Municipality.objects.count()
-		# self.assertNotEquals(old_count, new_count)
 		self.client = APIClient()
-		self.municipality_data = {'municipality': 'Guadalajara', 'state': 'Jalisco', 'country': 'Mexico'}
+		self.municipality_data = {'municipality': 'Guadalajara II', 'state': 'Jalisco', 'country': 'Mexico'}
 		self.response = self.client.post(
-			reverse('create'), 
+			reverse('create_municipality'), 
 			self.municipality_data, 
 			format="json"
 		)
 
-	def test_api_can_create_municipality(self):
+	def test_properly_posts_to_municipality(self):
 		self.assertEquals(self.response.status_code, status.HTTP_201_CREATED)
 
 class CategoryTestCase(TestCase):
 	"""This is a basic model for municipality"""
-	def regularSetUp(self):
-		old_count = Category.objects.count()
-		self.category = Category()
-		self.category.cid = "Miscelaneous"
-		self.category.save()
-		new_count = Category.objects.count()
-		print "DESCRIPTION!!!!"
-		print self.category.description
-		self.assertNotEquals(old_count, new_count)
-		self.assertEquals(self.category.description, "No description provided.")
-
-
-	def postSetUp(self):
-		# self.assertNotEquals(old_count, new_count)
+	def setUp(self):
 		self.client = APIClient()
-		self.category_data = {'cid': 'Miscelaneous', 'description': "NONE"}
+		self.category_data = {'cid': 'Miscelaneous', 'description': 'Nope'}
 
 		self.response = self.client.post(
-			reverse('create'), 
+			reverse('create_category'), 
 			self.category_data, 
 			format="json"
 		)
 
-	def test_api_can_create_category(self):
+
+	def test_try_category_post(self):
 		self.assertEquals(self.response.status_code, status.HTTP_201_CREATED)
+
+class PollutantSourceTestCase(TestCase):
+	"""This is a basic model for municipality"""
+	def setUp(self):
+		self.category = Category(cid="Oil")
+		self.category.save()
+		self.client = APIClient()
+		self.source_data = {
+			'name': 'Offshore Oil Drill',
+			'description': 'Burns Oil',
+			'latitude': 0, 
+			'longitude': 0, 
+			'category': 'Oil'
+			}
+
+		self.response = self.client.post(
+			reverse('create_source'), 
+			self.source_data, 
+			format="json"
+		)
+		print self.response
+
+
+	def test_try_category_post(self):
+		self.assertEquals(self.response.status_code, status.HTTP_201_CREATED)
+		
 
 
 
