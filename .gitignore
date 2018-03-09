@@ -106,3 +106,4 @@ venv.bak/
 .mypy_cache/
 twitter/data.json
 node_modules/
+.DS_Store
