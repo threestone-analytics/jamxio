@@ -23,7 +23,8 @@ def api_hello():
 
     with open(os.path.join(APP_ROOT, 'data/{}'.format(data))) as f:
         js = json.load(f)
-    resp = Response(js, status=200, mimetype='application/json')
-    return json.dumps(js)
+    resp = Response(json.dumps(js), status=200, mimetype='application/json')
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    return resp
 
 
