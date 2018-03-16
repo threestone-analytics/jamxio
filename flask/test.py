@@ -2,11 +2,13 @@
     First iteration of the new backend for JAMX.io page
 """
 import json
+import os
 from flask import Flask
 from flask import render_template, request
 from flask import Response
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))   # refers to application_top
 
 @app.route("/")
 def hello():
@@ -16,13 +18,12 @@ def hello():
 @app.route('/data/', methods=['GET'])
 def api_hello():
     data = request.args.get('data')
-    print (data)
+    if not os.path.exists(os.path.join(APP_ROOT, 'data/{}'.format(data))):
+        return ("Bad request")
 
-    js = json.dumps(data)
-
+    with open(os.path.join(APP_ROOT, 'data/{}'.format(data))) as f:
+        js = json.load(f)
     resp = Response(js, status=200, mimetype='application/json')
-    resp.headers['Link'] = 'http://luisrei.com'
-
-    return resp
+    return json.dumps(js)
 
 
