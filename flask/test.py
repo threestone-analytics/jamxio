@@ -15,7 +15,7 @@ def hello():
     return render_template('base.html')
 
 
-@app.route('/data/', methods=['GET'])
+@app.route('/api/', methods=['GET'])
 def api_hello():
     data = request.args.get('data')
     if not os.path.exists(os.path.join(APP_ROOT, 'data/{}'.format(data))):
@@ -27,4 +27,10 @@ def api_hello():
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
+
+@app.route('/post/', methods=['POST'])
+def api_post():
+    resp = Response('Pong', status=200, mimetype='application/json')
+    #  resp.headers['Access-Control-Allow-Origin'] = '*'
+    return resp
 
