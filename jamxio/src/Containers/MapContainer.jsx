@@ -110,7 +110,7 @@ export default class MapContainer extends React.Component {
 			// return true;
 			dataLayers.forEach((datafile) => {
 				let layername = datafile.filename.substring(0, datafile.filename.indexOf('.'));
-				request({url: 'http://localhost:5000/data/', qs: {'data': datafile.filename}}, (error, response, body) => {
+				request({url: 'http://localhost:5000/api/', qs: {'data': datafile.filename}}, (error, response, body) => {
 					const opts = {
 						id: layername,
 						type: datafile.type,
