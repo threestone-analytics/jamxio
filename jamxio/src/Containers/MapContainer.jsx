@@ -55,6 +55,18 @@ const dataLayers = [
 		filename: 'poverty.geojson',
 		fill: 'rgba(3,39,90, .5)'
 	},
+	{
+		type: 'circle',
+		name: 'Twitter Feed',
+		color: '#32B6DD',
+		filename: 'twitter.geojson'
+	},
+	{
+		type: 'circle',
+		name: 'SMS Feed',
+		color: '#8A2BC8',
+		filename: 'sms.geojson'
+	},
 	// {
 	// 	type: 'circle',
 	// 	color: '#3F80E1',

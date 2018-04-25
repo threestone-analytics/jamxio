@@ -21,11 +21,13 @@ for tweet in tweepy.Cursor(api.search, q='water pollution').items():
         match = re.search(pattern, tweet.text)
         if match:
             data['url'] = match.group(0)
-        if tweet.place:
-           data['coordinates'] = tweet.place.bounding_box.coordinates[0][0]
+        if not tweet.place:
+            continue
+        data['coordinates'] = tweet.place.bounding_box.coordinates[0][0]
         print(data)
-        f = open("data.json", 'w')
-        json.dump(data, f)
+        f = open("data.json", 'a')
+        f.write(',\n')
+        json.dump(data, f, indent=2)
         f.close
         tweet.retweet()
         tweet.favorite()
