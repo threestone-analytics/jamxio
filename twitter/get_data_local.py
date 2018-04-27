@@ -11,7 +11,7 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-for tweet in tweepy.Cursor(api.search, q='water pollution').items():
+for tweet in tweepy.Cursor(api.search, q='fuel').items():
     try:
         data = dict()
         data['time'] = str(tweet.created_at)
@@ -26,8 +26,8 @@ for tweet in tweepy.Cursor(api.search, q='water pollution').items():
         data['coordinates'] = tweet.place.bounding_box.coordinates[0][0]
         print(data)
         f = open("data.json", 'a')
-        f.write(',\n')
-        json.dump(data, f, indent=2)
+        f.write('\n')
+        json.dump(data, f)
         f.close
         tweet.retweet()
         tweet.favorite()

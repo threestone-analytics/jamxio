@@ -22,7 +22,10 @@ while (True):
             continue
         for i in range(4):
             data[title[i]] = item[i]
+        f = open("data.json", "a")
+        f.write(',\n')
+        json.dump(data, f, indent=2)
+        f.close
         print(data)
-        requests.post('http://10.142.189.43:8080/twitterfeed', data=data)
-        sleep(5)
-    sleep(10)
+        #requests.post('http://10.142.189.43:8080/twitterfeed', data=data)
+    sleep(5)

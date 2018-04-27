@@ -59,6 +59,7 @@ const dataLayers = [
 		type: 'circle',
 		name: 'Twitter Feed',
 		color: '#32B6DD',
+		//filename: 'almacenamiento_refi.geojson'
 		filename: 'twitter.geojson'
 	},
 	{
@@ -94,7 +95,7 @@ export default class MapContainer extends React.Component {
 			lat: 23.2199952,
 			lng: -102.1720662,
 			zoom: 6,
-			layers: ['Mines', 'Polluted water sources', 'Dams', 'Poverty', 'Indigenous communities', 'Landfills', 'PM2.5', 'Power plants', 'Fuel storage'] // power plants includes refineries
+			layers: ['Mines', 'Polluted water sources', 'Dams', 'Poverty', 'Indigenous communities', 'Landfills', 'PM2.5', 'Power plants', 'Fuel storage', 'Twitter Feed', 'SMS Feed'] // power plants includes refineries
 		};
 	}
 	componentDidMount() {
@@ -109,13 +110,13 @@ export default class MapContainer extends React.Component {
 		map.on('load', () => {
 			// return true;
 			dataLayers.forEach((datafile) => {
-				let layername = datafile.filename.substring(0, datafile.filename.indexOf('.'));
+		 		let layername = datafile.filename.substring(0, datafile.filename.indexOf('.'));
 				request({url: 'http://localhost:5000/api/', qs: {'data': datafile.filename}}, (error, response, body) => {
-					const opts = {
-						id: layername,
+			 		const opts = {
+		 				id: layername,
 						type: datafile.type,
 						source: {
-							type: 'geojson',
+	 						type: 'geojson',
 							data: JSON.parse(body)
 						},
 						layout: {
@@ -123,19 +124,19 @@ export default class MapContainer extends React.Component {
 						}
 					};
 					if(datafile.type === "circle") {
-						opts.paint = {
-							'circle-color': datafile.color,
+		 				opts.paint = {
+		 					'circle-color': datafile.color,
 							'circle-radius': 10
 						};
 					}
 					else if(datafile.type === "fill") {
-						opts.paint = {
+				 		opts.paint = {
 							'fill-color': datafile.fill
 						};
 					}
 					else if(datafile.type === "line") {
-						opts.paint = {
-							'line-color': '#e55e5e',
+		 				opts.paint = {
+		 					'line-color': '#e55e5e',
 							'line-width': 3
 						};
 					}
@@ -158,12 +159,12 @@ export default class MapContainer extends React.Component {
 	render() {
 		return (
 			<section className="MapContainer">
-				<div className="container cf">
-					<div className="left">
+			 	<div className="container cf">
+		 			<div className="left">
 						<div id="map"></div>
 					</div>
 					<div className="sidebar">
-						<section id="FileReport">
+		 				<section id="FileReport">
 							<a href="https://docs.google.com/forms/d/e/1FAIpQLSciJzaDrGzSpt-wrSrBvnq-KRW36TdTrlvJKaEMydIfUVBkcw/viewform?usp=sf_link" target="_blank" className="btn" id="newreport">+ File report</a>
 							<a href="https://docs.google.com/spreadsheets/d/1wjHCJ_0B3_kU42iKW32IgEeria27aRVC-G_OHQc4Ves/edit#gid=0" target="_blank" className="datasourceslink" >Data sources</a>
 							<hr/>
