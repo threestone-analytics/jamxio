@@ -1,3 +1,4 @@
+.gitignore
 # Dont do this
 twitter/keys.py
 # Byte-compiled / optimized / DLL files
@@ -107,3 +108,7 @@ venv.bak/
 twitter/data.json
 node_modules/
 .DS_Store
+
+# SMS
+client_secret.json
+storage.json
