@@ -1,0 +1,57 @@
+.ReportsContainer {
+	max-height: 400px;
+	overflow-y: scroll;
+}
+.ReportsList {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.ReportListItem {
+	margin-bottom: 15px;
+}
+.ReportListItem .title{
+	font-weight: 600;
+	font-size: 18px;
+	margin: 0 !important;
+}
+.ReportListItem  .location{
+	margin: 0;
+	font-size: 14px;
+	color: #999;
+}
+.ReportListItem .title .date{
+	font-weight: 400;
+	color: #999;
+	float: right;
+	display: inline-block;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+.ReportListItem .desc{
+	font-size: 12px;
+	margin-top: 5px;
+}
+.seemorelink, .datasourceslink {
+	text-align: center;
+	width: 100%;
+	color: #33C3F0;
+	display: block;
+	margin-bottom: 0;
+	margin-top: 10px;
+}
+.downloaddata{
+	margin-top: 40px;
+}
+.download.btn{
+	width: 100%;
+	background: #de4d1d;
+	color: #fff;
+	display: block;
+	line-height: 3em;
+	height: 60px;
+	margin-bottom: 20px;
+	font-size: 20px;
+	font-weight: 300;
+}

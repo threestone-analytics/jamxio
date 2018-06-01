@@ -1,0 +1,90 @@
+body { 
+	margin:0; 
+	padding:0; 
+	font-family: 'Segoe UI';
+}
+a {
+	text-decoration: none;
+}
+#map { 
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:100%;
+  display: block;
+}
+
+.left{
+	width: 75%;
+	position: relative;
+	height: 100vh;
+}
+
+.sidebar{
+	width: 25%;
+	/*display: none*/;
+	background: #f9f9f9;
+	color: #666;
+	padding: 2% 3%;
+	position: fixed;
+	right: 0;
+	overflow-y: scroll;
+	height: 100%;
+}
+h2{
+	font-weight: 400;
+	color: #de4d1d;
+}
+.container{
+	width: 100%;
+}
+.left, .sidebar{
+	float: left;
+}
+.sidebar label {
+	display: block;
+	margin-bottom: 4px;
+}
+.sidebar input[type="checkbox"] {
+	margin-right: 10px;
+	display: inline-block;
+}
+
+hr{
+	margin: 40px 0;
+	border-top: 1px solid #ccc;
+	border-bottom: 0;
+}
+
+.btn {
+	width: 100%;
+	height: 60px;
+	text-align: center;
+}
+
+#newreport{
+	background: #de4d1d;
+	color: #fff;
+	display: block;
+	line-height: 2.4em;
+	font-size: 22px;
+	font-weight: 300;
+	transition: all 300ms;
+}
+#newreport:hover{
+	background-color: #9a3614;
+}
+.MessageFeed {
+
+}
+.MessageFeed ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.MessageFeed .title {
+	
+}
+.MessageFeed .desc {
+	
+}
