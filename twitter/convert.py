@@ -5,7 +5,7 @@ import json
 f = open('data.json', 'r')
 output = open('out.geojson', 'a')
 
-count = 1
+count = 0
 for line in f:
     data = json.loads(line)
     geojson = {
@@ -18,7 +18,6 @@ for line in f:
            }
     json.dump(geojson, output)
     output.write(',\n')
-    count += 1
 
 f.close()
 output.close()
