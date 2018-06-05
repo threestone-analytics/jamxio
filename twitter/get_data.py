@@ -54,18 +54,17 @@ def retrieve_tweets (key_word):
             data = get_data(tweet)
             data['text'] = tweet.text
             location = gmaps.geocode(data['location'])
-            lat = re.search('location\D*(\S*),', str(location)).group(1)
-            lng = re.search('location\D*\S*,\s*\D*\s(\S*)}', str(location)).group(1)
-            #data['coordinates'] = [lat, lng]
+            lat = location[0]['geometry']['location']['lat']
+            lng = location[0]['geometry']['location']['lng']
             match = re.search(pattern, tweet.text)
             if match:
                 data['url'] = match.group(0)
             #data['coordinates'] = tweet.place.bounding_box.coordinates[0][0]
             geojson = {
-                     "type" : "Feature",
+                    "type" : "Feature",
                     "properties" : { "id" : 0 },
                     "geometry" : {
-                         "type" : "Point",
+                        "type" : "Point",
                         "coordinates" : [lat, lng],
                         }
                     }
