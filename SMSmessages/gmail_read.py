@@ -14,6 +14,9 @@ from keys import *
 import googlemaps
 import sqlite3
 import json
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 # google map credential
 gmaps = googlemaps.Client(key=google_map_key)
@@ -91,7 +94,7 @@ def get_geojson (lat, lng):
             "type" : "Feature",
             "properties" : { "id" : 0 },
             "geometry" : {
-                "type" : "Point",
+                 "type" : "Point",
                 "coordinates" : [lat, lng],
                 }
             }
@@ -111,10 +114,46 @@ def send_to_db (message):
     conn.commit()
     return True
 
+def send_reply (text, sender):
+    msg = MIMEMultipart()
+    msg['From'] = gmail_name
+    msg['To'] = sender
+    msg['Subject'] = "Reply to EJ Report"
+    msg.attach(MIMEText(text, 'plain'))
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(gmail_name, gmail_pass)
+    server.sendmail(gmail_name, sender, msg.as_string())
+    server.quit()
+    return True
+
+def schema_feedback (message):
+    sender = message['Sender']
+    schema = '''
+        Please send us the data using the format like below:
+        issue: water pollution; location: 2594 Hearst Ave, Berkeley, CA 94709; comments: the water pollution is influencing my daily life
+        There are issue, location, and comments three parts which should be separated by a ';'.
+        Thank you for getting in touch with us!
+        '''
+    send_reply(schema, sender)
+    return True
+
+def success_feedback (message):
+    sender = message['Sender']
+    text = '''
+        Your report has been successfully recorded, thank you for getting in touch with us!
+        '''
+    send_reply(text, sender)
+    return True
+
 if __name__ == "__main__":
     messages = get_messages('me', 'INBOX', 'UNREAD')
     for m in messages:
-        send_to_db(m)
+        try:
+            send_to_db(m)
+            success_feedback(m)
+        except:
+            schema_feedback(m)
     conn.close()
 
 '''
