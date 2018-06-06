@@ -19,56 +19,43 @@ c = conn.cursor()
 # google map credential
 gmaps = googlemaps.Client(key=google_map_key)
 
-def split_text (data, text):
-    text_list = text.split(';')
-    issue = re.search(r'issue:\s(.*)', text_list[0])
-    location = re.search(r'location:\s(.*)', text_list[1])
-    comments = re.search(r'comments:\s(.*)', text_list[2])
-    data["issue"] = issue
-    data["location"] = location
-    data["comments"] = comments
-    return True
-
-def error_feedback ():
-    schema = '''
-        Please send us the data using the format like below:
-        issue: water pollution; location: 2594 Hearst Ave, Berkeley, CA 94709; comments: the water pollution is influencing my daily life
-        There are issue, location, and comments three parts which should be separated by a ';'.
-        Thank you for getting in touch with us!
-        '''
-    return schema
-
 def get_data (tweet):
     data = dict()
     data['time'] = str(tweet.created_at)
     data['name'] = tweet.user.screen_name
     data['id'] = tweet.user.id
-    text = tweet.text
-    split_text(data, text)
+    data['text'] = tweet.text
     return data
+
+def get_geojson (lat, lng):
+    geojson = {
+        "type" : "Feature",
+        "properties" : { "id" : 0 },
+        "geometry" : {
+            "type" : "Point",
+            "coordinates" : [lat, lng],
+                }
+            }
+    return geojson
 
 def retrieve_tweets (key_word):
     pattern = re.compile('((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$')
+    count = 0
     for tweet in tweepy.Cursor(api.search, q=key_word).items():
+        if count == 200:
+            break
         try:
+            count += 1
             data = get_data(tweet)
-            data['text'] = tweet.text
-            location = gmaps.geocode(data['location'])
-            lat = location[0]['geometry']['location']['lat']
-            lng = location[0]['geometry']['location']['lng']
             match = re.search(pattern, tweet.text)
             if match:
                 data['url'] = match.group(0)
-            #data['coordinates'] = tweet.place.bounding_box.coordinates[0][0]
-            geojson = {
-                    "type" : "Feature",
-                    "properties" : { "id" : 0 },
-                    "geometry" : {
-                        "type" : "Point",
-                        "coordinates" : [lat, lng],
-                        }
-                    }
-            c.execute("insert into tweets (keyword, data, geojson) values (?, ?, ?)", [key_word, json.dumps(data), json.dumps(geojson)])
+            if tweet.place:
+                data['coordinates'] = tweet.place.bounding_box.coordinates[0][0]
+                geojson = get_geojson(lat, lng)
+                c.execute("insert into tweets (keyword, data, geojson) values (?, ?, ?)", [key_word, json.dumps(data), json.dumps(geojson)])
+            else:
+                c.execute("insert into tweets (keyword, data) values (?, ?)", [key_word, json.dumps(data)])
             print(data)
             conn.commit()
             tweet.retweet()
@@ -76,7 +63,7 @@ def retrieve_tweets (key_word):
             if not tweet.user.following:
                 tweet.user.follow()
         except:
-            error_feedback()
+            pass
         sleep(5)
     return True
 
