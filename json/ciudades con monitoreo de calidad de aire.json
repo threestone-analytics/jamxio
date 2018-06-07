@@ -1,1 +1,406 @@
-[{"\ufeffENTIDAD_FEDERATIVA": "Aguascalientes", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Aguascalientes"}, {"\ufeffENTIDAD_FEDERATIVA": "Baja California", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ensenada"}, {"\ufeffENTIDAD_FEDERATIVA": "Baja California", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Mexicali"}, {"\ufeffENTIDAD_FEDERATIVA": "Baja California", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Playas de Rosarito"}, {"\ufeffENTIDAD_FEDERATIVA": "Baja California", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tecate"}, {"\ufeffENTIDAD_FEDERATIVA": "Baja California", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tijuana"}, {"\ufeffENTIDAD_FEDERATIVA": "Campeche", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Campeche"}, {"\ufeffENTIDAD_FEDERATIVA": "Chiapas", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tuxtla Gutierrez"}, {"\ufeffENTIDAD_FEDERATIVA": "Chihuahua", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Juarez"}, {"\ufeffENTIDAD_FEDERATIVA": "Chihuahua", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Chihuahua"}, {"\ufeffENTIDAD_FEDERATIVA": "Chihuahua", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ojinaga"}, {"\ufeffENTIDAD_FEDERATIVA": "Coahuila", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Acu\u00f1a"}, {"\ufeffENTIDAD_FEDERATIVA": "Coahuila", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Torreon"}, {"\ufeffENTIDAD_FEDERATIVA": "Colima", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Villa de Alvarez"}, {"\ufeffENTIDAD_FEDERATIVA": "Distrito Federal", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Zona Metropolitana del Valle de Mexico"}, {"\ufeffENTIDAD_FEDERATIVA": "Durango", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Lerdo"}, {"\ufeffENTIDAD_FEDERATIVA": "Durango", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Durango"}, {"\ufeffENTIDAD_FEDERATIVA": "Durango", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Gomez Palacio"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Abasolo"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Acambaro"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Celaya"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Cortazar"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Dolores Hidalgo"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Irapuato"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Juventino Rosas"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Leon"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Moroleon"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Salamanca"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "San Francisco del Rincon"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "San Jose Iturbide"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "San Miguel de Allende"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Silao"}, {"\ufeffENTIDAD_FEDERATIVA": "Guanajuato", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Villagran"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ajacuba"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Atitalaquia"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Atotonilco de Tula"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Huichapan"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Lolotla"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Pachuca"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tepeapulco"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tepeji del Rio"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tepetitlan"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tizayuca"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tlaxcoapan"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tula de Allende"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Xochicotlan"}, {"\ufeffENTIDAD_FEDERATIVA": "Hidalgo", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Zapoatlan de Juarez"}, {"\ufeffENTIDAD_FEDERATIVA": "Jalisco", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Zona Metropolitana de Guadalajara"}, {"\ufeffENTIDAD_FEDERATIVA": "Mexico", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Zona Metropolitana del Valle de Toluca"}, {"\ufeffENTIDAD_FEDERATIVA": "Michoacan", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Morelia"}, {"\ufeffENTIDAD_FEDERATIVA": "Morelos", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Cuautla"}, {"\ufeffENTIDAD_FEDERATIVA": "Morelos", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Cuernavaca"}, {"\ufeffENTIDAD_FEDERATIVA": "Morelos", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ocuituco"}, {"\ufeffENTIDAD_FEDERATIVA": "Morelos", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Zacatepec"}, {"\ufeffENTIDAD_FEDERATIVA": "Nayarit", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tepic"}, {"\ufeffENTIDAD_FEDERATIVA": "Nuevo Leon", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Area Metropolitana de Monterrey"}, {"\ufeffENTIDAD_FEDERATIVA": "Oaxaca", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Oaxaca de Juarez"}, {"\ufeffENTIDAD_FEDERATIVA": "Puebla", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Cuautlancingo"}, {"\ufeffENTIDAD_FEDERATIVA": "Puebla", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Puebla"}, {"\ufeffENTIDAD_FEDERATIVA": "Queretaro", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Corregidora"}, {"\ufeffENTIDAD_FEDERATIVA": "Queretaro", "ZONAS_METROPOLITANAS_O_POBLACIONES": "El Marques"}, {"\ufeffENTIDAD_FEDERATIVA": "Queretaro", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Queretaro"}, {"\ufeffENTIDAD_FEDERATIVA": "San Luis Potosi", "ZONAS_METROPOLITANAS_O_POBLACIONES": "San Luis Potosi"}, {"\ufeffENTIDAD_FEDERATIVA": "Sinaloa", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ahome"}, {"\ufeffENTIDAD_FEDERATIVA": "Sinaloa", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Culiacan"}, {"\ufeffENTIDAD_FEDERATIVA": "Sinaloa", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Guasave"}, {"\ufeffENTIDAD_FEDERATIVA": "Sinaloa", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Mazatl\u00e1n"}, {"\ufeffENTIDAD_FEDERATIVA": "Sinaloa", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Salvador Alvarado"}, {"\ufeffENTIDAD_FEDERATIVA": "Sonora", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Agua Prieta"}, {"\ufeffENTIDAD_FEDERATIVA": "Sonora", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Cajeme"}, {"\ufeffENTIDAD_FEDERATIVA": "Sonora", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Guaymas"}, {"\ufeffENTIDAD_FEDERATIVA": "Sonora", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Hermosillo"}, {"\ufeffENTIDAD_FEDERATIVA": "Sonora", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Navojoa"}, {"\ufeffENTIDAD_FEDERATIVA": "Sonora", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Nogales"}, {"\ufeffENTIDAD_FEDERATIVA": "Sonora", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Puerto Pe\u00f1asco"}, {"\ufeffENTIDAD_FEDERATIVA": "Sonora", "ZONAS_METROPOLITANAS_O_POBLACIONES": "San Luis R\u00edo Colorado"}, {"\ufeffENTIDAD_FEDERATIVA": "Tabasco", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Balanc\u00e1n"}, {"\ufeffENTIDAD_FEDERATIVA": "Tabasco", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Centro"}, {"\ufeffENTIDAD_FEDERATIVA": "Tabasco", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Huimanguillo"}, {"\ufeffENTIDAD_FEDERATIVA": "Tabasco", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Nacajuca"}, {"\ufeffENTIDAD_FEDERATIVA": "Tabasco", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Paraiso"}, {"\ufeffENTIDAD_FEDERATIVA": "Tabasco", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Teapa"}, {"\ufeffENTIDAD_FEDERATIVA": "Tamaulipas", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Altamira"}, {"\ufeffENTIDAD_FEDERATIVA": "Tamaulipas", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ciudad Madero"}, {"\ufeffENTIDAD_FEDERATIVA": "Tamaulipas", "ZONAS_METROPOLITANAS_O_POBLACIONES": "El Mante"}, {"\ufeffENTIDAD_FEDERATIVA": "Tamaulipas", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Matamoros"}, {"\ufeffENTIDAD_FEDERATIVA": "Tamaulipas", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Nuevo Laredo"}, {"\ufeffENTIDAD_FEDERATIVA": "Tamaulipas", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Reynosa"}, {"\ufeffENTIDAD_FEDERATIVA": "Tamaulipas", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tampico"}, {"\ufeffENTIDAD_FEDERATIVA": "Tamaulipas", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Victoria"}, {"\ufeffENTIDAD_FEDERATIVA": "Tlaxcala", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Apizaco"}, {"\ufeffENTIDAD_FEDERATIVA": "Tlaxcala", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Calpulalpan"}, {"\ufeffENTIDAD_FEDERATIVA": "Tlaxcala", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Huamantla"}, {"\ufeffENTIDAD_FEDERATIVA": "Tlaxcala", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ixtacuixtla de Mariano Matamoros"}, {"\ufeffENTIDAD_FEDERATIVA": "Tlaxcala", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Santa Cruz Quilehtla"}, {"\ufeffENTIDAD_FEDERATIVA": "Tlaxcala", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tlaxcala"}, {"\ufeffENTIDAD_FEDERATIVA": "Veracruz", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Minatitlan"}, {"\ufeffENTIDAD_FEDERATIVA": "Veracruz", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Xalapa"}, {"\ufeffENTIDAD_FEDERATIVA": "Yucatan", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Merida"}, {"\ufeffENTIDAD_FEDERATIVA": "Zacatecas", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Guadalupe"}, {"\ufeffENTIDAD_FEDERATIVA": "Zacatecas", "ZONAS_METROPOLITANAS_O_POBLACIONES": "Zacatecas"}]
+[
+  {
+    "ENTIDAD_FEDERATIVA": "Aguascalientes",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Aguascalientes"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Baja California",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ensenada"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Baja California",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Mexicali"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Baja California",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Playas de Rosarito"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Baja California",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tecate"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Baja California",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tijuana"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Campeche",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Campeche"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Chiapas",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tuxtla Gutierrez"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Chihuahua",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Juarez"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Chihuahua",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Chihuahua"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Chihuahua",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ojinaga"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Coahuila",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Acuña"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Coahuila",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Torreon"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Colima",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Villa de Alvarez"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Distrito Federal",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Zona Metropolitana del Valle de Mexico"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Durango",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Lerdo"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Durango",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Durango"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Durango",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Gomez Palacio"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Abasolo"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Acambaro"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Celaya"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Cortazar"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Dolores Hidalgo"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Irapuato"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Juventino Rosas"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Leon"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Moroleon"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Salamanca"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "San Francisco del Rincon"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "San Jose Iturbide"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "San Miguel de Allende"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Silao"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Guanajuato",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Villagran"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ajacuba"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Atitalaquia"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Atotonilco de Tula"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Huichapan"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Lolotla"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Pachuca"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tepeapulco"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tepeji del Rio"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tepetitlan"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tizayuca"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tlaxcoapan"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tula de Allende"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Xochicotlan"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Hidalgo",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Zapoatlan de Juarez"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Jalisco",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Zona Metropolitana de Guadalajara"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Mexico",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Zona Metropolitana del Valle de Toluca"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Michoacan",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Morelia"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Morelos",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Cuautla"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Morelos",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Cuernavaca"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Morelos",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ocuituco"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Morelos",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Zacatepec"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Nayarit",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tepic"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Nuevo Leon",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Area Metropolitana de Monterrey"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Oaxaca",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Oaxaca de Juarez"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Puebla",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Cuautlancingo"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Puebla",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Puebla"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Queretaro",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Corregidora"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Queretaro",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "El Marques"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Queretaro",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Queretaro"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "San Luis Potosi",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "San Luis Potosi"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Sinaloa",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ahome"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Sinaloa",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Culiacan"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Sinaloa",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Guasave"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Sinaloa",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Mazatlán"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Sinaloa",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Salvador Alvarado"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Sonora",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Agua Prieta"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Sonora",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Cajeme"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Sonora",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Guaymas"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Sonora",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Hermosillo"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Sonora",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Navojoa"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Sonora",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Nogales"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Sonora",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Puerto Peñasco"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Sonora",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "San Luis Río Colorado"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tabasco",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Balancán"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tabasco",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Centro"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tabasco",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Huimanguillo"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tabasco",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Nacajuca"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tabasco",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Paraiso"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tabasco",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Teapa"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tamaulipas",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Altamira"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tamaulipas",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ciudad Madero"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tamaulipas",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "El Mante"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tamaulipas",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Matamoros"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tamaulipas",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Nuevo Laredo"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tamaulipas",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Reynosa"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tamaulipas",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tampico"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tamaulipas",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Victoria"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tlaxcala",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Apizaco"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tlaxcala",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Calpulalpan"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tlaxcala",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Huamantla"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tlaxcala",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Ixtacuixtla de Mariano Matamoros"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tlaxcala",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Santa Cruz Quilehtla"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Tlaxcala",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Tlaxcala"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Veracruz",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Minatitlan"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Veracruz",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Xalapa"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Yucatan",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Merida"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Zacatecas",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Guadalupe"
+  },
+  {
+    "ENTIDAD_FEDERATIVA": "Zacatecas",
+    "ZONAS_METROPOLITANAS_O_POBLACIONES": "Zacatecas"
+  }
+]

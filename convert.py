@@ -2,15 +2,15 @@ import csv
 import json
 import glob
 import os
+import sys
 
-for filename in glob.glob('data/*.csv'):
-    try:
-        csvfile = os.path.splitext(filename)[0]
-        jsonfile = csvfile + '.json'
-        with open(csvfile+'.csv') as f:
-            reader = csv.DictReader(f)
-            rows = list(reader)
-        with open(jsonfile, 'w') as f:
-            json.dump(rows, f)
-    except:
-        pass
+def read_csv (csv_feed):
+    csv_f = open(csv_feed, 'r')
+    reader = csv.DictReader(csv_f)
+    file_name = os.path.splitext(csv_feed)[0]
+    json_f = file_name + '.json'
+    with open(json_f, 'w') as f:
+        json.dump(reader.__dict__, f)
+
+if __name__ == "__main__":
+    read_csv(sys.argv[1])
