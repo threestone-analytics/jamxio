@@ -1,16 +1,22 @@
-import csv
 import json
-import glob
 import os
 import sys
+import googlemaps
+from keys import google_map_key
 
-def read_csv (csv_feed):
-    csv_f = open(csv_feed, 'r')
-    reader = csv.DictReader(csv_f)
-    file_name = os.path.splitext(csv_feed)[0]
-    json_f = file_name + '.json'
-    with open(json_f, 'w') as f:
-        json.dump(reader.__dict__, f)
+# google map credential
+gmaps = googlemaps.Client(key=google_map_key)
+
+def convert (feed):
+    json_f = open(feed, 'r+')
+    reader = json.load(json_f)
+    for item in reader:
+        place = item['Entidad']
+        location = gmaps.geocode(place)
+        lat = location[0]['geometry']['location']['lat']
+        lng = location[0]['geometry']['location']['lng']
+        item['location'] = [lat, lng]
+    json.dump(reader, json_f)
 
 if __name__ == "__main__":
-    read_csv(sys.argv[1])
+    convert('test.json')

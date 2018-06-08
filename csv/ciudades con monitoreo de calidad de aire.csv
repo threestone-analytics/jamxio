@@ -1,4 +1,4 @@
-﻿ENTIDAD_FEDERATIVA,ZONAS_METROPOLITANAS_O_POBLACIONES
+ENTIDAD_FEDERATIVA,ZONAS_METROPOLITANAS_O_POBLACIONES
 Aguascalientes,Aguascalientes
 Baja California,Ensenada
 Baja California,Mexicali
@@ -10,7 +10,7 @@ Chiapas,Tuxtla Gutierrez
 Chihuahua,Juarez
 Chihuahua,Chihuahua
 Chihuahua,Ojinaga
-Coahuila,Acuña
+Coahuila,Acuna
 Coahuila,Torreon
 Colima,Villa de Alvarez
 Distrito Federal,Zona Metropolitana del Valle de Mexico
@@ -65,7 +65,7 @@ San Luis Potosi,San Luis Potosi
 Sinaloa,Ahome
 Sinaloa,Culiacan
 Sinaloa,Guasave
-Sinaloa,Mazatlán
+Sinaloa,Mazatlan
 Sinaloa,Salvador Alvarado
 Sonora,Agua Prieta
 Sonora,Cajeme
@@ -73,9 +73,9 @@ Sonora,Guaymas
 Sonora,Hermosillo
 Sonora,Navojoa
 Sonora,Nogales
-Sonora,Puerto Peñasco
-Sonora,San Luis Río Colorado
-Tabasco,Balancán
+Sonora,Puerto Penasco
+Sonora,San Luis Rio Colorado
+Tabasco,Balancan
 Tabasco,Centro
 Tabasco,Huimanguillo
 Tabasco,Nacajuca
