@@ -11,16 +11,4 @@ def remove_accent (feed):
     return True
 
 if __name__ == "__main__":
-    remove_accent('eimm_municipio_tr_cifra_2006.csv')
-    remove_accent('eimm_municipio_tr_cifra_2007.csv')
-    remove_accent('eimm_municipio_tr_cifra_2008.csv')
-    remove_accent('eimm_municipio_tr_cifra_2009.csv')
-    remove_accent('eimm_municipio_tr_cifra_2010.csv')
-    remove_accent('eimm_municipio_tr_cifra_2011.csv')
-    remove_accent('eimm_municipio_tr_cifra_2012.csv')
-    remove_accent('eimm_municipio_tr_cifra_2013.csv')
-    remove_accent('eimm_municipio_tr_cifra_2014.csv')
-    remove_accent('eimm_municipio_tr_cifra_2015.csv')
-    remove_accent('eimm_municipio_tr_cifra_2016.csv')
-    remove_accent('eimm_municipio_tr_cifra_2017.csv')
-    remove_accent('eimm_municipio_tr_cifra_2018.csv')
+    remove_accent('SUSTANCIAS TOXICAS.csv')
