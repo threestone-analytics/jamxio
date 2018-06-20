@@ -11,4 +11,4 @@ def remove_accent (feed):
     return True
 
 if __name__ == "__main__":
-    remove_accent('SUSTANCIAS TOXICAS.csv')
+    remove_accent('immex_manu_ent_cifra_2018.csv')
