@@ -30,4 +30,4 @@ def convert (feed):
     f.close()
 
 if __name__ == "__main__":
-    convert('datosRETC')
+    convert('Rubro5_Tratamiento_de_residuos_peligrosos_industriales')
