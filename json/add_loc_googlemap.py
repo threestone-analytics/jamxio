@@ -13,7 +13,7 @@ def convert (feed):
     reader = json.load(json_f)
     not_founded = [ ]
     for item in reader:
-        place = item['ZONAS_METROPOLITANAS_O_POBLACIONES']
+        place = item['Where is the issue? Provide street, municipality, and state (don\'t include your personal information)']
         try:
             location = gmaps.geocode(place)
             lat = location[0]['geometry']['location']['lat']
@@ -32,4 +32,4 @@ def convert (feed):
     not_founded_f.close()
 
 if __name__ == "__main__":
-    convert('ciudades_ monitoreode calidad de aire')
+    convert('Environmental justice Report (Responses) - Sheet1')
