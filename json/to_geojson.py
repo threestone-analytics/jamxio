@@ -16,7 +16,7 @@ def validate_loc (data):
         try:
             loc = item['location']
             address = geolocator.reverse(str(loc[0]) + ', ' + str(loc[1]))
-            if re.match('.*M.xico.*', address.address):
+            if re.match('.*México.*', address.address):
                 after.append(item)
                 print('item added into the list')
             else:
@@ -50,4 +50,4 @@ def convert (feed):
     f.close()
 
 if __name__ == "__main__":
-    convert('Rubro2_Aprovechamiento_de_residuos_peligrosos_industriales')
+    convert('SANCIONES')
