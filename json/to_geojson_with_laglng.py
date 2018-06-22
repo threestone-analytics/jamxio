@@ -30,10 +30,12 @@ def convert (feed):
         "type": "FeatureCollection",
         "features": [
             {
-                  "type" : "Feature",
+                "type" : 
+                "Feature",
                 "geometry" : {
-                       "type": "Point",
-                    "coordinates": [float(item['LONGITUD']), float(item['LATITUD'])],
+                    
+                    "type": "Point",
+                    "coordinates": [float(item['lng']), float(item['lat'])],
                     },
                 "properties" : item,
             } for item in jf
@@ -45,4 +47,4 @@ def convert (feed):
     f.close()
 
 if __name__ == "__main__":
-    convert('Calidad_del_Agua_Superficial_2012_2015_contaminantes')
+    convert('Environmental justice Report (correct)')
