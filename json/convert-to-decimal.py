@@ -21,12 +21,12 @@ if __name__ == '__main__':
         lat = item['Latitud Norte']
         lng = item['Longitud Oeste']
         try:
-            convert(lat)
+            lat = convert(lat)
             item['location'] = [lat]
         except:
             not_convert.append(lat)
         try:
-            convert(lng)
+            lng = convert(lng)
             item['location'].append(lng)
         except:
             not_convert.append(lng)
