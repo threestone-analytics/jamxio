@@ -50,4 +50,4 @@ def convert (feed):
     f.close()
 
 if __name__ == "__main__":
-    convert('SUSTANCIAS TOXICAS')
+    convert('Rubro2_Aprovechamiento_de_residuos_peligrosos_industriales')
