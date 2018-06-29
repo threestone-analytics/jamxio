@@ -1,4 +1,4 @@
-# boilerplate-web
+# jamxio-web-client
 
 ## Requirements: 
 

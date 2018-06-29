@@ -1,4 +1,4 @@
-# boilerplate-web-server
+# jamxio-web-server
 
 ## Requirements: 
 
