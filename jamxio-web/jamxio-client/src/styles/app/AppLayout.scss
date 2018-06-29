@@ -1,0 +1,64 @@
+#app {
+  background: #e5e5e5;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* Initial transition linear-gradient(to bottom, #1fa2ff, #12d8fa, #a6ffcb); */ 
+
+.fadeViewTransition-appear {
+  opacity: 0;
+}
+
+.fadeViewTransition-appear.fadeViewTransition-appear-active {
+  opacity: 1;
+  transition: opacity 1800ms ease-in-out;
+}
+
+
+.fadeViewTransition-enter {
+  opacity: 0;
+}
+
+.fadeViewTransition-enter.fadeViewTransition-enter-active {
+  opacity: 1;
+  transition: opacity 1800ms ease-in-out;
+}
+
+.fadeViewTransition-exit {
+  opacity: 1;
+
+}
+
+.fadeViewTransition-exit.fadeViewTransition-exit-active {
+  opacity: 0;
+  transition: opacity 800ms ease-in;
+}
+
+.fadeViewTransition-enter-done {
+  width:100%;
+  height: 100%;
+}
+
+
+.page-wrap{
+  flex: 1;
+  display: flex;
+  width:100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.outer-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.page-main {
+  width:100%;
+  height: 100%;
+}
+
