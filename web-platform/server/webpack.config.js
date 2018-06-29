@@ -1,9 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  entry: path.join(__dirname, 'app/index.js'),
+  entry: path.join(__dirname, 'src/index.js'),
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: `index.js`,
@@ -23,12 +24,16 @@ module.exports = {
       },
     ],
   },
-  plugins: [new webpack.NoEmitOnErrorsPlugin()],
+  plugins: [
+    new webpack.NoEmitOnErrorsPlugin(),
+    new Dotenv({
+      path: path.resolve(__dirname, './src/.env')
+    })],
   devtool: 'source-map',
   resolve: {
     mainFields: ['main', 'module'],
     extensions: ['.js', '.mjs'],
-    modules: [path.resolve(__dirname, 'app'), 'node_modules'],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   target: 'node',
   externals: [nodeExternals()],
