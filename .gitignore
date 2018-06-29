@@ -113,3 +113,4 @@ node_modules/
 # SMS
 client_secret.json
 storage.json
+jamxio-web/jamxio-server/app/config/confi.js
