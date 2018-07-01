@@ -9,13 +9,13 @@ const RootLayout = ({ loggedInUser, loading }) =>
   loggedInUser ? (
     // private routes
     <Switch>
-      <Route path="/app" component={AppLayout} />
-      <Route path="/data" component={DataLayout} />
       <Route render={() => <Redirect to="/app" />} />
     </Switch>
   ) : !loading ? (
     // public routes
     <Switch>
+      <Route path="/app" component={AppLayout} />
+      <Route path="/data" component={DataLayout} />
       <Route path="/auth" component={AppLayout} />
       <Route render={() => <Redirect to="/auth" />} />
     </Switch>
