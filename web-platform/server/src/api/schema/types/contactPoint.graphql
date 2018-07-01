@@ -1,0 +1,6 @@
+type ContactPoint  {
+    name: String
+    email: String
+    telephone: String
+  }
+ 
