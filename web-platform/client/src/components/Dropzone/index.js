@@ -100,4 +100,7 @@ const Dropzone = props => {
   );
 };
 
+
+
+
 export default Dropzone;

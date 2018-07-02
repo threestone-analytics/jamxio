@@ -7,7 +7,9 @@ import {UploadForm} from '../../../components/Form';
 /* show, handleHide, message, title */
 import { ModalOuter, Button, ModalBox, ModalButtonBox, DropzoneBox, Alert, AlertBox } from './style';
 
-import { compose } from 'recompose';
+import { compose, withHandlers } from 'recompose';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
@@ -56,14 +58,22 @@ Modal.defaultStyles.content = {
 
 const UploadModal = props => {
 
+  console.log(props);
+
   const handleSubmit = () => {
     
-    const file = props.dropzone.file;
-    const subcategory = props.uploadFileForm.uploadForm.values.subcategory;
-    const source = props.uploadFileForm.uploadForm.values.source;
+    const file = {
+      category : props.uploadFileForm.uploadForm.values.subcategory,
+      subcategory : props.uploadFileForm.uploadForm.values.subcategory,
+      source : props.uploadFileForm.uploadForm.values.source,
+      title : props.uploadFileForm.uploadForm.values.subcategory,
+      data : props.dropzone.file,
+    }
+    
+    props.handleRecord(file)
 
 
-    console.log(file,subcategory,source, props.handleHide, "carnita");
+    
     alert("hi")
   };
    
@@ -86,6 +96,23 @@ UploadModal.propTypes = {
 };
 
 const UM =  compose(
+  graphql(
+    gql`
+      mutation addRecord($file: FileInput) {
+        addRecord(file: $file)
+      }
+    `,
+    {
+      name: 'addRecord',
+    }
+  ),
+  withHandlers({
+    handleRecord: ({ addRecord }) => file => {
+      addRecord({
+        variables: { file },
+      });
+    },
+  }),
   connect(
     mapStateToProps,
     mapDispatchToProps

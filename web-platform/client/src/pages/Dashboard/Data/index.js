@@ -6,7 +6,7 @@ import TopBar from '../../../components/TopBar';
 import { CardContainer } from './style';
 
 const DashboardView = props => {
-
+  console.log(props)
   const handleOpen = name => {
     props.actions.show(name, { message: `This is a ${name} modal`, title: 'Title' });
   };
