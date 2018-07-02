@@ -3,7 +3,7 @@ import Document from './document';
 
 const Record = `
   type Record  @cacheControl(maxAge: 240){
-    publishedDate: Date,
+    publishedDate: String,
     publisher: Publisher,
     document: Document,
   }

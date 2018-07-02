@@ -2,7 +2,9 @@ import Organization from './organization';
 
 const User = `
   type User  @cacheControl(maxAge: 240){
-    username: String!
+    name: String!
+    lastname: String
+    username: String
     organization: Organization
   }
 `;

@@ -4,7 +4,7 @@ import User from './user';
 const Publisher = `
   type Publisher  @cacheControl(maxAge: 240){
     user: User
-    records:  [Record]
+    records: [Record]
   }
 `;
 

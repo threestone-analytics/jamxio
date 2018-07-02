@@ -13,10 +13,10 @@ const {
   } = models;
  
 export default () => ({
-    Record: new DataLoader(ids => dataLoaderMongoose(Record, ids)),
-    Document: new DataLoader(ids => dataLoaderMongoose(Document, ids)),
-    Publisher: new DataLoader(ids => dataLoaderMongoose(Publisher, ids)),
-    ContactPoint: new DataLoader(ids => dataLoaderMongoose(ContactPoint, ids)),
-    DocumentType: new DataLoader(ids => dataLoaderMongoose(Organization, ids)),
-    Organization: new DataLoader(ids => dataLoaderMongoose(DocumentType, ids)),
+    getRecord: new DataLoader(ids => dataLoaderMongoose(Record, ids)),
+    getDocument: new DataLoader(ids => dataLoaderMongoose(Document, ids)),
+    getPublisher: new DataLoader(ids => dataLoaderMongoose(Publisher, ids)),
+    getContactPoint: new DataLoader(ids => dataLoaderMongoose(ContactPoint, ids)),
+    getDocumentType: new DataLoader(ids => dataLoaderMongoose(Organization, ids)),
+    getOrganization: new DataLoader(ids => dataLoaderMongoose(DocumentType, ids)),
 });

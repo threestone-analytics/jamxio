@@ -4,9 +4,12 @@ const { Schema } = mongoose;
 
 const Document = new Schema(
   {
-    publishedDate: Date,
-    publisher: Schema.Types.ObjectId,
-    document: Schema.Types.ObjectId,
+    documentType: { type: Schema.Types.ObjectId, ref: 'DocumentType' },
+    datePublished: String,
+    format: String,
+    title: String,
+    publisher: { type: Schema.Types.ObjectId, ref: 'Publisher' },
+    content: JSON,
 
   },
   { collection: 'document' }

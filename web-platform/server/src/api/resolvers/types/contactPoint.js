@@ -1,12 +1,12 @@
 export default {
     async name(parentId, contex, { loaders }) {
-      return (await loaders.getDocument.load(parentId)).name;
+      return (await loaders.getContactPoint.load(parentId)).name;
     },
     async email(parentId, contex, { loaders }) {
-      return (await loaders.getDocument.load(parentId)).email;
+      return (await loaders.getContactPoint.load(parentId)).email;
     },
     async telephone(parentId, contex, { loaders }) {
-      return (await loaders.getDocument.load(parentId)).telephone;
+      return (await loaders.getContactPoint.load(parentId)).telephone;
     },
   };
 

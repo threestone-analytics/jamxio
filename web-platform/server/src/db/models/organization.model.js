@@ -5,8 +5,7 @@ const { Schema } = mongoose;
 const Organization = new Schema(
   {
     name: String,
-    contactPoint: Schema.Types.ObjectId,
-
+    contactPoint: { type: Schema.Types.ObjectId, ref: 'ContactPoint' },
   },
   { collection: 'organization' }
 );

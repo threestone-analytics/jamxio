@@ -7,5 +7,10 @@ import Record from './record';
 import ContactPoint from './contactPoint';
 
 export default {
-    
+    Document,
+    DocumentType,
+    Organization,
+    Publisher,
+    Record,
+    ContactPoint
 };

@@ -4,10 +4,8 @@ const { Schema } = mongoose;
 
 const Publisher = new Schema(
   {
-    user: Schema.Types.ObjectId,
-    records:  [Schema.Types.ObjectId],
-
-
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
+    records: [{ type: Schema.Types.ObjectId, ref: 'Record' }],
   },
   { collection: 'publisher' }
 );

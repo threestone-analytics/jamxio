@@ -4,9 +4,9 @@ const { Schema } = mongoose;
 
 const Record = new Schema(
   {
-    publishedDate: Date,
-    publisher: Schema.Types.ObjectId,
-    document: Schema.Types.ObjectId,
+    publishedDate: String,
+    publisher: { type: Schema.Types.ObjectId, ref: 'Publisher' },
+    document: { type: Schema.Types.ObjectId, ref: 'Document' },
 
   },
   { collection: 'record' }

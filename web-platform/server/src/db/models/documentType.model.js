@@ -4,11 +4,8 @@ const { Schema } = mongoose;
 
 const DocumentType = new Schema(
   {
-    documentType: String,
-    datePublished:  Date,
-    format: String,
-    title: String,
-    content: JSON
+    category: String,
+    subcategory: String,
   },
   { collection: 'documentType' }
 );

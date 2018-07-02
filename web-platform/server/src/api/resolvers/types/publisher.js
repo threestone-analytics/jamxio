@@ -1,8 +1,8 @@
 export default {
     async user(parentId, contex, { loaders }) {
-      return (await loaders.getDocument.load(parentId)).user;
+      return (await loaders.getPublisher.load(parentId)).user;
     },
-    async records(parentId, contex, { loaders }) {
-      return (await loaders.getDocument.load(parentId)).records;
-    },
+    // async records(parentId, contex, { loaders }) {
+    //   return (await loaders.getPublisher.load(parentId)).records;
+    // },
   };
