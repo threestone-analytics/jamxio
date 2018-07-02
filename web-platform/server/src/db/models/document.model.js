@@ -4,15 +4,14 @@ const { Schema } = mongoose;
 
 const Document = new Schema(
   {
-    documentType: { type: Schema.Types.ObjectId, ref: 'DocumentType' },
+    documentType: Schema.Types.ObjectId,
     datePublished: String,
     format: String,
     title: String,
-    publisher: { type: Schema.Types.ObjectId, ref: 'Publisher' },
-    content: JSON,
+    publisher: String,
+    geometry: JSON,
 
-  },
-  { collection: 'document' }
+  }
 );
 
 export default mongoose.model('Document', Document);

@@ -4,12 +4,22 @@ const { Schema } = mongoose;
 
 const Record = new Schema(
   {
-    publishedDate: String,
+    publishedDate: Date,
     publisher: { type: Schema.Types.ObjectId, ref: 'Publisher' },
-    document: { type: Schema.Types.ObjectId, ref: 'Document' },
-
+    document: { 
+      documentType: { 
+        category : String, 
+        subcategory: String, 
+      } , 
+      format: String, 
+      title: String, 
+      file: JSON,
+      geometry: JSON,
+    }
   },
   { collection: 'record' }
 );
+
+
 
 export default mongoose.model('Record', Record);

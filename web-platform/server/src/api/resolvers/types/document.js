@@ -11,7 +11,10 @@ export default {
     async title(parentId, contex, { loaders }) {
       return (await loaders.getDocument.load(parentId)).title;
     },
-    async content(parentId, contex, { loaders }) {
-      return (await loaders.getDocument.load(parentId)).content;
+    async file(parentId, contex, { loaders }) {
+      return (await loaders.getDocument.load(parentId)).file;
+    },
+    async geometry(parentId, contex, { loaders }) {
+      return (await loaders.getDocument.load(parentId)).geometry;
     },
   };

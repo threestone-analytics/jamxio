@@ -8,7 +8,8 @@ const Document = `
     publisher: Publisher
     format: String
     title: String
-    content: JSON
+    geometry: JSON
+    file: JSON
   }
 `;
 
