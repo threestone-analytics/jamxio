@@ -9,7 +9,6 @@ const DocumentType = new Schema(
     format: String,
     title: String,
     content: JSON
-
   },
   { collection: 'documentType' }
 );

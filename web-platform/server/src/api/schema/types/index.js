@@ -1,9 +1,9 @@
-import User from './user.graphql';
-import Record from './record.graphql';
-import Document from './document.graphql';
-import Publisher from './publisher.graphql';
-import Organization from './organization.graphql';
-import DocumentType from './documentType.graphql';
-import ContactPoint from './contactPoint.graphql';
+import User from './user';
+import Record from './record';
+import Document from './document';
+import Publisher from './publisher';
+import Organization from './organization';
+import DocumentType from './documentType';
+import ContactPoint from './contactPoint';
 
-export default [User, Document, Organization, Publisher, DocumentType, Record, ContactPoint];
+export default () =>  [User, Document, Organization, Publisher, DocumentType, Record, ContactPoint];

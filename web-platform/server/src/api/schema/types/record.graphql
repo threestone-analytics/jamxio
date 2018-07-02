@@ -1,6 +1,0 @@
-type Record  {
-    publishedDate: Date
-    publisher: Publisher
-    document: Document
-  }
- 

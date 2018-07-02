@@ -3,4 +3,4 @@ import Query from './query.graphql';
 import Mutation from './mutation.graphql';
 import Types from './types';
 
-export default [`${Scalars}`, `${Types}`, `${Query}`, `${Mutation}`];
+export default [`${Scalars}`, Types, `${Query}`, `${Mutation}`];

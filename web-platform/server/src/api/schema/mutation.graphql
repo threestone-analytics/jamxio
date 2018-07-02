@@ -1,4 +1,13 @@
+
+input FileInput {
+  title: String!
+  category: String!
+  subcategory: String!
+  category: String!
+  size: Int!
+}
+
 type Mutation {
   test: User
-  record: Record
+  addRecord(file: FileInput): JSON
 }

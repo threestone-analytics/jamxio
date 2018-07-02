@@ -5,8 +5,8 @@ const { Schema } = mongoose;
 const ContactPoint = new Schema(
   {
     name: String,
-    contactPoint: Schema.Types.ObjectId,
-
+    email: String,
+    telephone: String,
   },
   { collection: 'contactPoint' }
 );

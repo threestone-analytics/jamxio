@@ -9,7 +9,6 @@ const {
     Document,
     DocumentType,
     Organization,
-
     ContactPoint,
   } = models;
  

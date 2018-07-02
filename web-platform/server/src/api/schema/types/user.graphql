@@ -1,4 +1,0 @@
-type User {
-  username: String!
-  organization: Organization
-}

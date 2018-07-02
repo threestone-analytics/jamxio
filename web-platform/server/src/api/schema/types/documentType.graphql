@@ -1,4 +1,0 @@
-type DocumentType {
-    category: String
-    subcategory: String
-  }

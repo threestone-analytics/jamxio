@@ -1,4 +1,4 @@
 import test from './test';
-import record from './record';
+import addRecord from './addRecord';
 
-export default { test, record };
+export default { test, addRecord };
