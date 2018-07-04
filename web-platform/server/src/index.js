@@ -1,6 +1,9 @@
 import 'babel-polyfill';
-import { GraphQLServer, PubSub } from 'graphql-yoga';
+import express from 'express';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import helmet from 'helmet';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 import { ApolloEngine } from 'apollo-engine';
 import compression from 'compression';
 import { makeExecutableSchema } from 'graphql-tools';
@@ -11,46 +14,45 @@ import db from './config/db.config';
 import loaders from './db/loaders';
 import models from './db/models';
 
+
+console.log(process.env.APOLLO_ENGINE_KEY,"key");
+
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
 
-
-const port = parseInt(process.env.PORT, 10) || 4000;
-const graphQLServer = new GraphQLServer({
+const graphQLServer = graphqlExpress({
   schema,
   context: { models, loaders: loaders() },
 });
 
+const app = express();
+
+app.use(cors());
+
+app.use('/graphql', bodyParser.json(), graphQLServer);
+
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+
 if (process.env.APOLLO_ENGINE_KEY) {
+
   const engine = new ApolloEngine({
     apiKey: process.env.APOLLO_ENGINE_KEY,
   })
 
-  const httpServer = graphQLServer.createHttpServer({
-    tracing: true,
-    cacheControl: true,
-  })
+  engine.listen({
+    port: 4000,
+    expressApp: app,
+  }, () => {
+    console.log("GraphQL server with Apollo Engine started");
+  });
 
-  engine.listen(
-    {
-      port,
-      httpServer,
-      graphqlPaths: ['/'],
-      endpoint: '/graphql',
-      
-    },
-    () =>
-      console.log(
-        `Server with Apollo Engine is running on http://localhost:${port}`,
-      ),
-  )
+  
 } else {
-  graphQLServer.start(
-    {
-      port,
-    },
-    () => console.log(`Server is running on http://localhost:${port}`),
-  )
+
+  app.listen(4000, () => {
+    console.log("GraphQL server started"); // eslint-disable-line
+  });
+
 }
