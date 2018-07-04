@@ -6,8 +6,7 @@ import DropdownList from 'react-widgets/lib/DropdownList';
 import Multiselect from 'react-widgets/lib/Multiselect';
 import Dropzone from '../../../components/Dropzone';
 import AlertText from '../../../components/Alert';
-import 'react-widgets/dist/css/react-widgets.css'
-
+import 'react-widgets/dist/css/react-widgets.css';
 
 const subcategories = [
   'Electricity',
@@ -64,9 +63,7 @@ const renderMultiselect = ({ input, data, valueField, textField }) => (
   />
 );
 
-
-let UploadForm = props => {
-
+const UF = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
   return (
     <Form>
@@ -77,13 +74,7 @@ let UploadForm = props => {
         </FormBox>
         <FormBox>
           <Title>Subcategoria:</Title>
-          <FieldBox>
-            <Field
-              name="subcategory"
-              component={renderMultiselect}
-              data={subcategories}
-            />
-          </FieldBox>
+          <Title big>Agua</Title>
         </FormBox>
         <FormBox>
           <Title>Fuente de los datos:</Title>
@@ -97,25 +88,28 @@ let UploadForm = props => {
             />
           </FieldBox>
         </FormBox>
-        <AlertBox >
-            <Alert blue>Descarga el esquema de datos</Alert>
-            <AlertText {...props} />
+        <AlertBox>
+          <Alert blue>Descarga el esquema de datos</Alert>
+          <AlertText {...props} />
         </AlertBox>
         <DropzoneBox>
-         
           <Dropzone {...props} />
         </DropzoneBox>
         <ModalButtonBox>
-          <Button  cancel="true" onClick={props.handleHide}>Salir</Button>
-          <Button  type="submit" disabled={false} >Subir</Button>
+          <Button cancel="true" onClick={props.handleHide}>
+            Salir
+          </Button>
+          <Button type="submit" disabled={false}>
+            Subir
+          </Button>
         </ModalButtonBox>
       </form>
     </Form>
   );
 };
 
-UploadForm = reduxForm({
+const UploadForm = reduxForm({
   form: 'uploadForm', // a unique identifier for this form
-})(UploadForm);
+})(UF);
 
 export default UploadForm;
