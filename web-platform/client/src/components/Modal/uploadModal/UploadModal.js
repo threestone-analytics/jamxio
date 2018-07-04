@@ -56,25 +56,28 @@ Modal.defaultStyles.content = {
 };
 
 
+
+
 const UploadModal = props => {
 
   console.log(props);
 
   const handleSubmit = () => {
     
+    
+
     const file = {
-      category : props.uploadFileForm.uploadForm.values.subcategory,
-      subcategory : props.uploadFileForm.uploadForm.values.subcategory,
-      source : props.uploadFileForm.uploadForm.values.source,
-      title : props.uploadFileForm.uploadForm.values.subcategory,
-      data : props.dropzone.file,
+      user: "alexter42",
+      category : "props.uploadFileForm.uploadForm.values.subcategory",
+      subcategory : "props.uploadFileForm.uploadForm.values.subcategory",
+      source : "props.uploadFileForm.uploadForm.values.source",
+      title : "props.uploadFileForm.uploadForm.values.subcategory",
+      data : "props.dropzone.file",
     }
     
-    props.handleRecord(file)
-
-
+  
     
-    alert("hi")
+
   };
    
  return (
@@ -98,21 +101,14 @@ UploadModal.propTypes = {
 const UM =  compose(
   graphql(
     gql`
-      mutation addRecord($file: FileInput) {
-        addRecord(file: $file)
-      }
+    mutation addRecord($file: FileInput) {
+      addRecord(file: $file)
+    }
     `,
     {
       name: 'addRecord',
     }
   ),
-  withHandlers({
-    handleRecord: ({ addRecord }) => file => {
-      addRecord({
-        variables: { file },
-      });
-    },
-  }),
   connect(
     mapStateToProps,
     mapDispatchToProps

@@ -6,7 +6,7 @@ import DataLayout from './app/Dasboard/Data';
 /* import AuthLayout from './auth/AuthLayout'; */
 
 const RootLayout = ({ loggedInUser, loading }) =>
-  loggedInUser ? (
+  !loggedInUser ? (
     // private routes
     <Switch>
       <Route render={() => <Redirect to="/auth" />} />

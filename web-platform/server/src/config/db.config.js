@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import config from './app.config';
+
 console.log(process.env.MONGODB_URI)
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -23,5 +23,3 @@ mongoose.connection.on('disconnecting', () => {
 });
 
 export default mongoose;
-
-

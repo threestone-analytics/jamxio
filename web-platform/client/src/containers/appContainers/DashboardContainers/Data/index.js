@@ -1,9 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
-import { compose, withHandlers } from 'recompose';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { compose } from 'recompose';
 
 
 import DataPage from '../../../../pages/Dashboard/Data';
@@ -34,23 +32,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default compose(
-  graphql(
-    gql`
-      mutation addRecord($file: FileInput) {
-        addRecord(file: $file)
-      }
-    `,
-    {
-      name: 'addRecord',
-    }
-  ),
-  withHandlers({
-    handleRecord: ({ addRecord }) => file => {
-      addRecord({
-        variables: { file },
-      });
-    },
-  }),
   connect(
     mapStateToProps,
     mapDispatchToProps

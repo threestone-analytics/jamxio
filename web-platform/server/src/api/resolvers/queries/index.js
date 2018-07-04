@@ -5,5 +5,4 @@ import record from './record';
 export default {
   user,
   me,
-  record,
 };

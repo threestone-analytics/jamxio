@@ -1,11 +1,10 @@
-import Record from './record';
 import User from './user';
 
 const Publisher = `
   type Publisher  @cacheControl(maxAge: 240){
     user: User
-    records: [Record]
+    records: [String]
   }
 `;
 
-export default () => [Publisher, Record, User];
+export default () => [Publisher, User];

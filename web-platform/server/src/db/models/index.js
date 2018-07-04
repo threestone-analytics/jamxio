@@ -6,7 +6,6 @@ import DocumentType from './documentType.model';
 import ContactPoint from './contactPoint.model';
 import User from './user.model';
 
-
 export default {
   User,
   Record,
@@ -14,5 +13,5 @@ export default {
   Document,
   Organization,
   DocumentType,
-  ContactPoint
+  ContactPoint,
 };

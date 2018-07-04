@@ -1,13 +1,11 @@
 
-input FileInput {
-  title: String!
-  category: String!
-  subcategory: String!
-  category: String!
-  size: Int!
+input Record {
+  publishedDate: String,
+  publisher: String,
+  document: String,
 }
 
 type Mutation {
   test: User
-  addRecord(file: FileInput): JSON
+  addRecord(record: Record): JSON
 }
