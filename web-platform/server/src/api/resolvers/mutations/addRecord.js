@@ -7,7 +7,7 @@ const handleError = function(err) {
 };
 
 export default function addRecord(root, { record }) {
-  console.log(record, "document mutation")
+
   const uModel = new UserModel();
   uModel.set({ user: { username: 'alexter42' } });
   uModel.save(function(err) {
@@ -31,7 +31,6 @@ export default function addRecord(root, { record }) {
   });
 
   rModel.save(function(err) {
-    console.log("done");
     if (err) return handleError(err);
     // saved!
   });
