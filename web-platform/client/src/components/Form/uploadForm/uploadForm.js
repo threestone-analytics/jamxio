@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import 'react-widgets/dist/css/react-widgets.css';
+import { bindActionCreators } from 'redux';
 import { reduxForm, Field } from 'redux-form/immutable';
 import DropdownList from 'react-widgets/lib/DropdownList';
 import Multiselect from 'react-widgets/lib/Multiselect';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
+import { Map } from 'immutable';
+
 import Dropzone from '../../../components/Dropzone';
+
 import {
   Button,
   ModalButtonBox,
@@ -17,6 +23,37 @@ import {
   FieldBox,
 } from './style';
 import AlertText from '../../../components/Alert';
+
+import validate from './validate';
+import asyncValidate from './asyncValidate';
+
+// Actions
+import * as alertActions from '../../../redux/reducers/alert/alertActions';
+import * as dropzoneActions from '../../../redux/reducers/dropzone/dropzoneActions';
+import * as validateActions from '../../../redux/reducers/form/validateFileForm/validateActions';
+
+// Selectors
+import { getDropzone } from '../../../utils/selectors/common';
+
+const actions = [alertActions, dropzoneActions, validateActions];
+
+function mapStateToProps(state) {
+  return {
+    dropzone: getDropzone(state),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  const creators = Map()
+    .merge(...actions)
+    .filter(value => typeof value === 'function')
+    .toObject();
+
+  return {
+    actions: bindActionCreators(creators, dispatch),
+    dispatch,
+  };
+}
 
 const subcategories = [
   'Electricity',
@@ -62,13 +99,6 @@ const renderDropdownList = ({ input, data, valueField, textField }) => (
   />
 );
 
-renderDropdownList.propTypes = {
-  input: PropTypes.func.isRequired,
-  data: PropTypes.func.isRequired,
-  valueField: PropTypes.func.isRequired,
-  textField: PropTypes.func.isRequired,
-};
-
 const renderMultiselect = ({ input, data, valueField, textField }) => (
   <Multiselect
     {...input}
@@ -80,18 +110,16 @@ const renderMultiselect = ({ input, data, valueField, textField }) => (
   />
 );
 
-renderMultiselect.propTypes = {
-  input: PropTypes.func.isRequired,
-  data: PropTypes.func.isRequired,
-  valueField: PropTypes.func.isRequired,
-  textField: PropTypes.func.isRequired,
-};
-
 const UF = props => {
-  const { handleSubmit } = props;
+  const { handleSubmit, pristine, reset, submitting } = props
+  const handle = () => {
+    console.log(props)
+    // const record = createRecord(props);
+    // props.handleAddRecord(record);
+  };
   return (
     <Form>
-      <form onSubmit={handleSubmit}>
+      <form>
         <FormBox>
           <Title big>Categoria:</Title>
           <Title big>Agua</Title>
@@ -121,15 +149,15 @@ const UF = props => {
         <DropzoneBox>
           <Dropzone {...props} />
         </DropzoneBox>
-        <ModalButtonBox>
-          <Button cancel="true" onClick={props.handleHide}>
-            Salir
-          </Button>
-          <Button type="submit" disabled={false}>
-            Subir
-          </Button>
-        </ModalButtonBox>
       </form>
+      <ModalButtonBox>
+        <Button cancel="true" onClick={props.handleHide}>
+          Salir
+        </Button>
+        <Button onClick={handle} disabled={!props.valid}>
+          Subir
+        </Button>
+      </ModalButtonBox>
     </Form>
   );
 };
@@ -138,8 +166,17 @@ UF.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
 
-const UploadForm = reduxForm({
+const UFD = reduxForm({
   form: 'uploadForm', // a unique identifier for this form
+  validate,
+  asyncValidate,
 })(UF);
+
+const UploadForm = compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(UFD);
 
 export default UploadForm;

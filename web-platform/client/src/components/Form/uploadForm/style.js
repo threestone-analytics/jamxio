@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  background: ${props => (props.cancel ? '#FF5A5F' : '#00FF94'  )};
+  background: ${props => (props.cancel ? '#FF5A5F' : props.disabled ? '#333333' : '#00FF94')};
   border: none;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -184,9 +184,7 @@ export const DropzoneBox = styled.div`
   order: 1;
   height: 30%;
   margin-left: 15%;
-
 `;
-
 
 export const FieldBox = styled.div`
   width: 50%;
@@ -203,7 +201,6 @@ export const ModalTitleBox = styled.div`
   display: flex;
   flex-direction: ${props => (props.vertical ? 'column' : 'row')};
 `;
-
 
 export const ModalInfo = styled.div`
   background-color: white;
@@ -229,4 +226,3 @@ export const AlertBox = styled.div`
   flex-direction: ${props => (props.vertical ? 'column' : 'row')};
   justify-content: space-between;
 `;
-

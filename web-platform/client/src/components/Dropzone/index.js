@@ -51,6 +51,8 @@ const Dropzone = props => {
 
   const handleSaveFile = document => {
     props.actions.save_file(document);
+    props.change(['geometry'], document.geometry);
+    props.change(['format'], document.format);
     props.actions.set_file();
   };
   let myDropzone;

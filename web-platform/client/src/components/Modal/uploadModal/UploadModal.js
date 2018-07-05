@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import { UploadForm } from '../../../components/Form';
-import createRecord from './helpers'
+import createRecord from './helpers';
 
 /* show, handleHide, message, title */
 import { ModalOuter, ModalBox } from './style';
@@ -20,21 +20,13 @@ import * as dropzoneActions from '../../../redux/reducers/dropzone/dropzoneActio
 import * as validateActions from '../../../redux/reducers/form/validateFileForm/validateActions';
 
 // Selectors
-import {
-  getAlert,
-  getDropzone,
-  getUploadFileForm,
-  getValidateUploadFrom,
-} from '../../../utils/selectors/common';
+import { getUploadFileForm } from '../../../utils/selectors/common';
 
 const actions = [alertActions, dropzoneActions, validateActions];
 
 function mapStateToProps(state) {
   return {
-    alertState: getAlert(state),
-    dropzone: getDropzone(state),
-    uploadFileForm: getUploadFileForm(state),
-    validateUploadForm: getValidateUploadFrom(state),
+    form: getUploadFileForm(state),
   };
 }
 
@@ -61,26 +53,15 @@ Modal.defaultStyles.content = {
   padding: '20px',
 };
 
-
-const UploadModal = props => {
-  const handleSubmit = () => {
-    const record = createRecord(props);
-    props.handleAddRecord(record);
-  };
-  return (
-    <Modal
-      isOpen={props.show}
-      onRequestClose={props.handleHide}
-      contentLabel="Modal"
-      ariaHideApp={false}>
-      <ModalOuter>
-        <ModalBox>
-          <UploadForm handleHide={props.handleHide} handleSubmit={handleSubmit} {...props} />
-        </ModalBox>
-      </ModalOuter>
-    </Modal>
-  );
-};
+const UploadModal = props => (
+  <Modal isOpen={props.show} contentLabel="Modal" ariaHideApp={false}>
+    <ModalOuter>
+      <ModalBox>
+        <UploadForm {...props} />
+      </ModalBox>
+    </ModalOuter>
+  </Modal>
+);
 
 UploadModal.propTypes = {
   show: PropTypes.bool.isRequired,
