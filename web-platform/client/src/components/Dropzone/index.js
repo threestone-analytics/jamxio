@@ -46,11 +46,9 @@ const Dropzone = props => {
   const handleHide = name => {
     props.actions.hide_alert(name);
   };
-  
+
 
   const handleSaveFile = document => {
-    
-    console.log(document,"dropzone");
     props.actions.save_file(document);
     props.actions.set_file();
   };

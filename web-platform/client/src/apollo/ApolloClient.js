@@ -6,7 +6,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { persistCache } from 'apollo-cache-persist';
 
 const ENDPOINT = process.env.GRAPHQL_SERVER_ENDPOINT;
-console.log(ENDPOINT,"--------------------")
+
 const httpLink = createHttpLink({ uri: ENDPOINT });
 
 /* const uploadlink = createUploadLink({

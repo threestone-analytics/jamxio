@@ -1,12 +1,10 @@
-import React, { Fragment }  from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { toastr } from 'react-redux-toastr';
 import DataCard from '../../../components/DataCard';
 import TopBar from '../../../components/TopBar';
 import { CardContainer } from './style';
 
 const DashboardView = props => {
-  console.log(props)
   const handleOpen = name => {
     props.actions.show(name, { message: `This is a ${name} modal`, title: 'Title' });
   };
