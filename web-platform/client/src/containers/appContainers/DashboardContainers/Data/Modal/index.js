@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import { compose } from 'recompose';
 
-
-
 import DataPage from '../../../../pages/Dashboard/Data';
 // Actions
 import * as modalActions from '../../../../redux/reducers/modal/modalActions';

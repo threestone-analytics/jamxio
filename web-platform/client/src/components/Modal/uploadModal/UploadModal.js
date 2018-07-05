@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import { UploadForm } from '../../../components/Form';
+import createRecord from './helpers'
 
 /* show, handleHide, message, title */
 import { ModalOuter, ModalBox } from './style';
@@ -60,19 +61,12 @@ Modal.defaultStyles.content = {
   padding: '20px',
 };
 
-const UploadModal = props => {
-  const date = new Date();
-  console.log(props);
-  const handleSubmit = () => {
-    const file = {
-      publishedDate: date,
-      document: 'props.uploadFileForm.uploadForm.values.subcategory',
-      publisher: 'props.uploadFileForm.uploadForm.values.subcategory',
-    };
-    console.log(file);
-    props.handleAddR(file);
-  };
 
+const UploadModal = props => {
+  const handleSubmit = () => {
+    const record = createRecord(props);
+    props.handleAddRecord(record);
+  };
   return (
     <Modal
       isOpen={props.show}
@@ -93,22 +87,24 @@ UploadModal.propTypes = {
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   handleHide: PropTypes.func.isRequired,
+  handleAddRecord: PropTypes.func.isRequired,
+  dropzone: PropTypes.object.isRequired,
 };
 
 const UM = compose(
   graphql(
     gql`
-      mutation addR($record: RecordInput) {
+      mutation Record($record: RecordInput) {
         addRecord(record: $record)
       }
     `,
     {
-      name: 'addR',
+      name: 'addRecord',
     }
   ),
   withHandlers({
-    handleAddR: ({ addR }) => record => {
-      addR({
+    handleAddRecord: ({ addRecord }) => record => {
+      addRecord({
         variables: { record },
       });
     },

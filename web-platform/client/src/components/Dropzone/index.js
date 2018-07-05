@@ -3,15 +3,13 @@ import ReactDOMServer from 'react-dom/server';
 import React from 'react';
 import GeoJSON from 'geojson-validation';
 
-import '../../styles/app/dropzone/dropzone'
+import '../../styles/app/dropzone/dropzone';
 
 const componentConfig = {
   iconFiletypes: ['.GeoJSON'],
   showFiletypeIcon: true,
   postUrl: 'no-url',
 };
-
-
 
 const djsConfig = {
   acceptedFiles: '.geojson',
@@ -30,10 +28,9 @@ const djsConfig = {
           <div className="dz-file-description">
             <div className="dz-filename">
               <span data-dz-name="true" />
-              
             </div>
             <div className="dz-remove dz-remove-icon" data-dz-remove>
-              <img src={'./delete.png'} alt="" />
+              <img src="./delete.png" alt="" />
             </div>
           </div>
         </div>
@@ -43,46 +40,53 @@ const djsConfig = {
 };
 
 const Dropzone = props => {
-
   const handleShow = name => {
     props.actions.show_alert(name);
   };
   const handleHide = name => {
     props.actions.hide_alert(name);
   };
+  
 
-  const handleSaveFile = file => {
-    props.actions.save_file(file);
+  const handleSaveFile = document => {
+    
+    console.log(document,"dropzone");
+    props.actions.save_file(document);
     props.actions.set_file();
   };
   let myDropzone;
 
   const eventHandlers = {
-    maxfilesexceeded: (file) => {
+    maxfilesexceeded: file => {
       // let previousFile = myDropzone.getAcceptedFiles();
       // previousFile = previousFile[0];
       myDropzone.removeAllFiles();
     },
-    init: (dropzone) => { myDropzone = dropzone; },
+    init: dropzone => {
+      myDropzone = dropzone;
+    },
     addedfile: file => {
-      //new browsers do not show file.path anymore (for security reasons) so we need the next code in order the bea able to read the file, and of course validate it's GeoJSON format
+      // new browsers do not show file.path anymore (for security reasons) so we need the next code in order the bea able to read the file, and of course validate it's GeoJSON format
       let data;
       const reader = new FileReader();
-      reader.onload = (function (f) {
-        return function (e) {
+      reader.onload = (function(f) {
+        return function(e) {
           try {
             data = JSON.parse(e.target.result);
-              if(GeoJSON.valid(data)){
-                handleSaveFile(data)
-                handleHide('alertText'); 
-            } else{
+            if (GeoJSON.valid(data)) {
+              handleSaveFile({
+                format: file.type,
+                geometry: data,
+              });
+              handleHide('alertText');
+            } else {
               handleShow('alertText');
             }
           } catch (ex) {
             handleShow('alertText');
-            console.log('ex when trying to parse json = ' + ex);
+            console.log(`ex when trying to parse json = ${ex}`);
           }
-        }
+        };
       })(file);
       reader.readAsText(file);
     },
@@ -99,8 +103,5 @@ const Dropzone = props => {
     </div>
   );
 };
-
-
-
 
 export default Dropzone;

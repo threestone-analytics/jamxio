@@ -74,7 +74,9 @@ const UF = props => {
         </FormBox>
         <FormBox>
           <Title>Subcategoria:</Title>
-          <Title big>Agua</Title>
+          <FieldBox>
+            <Field name="subcategory" component={renderMultiselect} data={subcategories} />
+          </FieldBox>
         </FormBox>
         <FormBox>
           <Title>Fuente de los datos:</Title>
