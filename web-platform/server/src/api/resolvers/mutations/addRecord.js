@@ -6,10 +6,8 @@ const handleError = function(err) {
   console.log('error', err);
 };
 
-export default function addRecord(root, { file }) {
-  const date = new Date();
-  console.log(root, file, date);
-
+export default function addRecord(root, { record }) {
+  console.log(record, "document mutation")
   const uModel = new UserModel();
   uModel.set({ user: { username: 'alexter42' } });
   uModel.save(function(err) {
@@ -27,9 +25,9 @@ export default function addRecord(root, { file }) {
   //Create record
   const rModel = new RecordModel();
   rModel.set({
-    publishedDate: date,
+    publishedDate: record.publishedDate,
     publisher: pModel,
-    document: 'hi',
+    document: record.document,
   });
 
   rModel.save(function(err) {

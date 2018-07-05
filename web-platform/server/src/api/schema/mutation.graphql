@@ -1,11 +1,11 @@
 
-input Record {
-  publishedDate: String,
-  publisher: String,
-  document: String,
+input RecordInput {
+  publishedDate: Date,
+  publisher: JSON,
+  document: JSON,
 }
 
 type Mutation {
   test: User
-  addRecord(record: Record): JSON
+  addRecord(record: RecordInput): JSON
 }

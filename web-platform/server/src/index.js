@@ -23,10 +23,9 @@ const graphQLServer = graphqlExpress({
 
 const app = express();
 
-
 app.use(cors());
 
-app.use('/graphql', bodyParser.json(), graphQLServer);
+app.use('/graphql', bodyParser.json({ limit: '50mb' }), graphQLServer);
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
