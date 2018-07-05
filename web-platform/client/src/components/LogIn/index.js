@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from './style';
 import { compose } from 'recompose';
@@ -34,22 +33,17 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-
 const LogIn = props => {
-
   const handleOpen = name => {
     props.actions.show(name, { message: `This is a ${name} modal`, title: 'Title' });
-    
   };
   return (
-
     <div className="init-buttons">
-    <Button onClick={() => handleOpen('loginModal')}>Entrar</Button>
-    <Button onClick={() => handleOpen('sigupModal')}>Registrase</Button>
-  </div>
+      <Button onClick={() => handleOpen('loginModal')}>Entrar</Button>
+      <Button onClick={() => handleOpen('sigupModal')}>Registrase</Button>
+    </div>
   );
 };
-
 
 export default compose(
   connect(

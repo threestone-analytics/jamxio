@@ -2,6 +2,7 @@ import DropzoneComponent from 'react-dropzone-component';
 import ReactDOMServer from 'react-dom/server';
 import React from 'react';
 import GeoJSON from 'geojson-validation';
+import PropTypes from 'prop-types';
 
 import '../../styles/app/dropzone/dropzone';
 
