@@ -6,7 +6,7 @@ import React from 'react';
 
 // id={'scaleDown'} pageWrapId={'page-wrap'} outerContainerId={'outer-container'}
 
-const Menu = () =>
+const Menu = () => (
   <ButtonGroup className="bm-burger-button">
     <NavLink className="btn-font" replace to="/">
       <Button> Map </Button>
@@ -14,6 +14,7 @@ const Menu = () =>
     <NavLink className="btn-font" replace to="/data">
       <Button> Data </Button>
     </NavLink>
-  </ButtonGroup>;
+  </ButtonGroup>
+);
 
 export default Menu;

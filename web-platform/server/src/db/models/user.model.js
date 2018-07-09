@@ -7,7 +7,6 @@ const User = new Schema(
     name: String,
     lastname: String,
     username: String,
-    organization: { type: Schema.Types.ObjectId, ref: 'Organization' },
   },
   { collection: 'user' }
 );

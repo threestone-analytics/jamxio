@@ -95,9 +95,9 @@ module.exports = merge(common, {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
-        PLATFORM_ENV:  JSON.stringify('web'),
-        GRAPHQL_SERVER_URL:  JSON.stringify('http://localhost:4000/graphql'),
-        SERVER_URL:  JSON.stringify('http://localhost:3001/api'),
+        PLATFORM_ENV: JSON.stringify('web'),
+        GRAPHQL_SERVER_URL: JSON.stringify('http://localhost:4000/graphql'),
+        SERVER_URL: JSON.stringify('http://localhost:3001/api'),
       },
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),

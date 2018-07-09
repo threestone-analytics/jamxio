@@ -2,7 +2,7 @@ export const createRecord = form => {
   const date = new Date();
 
   const publisher = {
-    user: { username: '' },
+    username: '',
   };
 
   const document = {};

@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const Record = new Schema(
   {
     publishedDate: Date,
-    publisher: { type: Schema.Types.ObjectId, ref: 'Publisher' },
+    publisher: { username: String },
     document: {
       format: String,
       title: String,
@@ -17,7 +17,7 @@ const Record = new Schema(
       },
     },
   },
-  { collection: 'record' }
+  { collection: 'records' }
 );
 
 export default mongoose.model('Record', Record);
