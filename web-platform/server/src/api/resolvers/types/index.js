@@ -6,7 +6,7 @@ import ContactPoint from './contactPoint';
 
 export default {
   Document,
-  DocumentType,
+
   Organization,
   Publisher,
   ContactPoint,

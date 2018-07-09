@@ -1,8 +1,22 @@
 
+input DocumentT {
+  category: String
+  subcategory: String
+}
+
+
+input D {
+  documentType: DocumentT
+  source: String
+  format: String
+  title: String
+  geometry: JSON
+}
+
 input RecordInput {
   publishedDate: Date,
   publisher: JSON,
-  document: JSON,
+  document: D,
 }
 
 type Mutation {

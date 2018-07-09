@@ -3,11 +3,14 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const Document = new Schema({
-  documentType: Schema.Types.ObjectId,
-  datePublished: String,
+  documentType: {
+    category: String,
+    subcategory: String,
+  },
+  datePublished: Date,
   format: String,
+  source: String,
   title: String,
-  publisher: String,
   geometry: JSON,
 });
 

@@ -1,5 +1,5 @@
 type Query {
   me: User
   user(_id: ID!): User
-
+  getRecords(category: String!): [Record]
 }

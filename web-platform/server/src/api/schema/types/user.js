@@ -5,8 +5,7 @@ const User = `
     name: String!
     lastname: String
     username: String
-    organization: Organization
   }
 `;
 
-export default () => [User, Organization];
+export default () => [User];

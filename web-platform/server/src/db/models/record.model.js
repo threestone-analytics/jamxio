@@ -7,14 +7,14 @@ const Record = new Schema(
     publishedDate: Date,
     publisher: { type: Schema.Types.ObjectId, ref: 'Publisher' },
     document: {
-      documentType: {
-        category: String,
-        subcategory: String,
-      },
       format: String,
       title: String,
       file: JSON,
       geometry: JSON,
+      documentType: {
+        category: String,
+        subcategory: String,
+      },
     },
   },
   { collection: 'record' }
