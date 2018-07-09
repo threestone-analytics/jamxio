@@ -31,7 +31,7 @@ const djsConfig = {
               <span data-dz-name="true" />
             </div>
             <div className="dz-remove dz-remove-icon" data-dz-remove>
-              <img src="./delete.png" alt="" />
+              <img alt="" />
             </div>
           </div>
         </div>

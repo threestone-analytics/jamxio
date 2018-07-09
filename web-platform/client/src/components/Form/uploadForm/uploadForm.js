@@ -8,7 +8,6 @@ import Multiselect from 'react-widgets/lib/Multiselect';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
-
 import Dropzone from '../../../components/Dropzone';
 
 import {
@@ -24,8 +23,7 @@ import {
 } from './style';
 import AlertText from '../../../components/Alert';
 
-import validate from './validate';
-import asyncValidate from './asyncValidate';
+import { validate, createRecord } from './validate';
 
 // Actions
 import * as alertActions from '../../../redux/reducers/alert/alertActions';
@@ -110,16 +108,20 @@ const renderMultiselect = ({ input, data, valueField, textField }) => (
   />
 );
 
+const handleRecord = async (props, record) => {
+  await props.handleAddRecord(record);
+};
+
 const UF = props => {
-  const { handleSubmit, pristine, reset, submitting } = props
-  const handle = () => {
-    console.log(props)
-    // const record = createRecord(props);
-    // props.handleAddRecord(record);
+  const handleSubmit = () => {
+    const record = createRecord(props.forms.uploadForm);
+    console.log(record)
+    handleRecord(props, record);
+    props.handleHide();
   };
   return (
     <Form>
-      <form>
+      <form onSubmit={handleSubmit}>
         <FormBox>
           <Title big>Categoria:</Title>
           <Title big>Agua</Title>
@@ -127,7 +129,12 @@ const UF = props => {
         <FormBox>
           <Title>Subcategoria:</Title>
           <FieldBox>
-            <Field name="subcategory" component={renderMultiselect} data={subcategories} />
+            <Field
+              name="subcategory"
+              component={renderDropdownList}
+              data={subcategories}
+              textField="subcategory"
+            />
           </FieldBox>
         </FormBox>
         <FormBox>
@@ -154,7 +161,7 @@ const UF = props => {
         <Button cancel="true" onClick={props.handleHide}>
           Salir
         </Button>
-        <Button onClick={handle} disabled={!props.valid}>
+        <Button onClick={handleSubmit} disabled={!props.valid}>
           Subir
         </Button>
       </ModalButtonBox>
@@ -162,14 +169,9 @@ const UF = props => {
   );
 };
 
-UF.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-};
-
 const UFD = reduxForm({
-  form: 'uploadForm', // a unique identifier for this form
+  form: 'uploadForm',
   validate,
-  asyncValidate,
 })(UF);
 
 const UploadForm = compose(

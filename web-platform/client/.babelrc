@@ -10,7 +10,9 @@
     ]
   ],
   "plugins": [
+    "syntax-async-functions",
     "react-hot-loader/babel", 
+    "transform-regenerator",
     "react-html-attrs", 
     "transform-class-properties",
     "babel-plugin-styled-components"

@@ -9,7 +9,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import { UploadForm } from '../../../components/Form';
-import createRecord from './helpers';
 
 /* show, handleHide, message, title */
 import { ModalOuter, ModalBox } from './style';
@@ -26,7 +25,7 @@ const actions = [alertActions, dropzoneActions, validateActions];
 
 function mapStateToProps(state) {
   return {
-    form: getUploadFileForm(state),
+    forms: getUploadFileForm(state),
   };
 }
 
@@ -54,10 +53,15 @@ Modal.defaultStyles.content = {
 };
 
 const UploadModal = props => (
-  <Modal isOpen={props.show} contentLabel="Modal" ariaHideApp={false}>
+  <Modal
+    isOpen={props.show}
+    onRequestClose={props.handleHide}
+    contentLabel="Modal"
+    ariaHideApp={false}
+  >
     <ModalOuter>
       <ModalBox>
-        <UploadForm {...props} />
+        <UploadForm handleHide={props.handleHide} {...props} />
       </ModalBox>
     </ModalOuter>
   </Modal>
@@ -69,7 +73,7 @@ UploadModal.propTypes = {
   message: PropTypes.string.isRequired,
   handleHide: PropTypes.func.isRequired,
   handleAddRecord: PropTypes.func.isRequired,
-  dropzone: PropTypes.object.isRequired,
+
 };
 
 const UM = compose(

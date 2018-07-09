@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const webpackNotifier = require('webpack-notifier');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.config.js');
-const Dotenv = require('dotenv-webpack')
+const Dotenv = require('dotenv-webpack');
 
 module.exports = merge(common, {
   cache: true, // for rebuilding faster
@@ -15,7 +15,7 @@ module.exports = merge(common, {
     pathinfo: true,
   },
   module: {
-    noParse: [ /.*(fs\.js).*/ ], 
+    noParse: [/.*(fs\.js).*/],
     rules: [
       {
         test: /\.jsx?$/,
@@ -72,8 +72,11 @@ module.exports = merge(common, {
     compress: true,
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      regeneratorRuntime: 'regenerator-runtime/runtime',
+    }),
     new Dotenv({
-      path: path.resolve(__dirname, './src/.env')
+      path: path.resolve(__dirname, './src/.env'),
     }),
     new webpackNotifier(), // eslint-disable-line
     new HtmlWebpackPlugin({
@@ -92,9 +95,9 @@ module.exports = merge(common, {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
-        PLATFORM_ENV: JSON.stringify('web'),
-        GRAPHQL_SERVER_URL: JSON.stringify('http://localhost:4000/graphql'),
-        SERVER_URL: JSON.stringify('http://localhost:3001/api'),
+        PLATFORM_ENV:  JSON.stringify('web'),
+        GRAPHQL_SERVER_URL:  JSON.stringify('http://localhost:4000/graphql'),
+        SERVER_URL:  JSON.stringify('http://localhost:3001/api'),
       },
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),

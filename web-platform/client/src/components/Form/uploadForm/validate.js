@@ -1,35 +1,32 @@
-const createRecord = values => {
-  console.log(values);
-  // const date = new Date();
-  // const publisher = {
-  //   user: { username: '' },
-  // };
-  // const file = props.dropzone.toJSON();
-  // const document = {};
+export const createRecord = form => {
+  const date = new Date();
 
-  // document.documentType = {
-  //   category: 'props.uploadFileForm.uploadForm.values.category',
-  //   subcategory: values.subcategory,
-  // };
+  const publisher = {
+    user: { username: '' },
+  };
 
-  // document.source = values.source;
-  // document.format = file.document.format;
-  // document.geometry = file.document.geometry;
-  // document.title = 'props.uploadFileForm.uploadForm.values.title';
+  const document = {};
 
-  // const record = {
-  //   publishedDate: date,
-  //   document,
-  //   publisher,};
+  document.documentType = {
+    category: form.values.subcategory,
+    subcategory: form.values.subcategory,
+  };
 
-  const record = {};
+  document.source = form.values.source;
+  document.format = form.values.format;
+  document.geometry = form.values.geometry;
+  document.title = form.values.source;
 
+  const record = {
+    publishedDate: date,
+    document,
+    publisher,
+  };
   return record;
 };
 
-const validate = values => {
+export const validate = values => {
   const check = values.toJSON();
-  console.log(check, check.source, 'values');
   const errors = {};
   if (!check.source) {
     errors.source = 'Required';
@@ -42,5 +39,3 @@ const validate = values => {
   }
   return errors;
 };
-
-export default validate;

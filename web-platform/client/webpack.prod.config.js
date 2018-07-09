@@ -11,17 +11,17 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const common = require('./webpack.common.config.js');
 
 const prodEnv = {
-  NODE_ENV: JSON.stringify('production'),
-  PLATFORM_ENV: JSON.stringify('web'),
-  GRAPHQL_SERVER_URL: JSON.stringify('http://localhost:4000/graphql'),
-  SERVER_URL: JSON.stringify('https://server.com/api'),
+  NODE_ENV: 'production',
+  PLATFORM_ENV: 'web',
+  GRAPHQL_SERVER_URL: 'http://localhost:4000/graphql',
+  SERVER_URL: 'https://server.com/api',
 };
 
 const stagingEnv = {
-  NODE_ENV: JSON.stringify('staging'),
-  PLATFORM_ENV: JSON.stringify('web'),
-  GRAPHQL_SERVER_URL: JSON.stringify('http://localhost:4000/graphql'),
-  SERVER_URL: JSON.stringify('https://staging-server.com/api'),
+  NODE_ENV: 'staging',
+  PLATFORM_ENV: 'web',
+  GRAPHQL_SERVER_URL: 'http://localhost:4000/graphql',
+  SERVER_URL: 'https://staging-server.com/api',
 };
 
 const cssFilename = 'static/css/[name].[hash:8].css';
