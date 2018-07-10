@@ -6,7 +6,7 @@ const Record = `
     _id: ID
     publishedDate: Date
     document: Document
-    publisher: Publisher
+    publisher: String
   }
 `;
 

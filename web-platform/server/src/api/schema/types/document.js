@@ -5,10 +5,9 @@ const Document = `
     format: String
     title: String
     source: String
-    geometry: JSON
-    documentType: DocumentType
+    geometry: String
+    documentType: String
   }
 `;
 
 export default () => [Document, DocumentType];
-
