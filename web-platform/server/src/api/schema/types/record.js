@@ -1,10 +1,13 @@
+import Document from './document';
+import Publisher from './publisher';
+
 const Record = `
   type Record  @cacheControl(maxAge: 240){
+    _id: ID
     publishedDate: Date
-    document: JSON
-    publisher: JSON
+    document: Document
+    publisher: Publisher
   }
 `;
 
-export default () => [Record];
-
+export default () => [Record, Document, Publisher];

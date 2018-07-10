@@ -1,23 +1,34 @@
 
-input DocumentT {
+input DT {
   category: String
   subcategory: String
 }
 
-
-input D {
-  documentType: DocumentT
+input Doc {
+  documentType: DT
   source: String
   format: String
   title: String
   geometry: JSON
 }
 
+input U {
+  name: String
+  lastname: String
+  username: String!
+}
+
+input Pub {
+  user: U
+  records: [RecordInput]
+}
+
 input RecordInput {
   publishedDate: Date,
-  publisher: JSON,
-  document: D,
+  publisher: Pub,
+  document: Doc,
 }
+
 
 type Mutation {
   test: User
