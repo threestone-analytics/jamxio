@@ -2,12 +2,12 @@ import RecordModel from '../../../db/models/record.model';
 import UserModel from '../../../db/models/user.model';
 import PublisherModel from '../../../db/models/publisher.model';
 import DocumentModel from '../../../db/models/document.model';
+import DocumentTypeModel from '../../../db/models/documentType.model';
 
 const handleError = function(err) {
   console.log('error', err);
 };
 export default function addRecord(root, { record }) {
-  console.log(record, "record");
   const uModel = new UserModel();
   uModel.set({ username: 'alexter42' });
   uModel.save(function(err) {
@@ -21,17 +21,24 @@ export default function addRecord(root, { record }) {
     if (err) return handleError(err);
     // saved!
   });
+  //Create publisher
+  const dTModel = new DocumentTypeModel();
+  dTModel.set({
+    category: record.document.format,
+    subcategory: record.document.format,
+  });
+  dTModel.save(function(err) {
+    if (err) return handleError(err);
+    // saved!
+  });
   //Create document
   const dModel = new DocumentModel();
   dModel.set({
     format: record.document.format,
     source: record.document.format,
-    title: record.document.subcategory,
+    title: record.document.format,
     geometry: record.document.geometry,
-    documentType: {
-      category: record.document.category,
-      subcategory: record.document.subcategory,
-    },
+    documentType: dTModel,
   });
   dModel.save(function(err) {
     if (err) return handleError(err);

@@ -6,7 +6,7 @@ const Document = `
     title: String
     source: String
     geometry: String
-    documentType: String
+    documentType: DocumentType
   }
 `;
 

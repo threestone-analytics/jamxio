@@ -8,10 +8,7 @@ const documentsSchema = new Schema(
     title: String,
     source: JSON,
     geometry: JSON,
-    documentType: {
-      category: String,
-      subcategory: String,
-    },
+    documentType: Schema.Types.ObjectId,
   },
   { collection: 'documents' }
 );

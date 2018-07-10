@@ -1,19 +1,18 @@
 export default {
-  async source(parentId, contex, { loaders }) {
-    console.log(parentId._id);
-    return (await loaders.getDocument.load(parentId)).source;
+  async source({ document }, contex, { loaders }) {
+    return (await loaders.getDocument.load(document)).source;
   },
-  async geometry(parentId, contex, { loaders }) {
-    return (await loaders.getDocument.load(parentId)).geometry;
+  async geometry({ document }, contex, { loaders }) {
+    return (await loaders.getDocument.load(document)).geometry;
   },
-  async format({ _id }, contex, { loaders }) {
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAa');
-    return (await loaders.getDocument.load(_id)).format;
+  async format({ document }, contex, { loaders }) {
+    return (await loaders.getDocument.load(document)).format;
   },
-  async documentType(parentId, contex, { loaders }) {
-    return (await loaders.getDocument.load(parentId)).documentType;
+  async documentType({ document }, contex, { loaders }) {
+    console.log(document, "documentType1")
+    return (await loaders.getDocument.load(document)).documentType;
   },
-  async title(parentId, contex, { loaders }) {
-    return (await loaders.getDocument.load(parentId)).title;
+  async title({ document }, contex, { loaders }) {
+    return (await loaders.getDocument.load(document)).title;
   },
 };
