@@ -5,8 +5,8 @@ const { Schema } = mongoose;
 const recordsSchema = new Schema(
   {
     publishedDate: Date,
-    publisher: Schema.Types.ObjectId,
-    document: Schema.Types.ObjectId,
+    publisher: Schema.Types.String,
+    document: Schema.Types.String,
   },
   { collection: 'records' }
 );

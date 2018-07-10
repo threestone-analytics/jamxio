@@ -1,5 +1,6 @@
 export default {
   async document(parentId, contex, { loaders }) {
+    console.log(parentId, "parentid");
     return (await loaders.getRecord.load(parentId)).document;
   },
   async publisher(parentId, contex, { loaders }) {
