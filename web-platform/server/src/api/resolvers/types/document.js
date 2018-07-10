@@ -9,7 +9,6 @@ export default {
     return (await loaders.getDocument.load(document)).format;
   },
   async documentType({ document }, contex, { loaders }) {
-    console.log(document, "documentType1")
     return (await loaders.getDocument.load(document)).documentType;
   },
   async title({ document }, contex, { loaders }) {
