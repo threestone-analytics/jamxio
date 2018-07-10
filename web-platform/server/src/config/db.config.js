@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
-console.log(process.env.MONGODB_URI)
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_ATLAS_URI);
 
 // print mongoose logs in dev env
 if (process.env.MONGOOSE_DEBUG) {

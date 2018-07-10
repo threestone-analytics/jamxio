@@ -29,29 +29,22 @@ app.use('/graphql', bodyParser.json({ limit: '50mb' }), graphQLServer);
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
-db.connection.on('error', error => {
-  console.log(error);
-  throw new Error('Unable to connect to database');
-});
+if (process.env.APOLLO_ENGINE_KEY) {
+  const engine = new ApolloEngine({
+    apiKey: process.env.APOLLO_ENGINE_KEY,
+  });
 
-db.connection.on('connected', () => {
-  if (process.env.APOLLO_ENGINE_KEY) {
-    const engine = new ApolloEngine({
-      apiKey: process.env.APOLLO_ENGINE_KEY,
-    });
-
-    engine.listen(
-      {
-        port: 4000,
-        expressApp: app,
-      },
-      () => {
-        console.log('GraphQL server with Apollo Engine started');
-      }
-    );
-  } else {
-    app.listen(4000, () => {
+  engine.listen(
+    {
+      port: 4000,
+      expressApp: app,
+    },
+    () => {
+      console.log('GraphQL server with Apollo Engine started');
+    }
+  );
+} else {
+  app.listen(4000, () => {
     console.log("GraphQL server started"); // eslint-disable-line
-    });
-  }
-});
+  });
+}

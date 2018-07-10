@@ -12,9 +12,11 @@ Install dependencies:
 $ yarn install
 ```
 
-Creaete **src/.env** file with mapbox api token, should look like this:
+Creaete **src/.env** file with all tokens and url, should look like this:
 ``` bash
-MAPBOX_TOKEN=<yourMapboxToken> #without < >
+MAPBOX_TOKEN=
+GRAPHQL_SERVER_URL=
+GRAPHQL_SERVER_ENDPOINT=
 ```
 
 Run the App in dev mode:

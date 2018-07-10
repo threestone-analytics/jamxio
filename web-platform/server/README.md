@@ -12,6 +12,17 @@ Install dependencies:
 $ yarn install
 ```
 
+Creaete **src/.env** file with all tokens and url, should look like this:
+``` bash
+APOLLO_ENGINE_KEY=
+PORT=4000
+MONGODB_ATLAS_URI=
+MONGOOSE_DEBUG=
+
+```
+
+
+
 Run the App in dev mode:
 ``` bash
 $ yarn start:dev
