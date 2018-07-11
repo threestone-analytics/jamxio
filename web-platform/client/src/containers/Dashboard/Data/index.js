@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import { compose } from 'recompose';
 
-
-import DataPage from '../../../../pages/Dashboard/Data';
+import DataPage from '../../../pages/Dashboard/Data';
 // Actions
-import * as modalActions from '../../../../redux/reducers/modal/modalActions';
+import * as modalActions from '../../../redux/reducers/modal/modalActions';
 // Selectors
-import { getAuthForm, getIntl } from '../../../../utils/selectors/common';
+import { getAuthForm, getIntl } from '../../../utils/selectors/common';
 
 const actions = [modalActions];
 

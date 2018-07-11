@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
-import MapContainer from '../../../../containers/appContainers/DashboardContainers/Map/MapContainer';
+import MapContainer from '../../../../containers/Dashboard/Map/MapContainer';
 import MainMenu from '../../../../components/Nav/Menu';
 import Login from '../../../../components/Nav/LogIn';
 import '../../../../styles/app/components/mapbox-gl.css';

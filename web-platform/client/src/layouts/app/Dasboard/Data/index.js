@@ -14,7 +14,7 @@ import '../../../../styles/app/AppLayout.scss';
 
 // Layouts
 
-import DataContainer from '../../../../containers/appContainers/DashboardContainers/Data';
+import DataContainer from '../../../../containers/Dashboard/Data';
 import Fade from '../../../../components/motions/routeTransitions/Fade';
 
 // Components

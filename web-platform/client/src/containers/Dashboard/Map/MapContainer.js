@@ -3,16 +3,15 @@
 import React from 'react';
 
 import mapboxgl from 'mapbox-gl';
-import datos from '../../../../data';
 
-
-import GeoDataPanel from '../../../../components/Panel/MapPanel/geoDataPanel';
-import CrowdSourcedDataPanel from '../../../../components/Panel/MapPanel/crowdSourcedDataPanel';
-import NewsFeedPanel from '../../../../components/Panel/MapPanel/newsFeedPanel';
+import GeoDataPanel from '../../../components/Panel/MapPanel/geoDataPanel';
+import CrowdSourcedDataPanel from '../../../components/Panel/MapPanel/crowdSourcedDataPanel';
+import NewsFeedPanel from '../../../components/Panel/MapPanel/newsFeedPanel';
 
 const DATA_URL =
   'https://raw.githubusercontent.com/Switch-Mexico/switch-gui/master/src/imports/ui/data/balancing_areas/switch/b_a_05.json'; // eslint-disable-line
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
+
 export default class MapContainer extends React.Component {
   constructor() {
     super();
@@ -23,7 +22,9 @@ export default class MapContainer extends React.Component {
       zoom: 4.5,
       layers: ['Water', 'Pollution', 'Land'],
     };
-    fetch(DATA_URL).then(resp => resp.json()).then(data => this.setState({ data }));
+    fetch(DATA_URL)
+      .then(resp => resp.json())
+      .then(data => this.setState({ data }));
   }
   componentDidMount() {
     const { lng, lat, zoom } = this.state;
@@ -55,7 +56,7 @@ export default class MapContainer extends React.Component {
     });
   }
   toggleLayer(key, event) {
-    let visibility = this.map.getLayoutProperty(key, 'visibility');
+    const visibility = this.map.getLayoutProperty(key, 'visibility');
     if (!event.target.checked) {
       this.map.setLayoutProperty(key, 'visibility', 'none');
       // this.className = '';
