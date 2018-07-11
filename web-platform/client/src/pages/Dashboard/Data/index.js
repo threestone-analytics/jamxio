@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DataCard from '../../../components/DataCard';
-import TopBar from '../../../components/TopBar';
+import TopBar from '../../../components/Nav/TopBar';
 import { CardContainer } from './style';
 
 const DashboardView = props => {
