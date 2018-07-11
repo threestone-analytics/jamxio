@@ -376,23 +376,26 @@ h2 span {
 
 .header-container {
   text-align: center;
+  position: fixed;
   display: flex;
   flex-direction: row;
   position: absolute;
   height: 85px;
-  left: 0%;
-  right: 0%;
+  width: 80%;
+  margin-left:10%;
   top: 0%;
   z-index: 998;
   justify-content: space-between;
-  position: fixed;
+  
+
+
 }
 /* Position and sizing of init buttons login sign up */
 .init-buttons {
   z-index: 998;
   order: 1;
   position: absolute;
-  right: 10%!important;
+  right: 10px!important;
   height: 30px;
   align-content: flex-end;
   top: 30px;

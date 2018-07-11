@@ -9,9 +9,9 @@ const DashboardView = props => {
     props.actions.show(name, { message: `This is a ${name} modal`, title: 'Title' });
   };
   if (props.data.getRecords) {
-    const listCards = props.data.getRecords.map((data, index)  => {
-      return <DataCard key={index} handleOpen={handleOpen} data={data} actions={props.actions} />;
-    });
+    const listCards = props.data.getRecords.map((data, index) => (
+      <DataCard key={index} handleOpen={handleOpen} data={data} actions={props.actions} />
+    ));
     return (
       <div className="dashboard">
         <TopBar />

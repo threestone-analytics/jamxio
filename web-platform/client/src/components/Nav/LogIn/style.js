@@ -11,7 +11,6 @@ export const Button = styled.button`
   font-size: 18px;
   text-align: center;
   height: 50px;
-  width: 80px;
-  color: #2F80ED;
+  width: 100px;
+  color: #2f80ed;
 `;
-
