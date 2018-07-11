@@ -73,7 +73,6 @@ UploadModal.propTypes = {
   message: PropTypes.string.isRequired,
   handleHide: PropTypes.func.isRequired,
   handleAddRecord: PropTypes.func.isRequired,
-
 };
 
 const UM = compose(

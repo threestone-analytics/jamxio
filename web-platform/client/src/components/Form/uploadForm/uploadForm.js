@@ -4,7 +4,6 @@ import 'react-widgets/dist/css/react-widgets.css';
 import { bindActionCreators } from 'redux';
 import { reduxForm, Field } from 'redux-form/immutable';
 import DropdownList from 'react-widgets/lib/DropdownList';
-import Multiselect from 'react-widgets/lib/Multiselect';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
@@ -97,17 +96,6 @@ const renderDropdownList = ({ input, data, valueField, textField }) => (
   />
 );
 
-const renderMultiselect = ({ input, data, valueField, textField }) => (
-  <Multiselect
-    {...input}
-    onBlur={() => input.onBlur()}
-    value={input.value || []} // requires value to be an array
-    data={data}
-    valueField={valueField}
-    textField={textField}
-  />
-);
-
 const handleRecord = async (props, record) => {
   await props.handleAddRecord(record);
 };
@@ -115,7 +103,6 @@ const handleRecord = async (props, record) => {
 const UF = props => {
   const handleSubmit = () => {
     const record = createRecord(props.forms.uploadForm);
-    console.log(record)
     handleRecord(props, record);
     props.handleHide();
   };

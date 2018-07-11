@@ -8,12 +8,16 @@ const DashboardView = props => {
   const handleOpen = name => {
     props.actions.show(name, { message: `This is a ${name} modal`, title: 'Title' });
   };
+
+  const listCards = props.data.getRecords.map(data => {
+    console.log(data)
+    return <DataCard key={data} handleOpen={handleOpen} data={data} />;
+  });
+
   return (
-    <div className='dashboard'>
+    <div className="dashboard">
       <TopBar />
-      <CardContainer>
-        <DataCard handleOpen={handleOpen} {...props}/>
-      </CardContainer>
+      <CardContainer>{listCards}</CardContainer>
     </div>
   );
 };

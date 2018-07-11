@@ -56,7 +56,6 @@ export default class MapContainer extends React.Component {
     });
   }
   toggleLayer(key, event) {
-    const visibility = this.map.getLayoutProperty(key, 'visibility');
     if (!event.target.checked) {
       this.map.setLayoutProperty(key, 'visibility', 'none');
       // this.className = '';

@@ -2,18 +2,19 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import { compose } from 'recompose';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import DataPage from '../../../pages/Dashboard/Data';
 // Actions
 import * as modalActions from '../../../redux/reducers/modal/modalActions';
 // Selectors
-import { getAuthForm, getIntl } from '../../../utils/selectors/common';
+import { getIntl } from '../../../utils/selectors/common';
 
 const actions = [modalActions];
 
 function mapStateToProps(state) {
   return {
-    formState: getAuthForm(state),
     intlState: getIntl(state),
   };
 }
@@ -31,6 +32,19 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default compose(
+  graphql(gql`
+    {
+      getRecords(category: "Hydrocarbons") {
+        document {
+          documentType {
+            category
+            subcategory
+          }
+          title
+        }
+      }
+    }
+  `),
   connect(
     mapStateToProps,
     mapDispatchToProps
