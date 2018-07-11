@@ -1,16 +1,14 @@
 import React from 'react';
-import { Button } from './style';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
-
-// id={'scaleDown'} pageWrapId={'page-wrap'} outerContainerId={'outer-container'}
+import { Button } from './style';
 
 // Actions
-import * as modalActions from '../../redux/reducers/modal/modalActions';
+import * as modalActions from '../../../redux/reducers/modal/modalActions';
 // Selectors
-import { getAuthForm, getIntl } from '../../utils/selectors/common';
+import { getAuthForm, getIntl } from '../../../utils/selectors/common';
 
 const actions = [modalActions];
 

@@ -1,10 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { ButtonGroup } from 'reactstrap';
-
-import { Button } from '../Button/MenuButton';
 import React from 'react';
-
-// id={'scaleDown'} pageWrapId={'page-wrap'} outerContainerId={'outer-container'}
+import { Button } from '../../Button/MenuButton';
 
 const Menu = () => (
   <ButtonGroup className="bm-burger-button">

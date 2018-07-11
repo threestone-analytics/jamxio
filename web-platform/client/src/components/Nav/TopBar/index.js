@@ -14,8 +14,6 @@ const Bar = styled.div`
   z-index: 995;
 `;
 
-const TopBar = props => {
-  return <Bar />;
-};
+const TopBar = () => <Bar />;
 
 export default TopBar;
