@@ -12,6 +12,7 @@ const Bar = styled.div`
   right: 0%;
   top: 0%;
   z-index: 995;
+  position: fixed;
 `;
 
 const TopBar = () => <Bar />;

@@ -10,4 +10,5 @@ export const CardContainer = styled.div`
   margin: auto;
   margin-bottom: 0;
   background-color: #e5e5e5;
+  overflow-y: scroll;
 `;
