@@ -8,16 +8,21 @@ const DashboardView = props => {
   const handleOpen = name => {
     props.actions.show(name, { message: `This is a ${name} modal`, title: 'Title' });
   };
-
-  const listCards = props.data.getRecords.map(data => {
-    console.log(data)
-    return <DataCard key={data} handleOpen={handleOpen} data={data} />;
-  });
-
+  if (props.data.getRecords) {
+    const listCards = props.data.getRecords.map((data, index)  => {
+      return <DataCard key={index} handleOpen={handleOpen} data={data} actions={props.actions} />;
+    });
+    return (
+      <div className="dashboard">
+        <TopBar />
+        <CardContainer>{listCards}</CardContainer>
+      </div>
+    );
+  }
   return (
     <div className="dashboard">
       <TopBar />
-      <CardContainer>{listCards}</CardContainer>
+      <CardContainer />
     </div>
   );
 };

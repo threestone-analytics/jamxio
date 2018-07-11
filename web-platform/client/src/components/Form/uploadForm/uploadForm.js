@@ -106,23 +106,17 @@ const UF = props => {
     handleRecord(props, record);
     props.handleHide();
   };
+  console.log(props)
   return (
     <Form>
       <form onSubmit={handleSubmit}>
         <FormBox>
           <Title big>Categoria:</Title>
-          <Title big>Agua</Title>
+          <Title big>{props.data.documentType.category}</Title>
         </FormBox>
         <FormBox>
           <Title>Subcategoria:</Title>
-          <FieldBox>
-            <Field
-              name="subcategory"
-              component={renderDropdownList}
-              data={subcategories}
-              textField="subcategory"
-            />
-          </FieldBox>
+          <Title big>{props.data.documentType.subcategory}</Title>
         </FormBox>
         <FormBox>
           <Title>Fuente de los datos:</Title>

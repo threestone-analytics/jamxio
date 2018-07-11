@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
-import { compose } from 'recompose';
+import { compose, withProps } from 'recompose';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -31,20 +31,25 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default compose(
-  graphql(gql`
-    {
-      getRecords(category: "Hydrocarbons") {
-        document {
-          documentType {
-            category
-            subcategory
-          }
-          title
+const data = gql`
+  {
+    getRecords {
+      document {
+        documentType {
+          category
+          subcategory
         }
+        title
       }
     }
-  `),
+  }
+`;
+
+export default compose(
+  graphql(data),
+  withProps(({ data: { document  } }) => ({
+    d: document,
+  })),
   connect(
     mapStateToProps,
     mapDispatchToProps

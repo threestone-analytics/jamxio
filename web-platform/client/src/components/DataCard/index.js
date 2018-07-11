@@ -1,13 +1,25 @@
 import React from 'react';
-import { Card, Image, Details, Info, Buttons, Button, Label } from './style';
 import Download from '@axetroy/react-download';
+import geojsonToImage from 'geojson-to-image';
+import { Card, Image, Details, Info, Buttons, Button, Label } from './style';
 
 const DataCard = props => {
   const data = props.data.document;
+  const geometry = JSON.stringify(data.geometry, null, 2);
+  // console.log(data);
+
+  // const image = geojsonToImage({
+  //   'mapID': 'username.mapid',
+  //   'accessToken': process.env.MAPBOX_TOKEN,
+  // }, geojson);
+  console.log(props)
+  const handleOpen = name => {
+    props.actions.show(name, { data: data });
+  };
   return (
     <Card>
       <Image>
-        <img alt="" />
+        <img alt="image" />
       </Image>
       <Details>
         <Info>
@@ -16,11 +28,11 @@ const DataCard = props => {
           <Label>{data.title}</Label>
         </Info>
         <Buttons>
-          <Button onClick={() => props.handleOpen('historyModal')}>Historial</Button>
-          <Download file="data.json" content={data.geometry}>
+          <Button onClick={() => handleOpen('historyModal')}>Historial</Button>
+          <Download file="data.json" content={geometry}>
             <Button>Descargar</Button>
           </Download>
-          <Button onClick={() => props.handleOpen('uploadModal')}>Agregar</Button>
+          <Button onClick={() => handleOpen('uploadModal')}>Agregar</Button>
         </Buttons>
       </Details>
     </Card>

@@ -31,6 +31,7 @@
     "dotenv-webpack": "^1.5.7",
     "express": "^4.16.3",
     "extract-files": "^3.1.0",
+    "geojson-to-image": "^0.0.0",
     "geojson-validation": "^0.2.1",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
