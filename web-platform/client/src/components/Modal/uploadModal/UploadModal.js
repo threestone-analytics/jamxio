@@ -78,17 +78,17 @@ UploadModal.propTypes = {
 const UM = compose(
   graphql(
     gql`
-      mutation Record($record: RecordInput) {
-        addRecord(record: $record)
+      mutation Record($record: DocumentInput) {
+        addDocument(record: $record)
       }
     `,
     {
-      name: 'addRecord',
+      name: 'addDocument',
     }
   ),
   withHandlers({
-    handleAddRecord: ({ addRecord }) => record => {
-      addRecord({
+    handleAddRecord: ({ addDocument }) => record => {
+      addDocument({
         variables: { record },
       });
     },

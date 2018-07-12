@@ -55,7 +55,7 @@ export const ModalButtonBox = styled.div`
   width: 40%;
   display: flex;
   margin: auto;
-  margin-top: 45px;
+  margin-top: 65px;
   align-items: center;
   justify-content: space-around;
 `;
@@ -82,7 +82,7 @@ export const Form = styled.div`
   flex-direction: column;
   align-items: left;
   align-content: space-between;
-  margin-top: 80px;
+  margin-top: 60px;
 `;
 
 export const Title = styled.h1`
@@ -219,7 +219,7 @@ export const AlertBox = styled.div`
   background-color: white;
   order: 2;
   margin-left: 15%;
-  margin-top: 60px;
+  margin-top: 30px;
   height: 10%;
   width: 70%;
   display: flex;

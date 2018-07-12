@@ -1,4 +1,4 @@
-export const createRecord = form => {
+export const createRecord = (form, data) => {
   const date = new Date();
 
   const publisher = {
@@ -8,23 +8,21 @@ export const createRecord = form => {
   };
 
   const document = {};
-
-  document.documentType = {
-    category: form.values.subcategory,
-    subcategory: form.values.subcategory,
-  };
-
   document.source = form.values.source;
   document.format = form.values.format;
+  document.category = data.category;
+  document.subcategory = data.subcategory;
   document.geometry = form.values.geometry;
   document.title = form.values.source;
+  document.publishedDate = date;
+  document.publisher = publisher;
+  const id = data._id;
 
-  const record = {
-    publishedDate: date,
+  const newDocument = {
     document,
-    publisher,
+    id,
   };
-  return record;
+  return newDocument;
 };
 
 export const validate = values => {

@@ -52,21 +52,30 @@ export const Info = styled.div`
   font-size: 18px;
 `;
 
-export const Label = styled.div`
+export const LabelBox = styled.div`
   order: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   text-align: left;
   margin-top: 15px;
   height: 40%;
   left: 15px;
   background-color: white;
-  width: 65%;
+  width: 100%;
   font-style: normal;
   font-weight: bold;
   line-height: normal;
   font-size: 18px;
+  color: #2F80ED;
 `;
+
+export const Label = styled.div`
+  font-size: 18px;
+  font-weight: normal;
+  color: #000;
+  margin-left: 10px;
+`;
+
 
 export const Buttons = styled.div`
   order: 1;

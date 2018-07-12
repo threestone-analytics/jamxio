@@ -96,14 +96,14 @@ const renderDropdownList = ({ input, data, valueField, textField }) => (
   />
 );
 
-const handleRecord = async (props, record) => {
-  await props.handleAddRecord(record);
-};
-
+const handleRecord = async (props, document) => {
+  await props.handleAddRecord(document);
+}
 const UF = props => {
   const handleSubmit = () => {
-    const record = createRecord(props.forms.uploadForm);
-    handleRecord(props, record);
+    const formData = props.forms.uploadForm;
+    const document = createRecord(formData, props.data);
+    handleRecord(props, document);
     props.handleHide();
   };
   return (
@@ -111,11 +111,15 @@ const UF = props => {
       <form onSubmit={handleSubmit}>
         <FormBox>
           <Title big>Categoria:</Title>
-          <Title big>{props.data.documentType.category}</Title>
+          <Title big>{props.data.category}</Title>
         </FormBox>
         <FormBox>
           <Title>Subcategoria:</Title>
-          <Title big>{props.data.documentType.subcategory}</Title>
+          <Title big>{props.data.subcategory}</Title>
+        </FormBox>
+        <FormBox>
+          <Title>Titulo:</Title>
+          <Title big>{props.data.title}</Title>
         </FormBox>
         <FormBox>
           <Title>Fuente de los datos:</Title>

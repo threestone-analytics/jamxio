@@ -48,7 +48,6 @@ const Dropzone = props => {
     props.actions.hide_alert(name);
   };
 
-
   const handleSaveFile = document => {
     props.actions.save_file(document);
     props.change(['geometry'], document.geometry);

@@ -34,20 +34,17 @@ function mapDispatchToProps(dispatch) {
 const data = gql`
   {
     getRecords {
-      document {
-        documentType {
-          category
-          subcategory
-        }
-        title
-      }
+      _id
+      title
+      category
+      subcategory
     }
   }
 `;
 
 export default compose(
   graphql(data),
-  withProps(({ data: { document  } }) => ({
+  withProps(({ data: { document } }) => ({
     d: document,
   })),
   connect(

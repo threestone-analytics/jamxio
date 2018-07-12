@@ -108,7 +108,7 @@ export const Form = styled.div`
   flex-direction: column;
   align-items: left;
   align-content: space-between;
-  margin-top: 80px;
+  margin-top: 50px;
 `;
 
 export const Label = styled.h1`

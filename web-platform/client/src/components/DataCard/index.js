@@ -1,20 +1,12 @@
 import React from 'react';
 import Download from '@axetroy/react-download';
 import geojsonToImage from 'geojson-to-image';
-import { Card, Image, Details, Info, Buttons, Button, Label } from './style';
+import { Card, Image, Details, Info, Buttons, Button, LabelBox, Label } from './style';
 
 const DataCard = props => {
-  const data = props.data.document;
-  const geometry = JSON.stringify(data.geometry, null, 2);
-  // console.log(data);
-
-  // const image = geojsonToImage({
-  //   'mapID': 'username.mapid',
-  //   'accessToken': process.env.MAPBOX_TOKEN,
-  // }, geojson);
-  console.log(props)
+  const data  = props.data;
   const handleOpen = name => {
-    props.actions.show(name, { data: data });
+    props.actions.show(name, { data });
   };
   return (
     <Card>
@@ -23,16 +15,22 @@ const DataCard = props => {
       </Image>
       <Details>
         <Info>
-          <Label>Categoria: {data.documentType.category}</Label>
-          <Label>Subcategoria: {data.documentType.subcategory}</Label>
-          <Label>{data.title}</Label>
+          <LabelBox>
+            Categoria: <Label> {data.category}</Label>
+          </LabelBox>
+          <LabelBox>
+            Subcategoria: <Label> {data.subcategory}</Label>
+          </LabelBox>
+          <LabelBox>
+            Titulo: <Label> {data.title}</Label>
+          </LabelBox>
         </Info>
         <Buttons>
           <Button onClick={() => handleOpen('historyModal')}>Historial</Button>
-          <Download file="data.json" content={geometry}>
+          <Download file="data.json" content={"geometry"}>
             <Button>Descargar</Button>
           </Download>
-          <Button onClick={() => handleOpen('uploadModal')}>Agregar</Button>
+          <Button onClick={() => handleOpen('uploadModal')}>Contribuir</Button>
         </Buttons>
       </Details>
     </Card>
