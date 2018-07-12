@@ -8,6 +8,8 @@ input Doc {
   documentType: DT
   source: String
   format: String
+  category: String
+  subcategory: String
   title: String
   geometry: JSON
   publishedDate: Date,

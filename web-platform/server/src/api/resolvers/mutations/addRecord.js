@@ -8,7 +8,6 @@ const handleError = function(err) {
   console.log('error', err);
 };
 export default function addRecord(root, { record }) {
-  console.log(record);
   const uModel = new UserModel();
   uModel.set({ username: 'alexter42' });
   uModel.save(function(err) {

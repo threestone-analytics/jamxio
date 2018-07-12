@@ -9,7 +9,6 @@ const handleError = function(err) {
   console.log('error', err);
 };
 export default function addDocument(root, { record }) {
-  console.log(record);
   const uModel = new UserModel();
   uModel.set({ username: 'alexter42' });
   uModel.save(function(err) {
@@ -26,8 +25,8 @@ export default function addDocument(root, { record }) {
   //Create publisher
   const dTModel = new DocumentTypeModel();
   dTModel.set({
-    category: 'record.document.category',
-    subcategory: 'record.document.subcategory',
+    category: record.document.category,
+    subcategory: record.document.subcategory,
   });
   dTModel.save(function(err) {
     if (err) return handleError(err);
@@ -49,7 +48,7 @@ export default function addDocument(root, { record }) {
     // saved!
   });
 
-  //Create record solo tienes que hacer push
+  //Create record
   const rModel = RecordModel.findByIdAndUpdate(
     record.id,
     { $push: { documents: dModel } },
