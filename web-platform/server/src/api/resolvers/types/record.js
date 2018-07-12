@@ -1,11 +1,14 @@
 export default {
-  async document({ _id }, contex, { loaders }) {
-    return await loaders.getRecord.load(_id);
+  async title({ _id }, contex, { loaders }) {
+    return (await loaders.getRecord.load(_id)).title;
   },
-  async publisher(parentId, contex, { loaders }) {
-    return (await loaders.getRecord.load(parentId)).publisher;
+  async category({ _id }, contex, { loaders }) {
+    return (await loaders.getRecord.load(_id)).category;
   },
-  async publishedDate(parentId, contex, { loaders }) {
-    return (await loaders.getRecord.load(parentId)).publishedDate;
+  async subcategory({ _id }, contex, { loaders }) {
+    return (await loaders.getRecord.load(_id)).subcategory;
+  },
+  async documents({ _id }, contex, { loaders }) {
+    return (await loaders.getRecord.load(_id)).documents;
   },
 };

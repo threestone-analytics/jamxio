@@ -1,17 +1,20 @@
 export default {
-  async source({ document }, contex, { loaders }) {
-    return (await loaders.getDocument.load(document)).source;
+  async source({ _id }, contex, { loaders }) {
+    return (await loaders.getDocument.load(_id)).source;
   },
-  async geometry({ document }, contex, { loaders }) {
-    return (await loaders.getDocument.load(document)).geometry;
+  async geometry({ _id }, contex, { loaders }) {
+    return (await loaders.getDocument.load(_id)).geometry;
   },
-  async format({ document }, contex, { loaders }) {
-    return (await loaders.getDocument.load(document)).format;
+  async format({ _id }, contex, { loaders }) {
+    return (await loaders.getDocument.load(_id)).format;
   },
-  async documentType({ document }, contex, { loaders }) {
-    return (await loaders.getDocument.load(document)).documentType;
+  async publisher({ _id }, contex, { loaders }) {
+    return (await loaders.getDocument.load(_id)).publisher;
   },
-  async title({ document }, contex, { loaders }) {
-    return (await loaders.getDocument.load(document)).title;
+  async publishedDate({ _id }, contex, { loaders }) {
+    return (await loaders.getDocument.load(_id)).publishedDate;
+  },
+  async documentType(parentId, contex, { loaders }) {
+    return await loaders.getDocument.load(parentId);
   },
 };

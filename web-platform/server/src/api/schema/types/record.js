@@ -4,9 +4,10 @@ import Publisher from './publisher';
 const Record = `
   type Record  @cacheControl(maxAge: 240){
     _id: ID
-    publishedDate: Date
-    document: Document
-    publisher: String
+    title : String
+    category : String
+    subcategory : String
+    documents: [Document]
   }
 `;
 

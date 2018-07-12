@@ -10,6 +10,8 @@ input Doc {
   format: String
   title: String
   geometry: JSON
+  publishedDate: Date,
+  publisher: Pub,
 }
 
 input U {
@@ -24,8 +26,14 @@ input Pub {
 }
 
 input RecordInput {
-  publishedDate: Date,
-  publisher: Pub,
+  title: String
+  category: String
+  subcategory: String
+  documents: [Doc],
+}
+
+input DocumentInput {
+  id: ID
   document: Doc,
 }
 
@@ -33,4 +41,5 @@ input RecordInput {
 type Mutation {
   test: User
   addRecord(record: RecordInput): JSON
+  addDocument(record: DocumentInput): JSON
 }

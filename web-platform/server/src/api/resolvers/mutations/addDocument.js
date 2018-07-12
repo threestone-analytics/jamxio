@@ -3,11 +3,12 @@ import UserModel from '../../../db/models/user.model';
 import PublisherModel from '../../../db/models/publisher.model';
 import DocumentModel from '../../../db/models/document.model';
 import DocumentTypeModel from '../../../db/models/documentType.model';
+import RecordType from '../types/record';
 
 const handleError = function(err) {
   console.log('error', err);
 };
-export default function addRecord(root, { record }) {
+export default function addDocument(root, { record }) {
   console.log(record);
   const uModel = new UserModel();
   uModel.set({ username: 'alexter42' });
@@ -25,8 +26,8 @@ export default function addRecord(root, { record }) {
   //Create publisher
   const dTModel = new DocumentTypeModel();
   dTModel.set({
-    category: record.document.documentType.category,
-    subcategory: record.document.documentType.subcategory,
+    category: 'record.document.category',
+    subcategory: 'record.document.subcategory',
   });
   dTModel.save(function(err) {
     if (err) return handleError(err);
@@ -47,14 +48,13 @@ export default function addRecord(root, { record }) {
     if (err) return handleError(err);
     // saved!
   });
+
   //Create record solo tienes que hacer push
-  const rModel = new RecordModel();
-  rModel.set({
-    document: dModel,
-  });
-  rModel.save(function(err) {
-    if (err) return handleError(err);
-    // saved!
-  });
+  const rModel = RecordModel.findByIdAndUpdate(
+    record.id,
+    { $push: { documents: dModel } },
+    { new: true }
+  ).catch(err => new Error(err));
+
   return rModel;
 }
