@@ -52,16 +52,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const subcategories = [
-  'Electricity',
-  'Hydrocarbons',
-  'Renewables',
-  'Manufacturing',
-  'Sociodemographics',
-  'Conservation & Environmental goods ',
-  'Justice',
-];
-
 const sources = [
   'SENER',
   'SEGOB',
@@ -96,30 +86,43 @@ const renderDropdownList = ({ input, data, valueField, textField }) => (
   />
 );
 
+const dropzone = ({ input, data, valueField, textField, actions, change }) => (
+  <Dropzone
+    {...input}
+    data={data}
+    valueField={valueField}
+    textField={textField}
+    onChange={input.onChange}
+    actions={actions}
+    change={change}
+  />
+);
+
 const handleRecord = async (props, document) => {
   await props.handleAddRecord(document);
-}
+};
 const UF = props => {
   const handleSubmit = () => {
     const formData = props.forms.uploadForm;
-    const document = createRecord(formData, props.data);
+    const document = createRecord(formData, props.record);
     handleRecord(props, document);
     props.handleHide();
   };
+  console.log(props)
   return (
     <Form>
       <form onSubmit={handleSubmit}>
         <FormBox>
           <Title big>Categoria:</Title>
-          <Title big>{props.data.documentType.category}</Title>
+          <Title big>{props.record.documentType.category}</Title>
         </FormBox>
         <FormBox>
           <Title>Subcategoria:</Title>
-          <Title big>{props.data.documentType.subcategory}</Title>
+          <Title big>{props.record.documentType.subcategory}</Title>
         </FormBox>
         <FormBox>
           <Title>Titulo:</Title>
-          <Title big>{props.data.title}</Title>
+          <Title big>{props.record.title}</Title>
         </FormBox>
         <FormBox>
           <Title>Fuente de los datos:</Title>
@@ -138,7 +141,15 @@ const UF = props => {
           <AlertText {...props} />
         </AlertBox>
         <DropzoneBox>
-          <Dropzone {...props} />
+          <Field
+            name="geometry"
+            component={dropzone}
+            data={sources}
+            valueField="value"
+            textField="geometry"
+            actions={props.actions}
+            change={props.change}
+          />
         </DropzoneBox>
       </form>
       <ModalButtonBox>

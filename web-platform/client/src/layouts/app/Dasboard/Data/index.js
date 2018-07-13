@@ -44,7 +44,7 @@ const DataLayout = ({ location, props }) => (
 
 DataLayout.propTypes = {
   match: PropTypes.object.isRequired,
-  props: PropTypes.object.isRequired,
+  props: PropTypes.object,
   location: PropTypes.object.isRequired,
 };
 

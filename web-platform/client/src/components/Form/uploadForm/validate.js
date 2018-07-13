@@ -26,15 +26,16 @@ export const createRecord = (form, data) => {
 
 export const validate = values => {
   const check = values.toJSON();
+  console.log(check)
   const errors = {};
-  if (!check.source) {
-    errors.source = 'Required';
-  }
-  if (!check.subcategory) {
-    errors.subcategory = 'Required';
-  }
   if (!check.geometry) {
     errors.geometry = 'Required';
+  }
+  if (!check.format) {
+    errors.format = 'Required';
+  }
+  if (!check.source) {
+    errors.source = 'Required';
   }
   return errors;
 };

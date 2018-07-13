@@ -38,9 +38,10 @@ Modal.defaultStyles.content = {
 };
 
 const GET_DOCUMENTS = gql`
-  query($_id: ID) {
+  query($_id: ID!) {
     getRecordById(_id: $_id) {
       documents {
+        _id
         source
         publishedDate
         publisher
@@ -54,9 +55,8 @@ const Items = ({ _id }) => (
     {({ loading, error, data }) => {
       if (loading) return 'Loading...';
       if (error) return `Error! ${error.message}`;
-      console.log(data);
       return data.getRecordById.documents.map(d => (
-        <HistoryItem key={_id + 1}>
+        <HistoryItem key={d._id}>
           <CheckBox />
           <Date> On {d.publishedDate} </Date>
           <User> alexter42</User>
@@ -76,7 +76,8 @@ const HistoryModal = props => (
     isOpen={props.show}
     onRequestClose={props.handleHide}
     contentLabel="Modal"
-    ariaHideApp={false}>
+    ariaHideApp={false}
+  >
     <ModalOuter>
       <ModalBox>
         <ModalInfo>
@@ -117,7 +118,6 @@ const HistoryModal = props => (
 
 HistoryModal.propTypes = {
   show: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
   handleHide: PropTypes.func.isRequired,
 };
 
