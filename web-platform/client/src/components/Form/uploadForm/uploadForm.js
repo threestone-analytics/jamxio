@@ -111,11 +111,11 @@ const UF = props => {
       <form onSubmit={handleSubmit}>
         <FormBox>
           <Title big>Categoria:</Title>
-          <Title big>{props.data.category}</Title>
+          <Title big>{props.data.documentType.category}</Title>
         </FormBox>
         <FormBox>
           <Title>Subcategoria:</Title>
-          <Title big>{props.data.subcategory}</Title>
+          <Title big>{props.data.documentType.subcategory}</Title>
         </FormBox>
         <FormBox>
           <Title>Titulo:</Title>

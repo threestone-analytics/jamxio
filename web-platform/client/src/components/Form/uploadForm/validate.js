@@ -10,8 +10,7 @@ export const createRecord = (form, data) => {
   const document = {};
   document.source = form.values.source;
   document.format = form.values.format;
-  document.category = data.category;
-  document.subcategory = data.subcategory;
+  document.documentType = data.documentType._id;
   document.geometry = form.values.geometry;
   document.title = form.values.source;
   document.publishedDate = date;
@@ -35,7 +34,7 @@ export const validate = values => {
     errors.subcategory = 'Required';
   }
   if (!check.geometry) {
-    errors.subcategory = 'Required';
+    errors.geometry = 'Required';
   }
   return errors;
 };

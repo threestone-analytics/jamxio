@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connectModal } from 'redux-modal';
 import Modal from 'react-modal';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 /* show, handleHide, message, title */
 import {
@@ -24,7 +26,6 @@ import {
   HistoryItemContainer,
 } from './style';
 
-
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(0, 0, 0, 0.75)';
 Modal.defaultStyles.overlay.zIndex = '999';
 
@@ -36,48 +37,78 @@ Modal.defaultStyles.content = {
   padding: '20px',
 };
 
-const numbers = [1, 2, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4];
-const listItems = numbers.map((number) =>
-<HistoryItem> 
-  <CheckBox/> 
-  <Date > On  6/11/2018 </Date>
-  <User> alexter42</User>
-  <DataType> .geojson </ DataType>
-</HistoryItem>
+const GET_DOCUMENTS = gql`
+  query($_id: ID) {
+    getRecordById(_id: $_id) {
+      documents {
+        source
+        publishedDate
+        publisher
+      }
+    }
+  }
+`;
+
+const Items = ({ _id }) => (
+  <Query query={GET_DOCUMENTS} variables={{ _id }}>
+    {({ loading, error, data }) => {
+      if (loading) return 'Loading...';
+      if (error) return `Error! ${error.message}`;
+      console.log(data);
+      return data.getRecordById.documents.map(d => (
+        <HistoryItem key={_id + 1}>
+          <CheckBox />
+          <Date> On {d.publishedDate} </Date>
+          <User> alexter42</User>
+          <DataType> {d.source} </DataType>
+        </HistoryItem>
+      ));
+    }}
+  </Query>
 );
 
+Items.propTypes = {
+  _id: PropTypes.string.isRequired,
+};
 
-
-const HistoryModal = ({ show, handleHide }) => (
-  <Modal isOpen={show} onRequestClose={handleHide} contentLabel="Modal" ariaHideApp={false}>
+const HistoryModal = props => (
+  <Modal
+    isOpen={props.show}
+    onRequestClose={props.handleHide}
+    contentLabel="Modal"
+    ariaHideApp={false}>
     <ModalOuter>
       <ModalBox>
         <ModalInfo>
           <ModalLabelBox>
             <Label big>Categoria:</Label>
-            <Label thin>Agua</Label>
+            <Label thin>{props.record.documentType.category}</Label>
           </ModalLabelBox>
           <ModalLabelBox>
             <Label>Subcategoria:</Label>
-            <Label thin>Dato</Label>
+            <Label thin>{props.record.documentType.subcategory}</Label>
           </ModalLabelBox>
           <ModalLabelBox>
-            <Label>Fuente de datos:</Label>
-            <Label thin>datos.gob.mx</Label>
+            <Label>Titulo:</Label>
+            <Label thin>{props.record.title}</Label>
           </ModalLabelBox>
         </ModalInfo>
         <HistoryContainer>
           <HistoryBox>
             <HistoryInfoTab>
               <Title>Historial</Title>
-              <Title margin_right="10%">DataType</Title>
+              <Title margin_right="10%">Fuente</Title>
             </HistoryInfoTab>
-            <HistoryItemContainer>{listItems}</HistoryItemContainer>
+            <HistoryItemContainer>
+              <Items _id={props.record._id} />
+            </HistoryItemContainer>
           </HistoryBox>
         </HistoryContainer>
         <ModalButtonBox>
-          <Button cancel="true" onClick={handleHide}>Salir</Button>
-          <Button onClick={handleHide}>Descargar</Button>
+          <Button cancel="true" onClick={props.handleHide}>
+            Salir
+          </Button>
+          <Button onClick={props.handleHide}>Descargar</Button>
         </ModalButtonBox>
       </ModalBox>
     </ModalOuter>
@@ -87,7 +118,6 @@ const HistoryModal = ({ show, handleHide }) => (
 HistoryModal.propTypes = {
   show: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired,
   handleHide: PropTypes.func.isRequired,
 };
 

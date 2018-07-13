@@ -4,9 +4,9 @@ import geojsonToImage from 'geojson-to-image';
 import { Card, Image, Details, Info, Buttons, Button, LabelBox, Label } from './style';
 
 const DataCard = props => {
-  const data  = props.data;
+  const record = props.record;
   const handleOpen = name => {
-    props.actions.show(name, { data });
+    props.actions.show(name, { record });
   };
   return (
     <Card>
@@ -16,13 +16,13 @@ const DataCard = props => {
       <Details>
         <Info>
           <LabelBox>
-            Categoria: <Label> {data.category}</Label>
+            Categoria: <Label> {record.documentType.category}</Label>
           </LabelBox>
           <LabelBox>
-            Subcategoria: <Label> {data.subcategory}</Label>
+            Subcategoria: <Label> {record.documentType.subcategory}</Label>
           </LabelBox>
           <LabelBox>
-            Titulo: <Label> {data.title}</Label>
+            Titulo: <Label> {record.title}</Label>
           </LabelBox>
         </Info>
         <Buttons>

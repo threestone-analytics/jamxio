@@ -36,8 +36,11 @@ const data = gql`
     getRecords {
       _id
       title
-      category
-      subcategory
+      documentType {
+        _id
+        category
+        subcategory
+      }
     }
   }
 `;
