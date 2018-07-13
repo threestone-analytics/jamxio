@@ -26,7 +26,6 @@ export const createRecord = (form, data) => {
 
 export const validate = values => {
   const check = values.toJSON();
-  console.log(check)
   const errors = {};
   if (!check.geometry) {
     errors.geometry = 'Required';

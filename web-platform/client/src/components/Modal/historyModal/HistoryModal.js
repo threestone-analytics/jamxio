@@ -4,7 +4,7 @@ import { connectModal } from 'redux-modal';
 import Modal from 'react-modal';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-
+import { SyncLoader } from 'react-spinners';
 /* show, handleHide, message, title */
 import {
   Button,
@@ -18,6 +18,7 @@ import {
   Label,
   Date,
   User,
+  SpinnerBox,
   DataType,
   HistoryContainer,
   HistoryBox,
@@ -53,7 +54,12 @@ const GET_DOCUMENTS = gql`
 const Items = ({ _id }) => (
   <Query query={GET_DOCUMENTS} variables={{ _id }}>
     {({ loading, error, data }) => {
-      if (loading) return 'Loading...';
+      if (loading)
+        return (
+          <SpinnerBox>
+            <SyncLoader color="#2F80ED" />
+          </SpinnerBox>
+        );
       if (error) return `Error! ${error.message}`;
       return data.getRecordById.documents.map(d => (
         <HistoryItem key={d._id}>

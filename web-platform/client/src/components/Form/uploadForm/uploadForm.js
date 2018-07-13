@@ -108,7 +108,6 @@ const UF = props => {
     handleRecord(props, document);
     props.handleHide();
   };
-  console.log(props)
   return (
     <Form>
       <form onSubmit={handleSubmit}>

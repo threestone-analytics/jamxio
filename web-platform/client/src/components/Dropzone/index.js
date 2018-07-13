@@ -41,7 +41,6 @@ const djsConfig = {
 };
 
 const Dropzone = props => {
-  console.log(props)
   const handleShow = name => {
     props.actions.show_alert(name);
   };

@@ -38,6 +38,14 @@ export const ModalBox = styled.div`
   flex-direction: column;
 `;
 
+export const SpinnerBox = styled.div`
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+`;
+
 export const ModalLabelBox = styled.div`
   background-color: white;
   order: 0;
