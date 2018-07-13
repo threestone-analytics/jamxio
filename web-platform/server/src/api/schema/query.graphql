@@ -2,4 +2,5 @@ type Query {
   me: User
   user(_id: ID!): User
   getRecords: [Record]
+  getRecordById(_id: ID!): Record
 }

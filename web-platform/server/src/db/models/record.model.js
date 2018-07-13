@@ -6,8 +6,7 @@ const recordsSchema = new Schema(
   {
     _id: Schema.Types.ObjectId,
     title: String,
-    category: String,
-    subcategory: String,
+    documentType: Schema.Types.ObjectId,
     documents: [Schema.Types.ObjectId],
   },
   { collection: 'records' }

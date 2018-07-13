@@ -9,6 +9,7 @@ const handleError = function(err) {
   console.log('error', err);
 };
 export default function addDocument(root, { record }) {
+  console.log(record);
   const uModel = new UserModel();
   uModel.set({ username: 'alexter42' });
   uModel.save(function(err) {
@@ -23,22 +24,14 @@ export default function addDocument(root, { record }) {
     // saved!
   });
   //Create publisher
-  const dTModel = new DocumentTypeModel();
-  dTModel.set({
-    category: record.document.category,
-    subcategory: record.document.subcategory,
-  });
-  dTModel.save(function(err) {
-    if (err) return handleError(err);
-    // saved!
-  });
+
   //Create document
   const dModel = new DocumentModel();
   dModel.set({
     format: record.document.format,
     source: record.document.source,
     title: record.document.geometry.name,
-    documentType: dTModel,
+    documentType: record.document.documentType,
     geometry: { data: 'data' },
     publishedDate: record.publishedDate,
     publisher: pModel,
@@ -48,7 +41,7 @@ export default function addDocument(root, { record }) {
     // saved!
   });
 
-  //Create record
+  //Create record solo tienes que hacer push
   const rModel = RecordModel.findByIdAndUpdate(
     record.id,
     { $push: { documents: dModel } },

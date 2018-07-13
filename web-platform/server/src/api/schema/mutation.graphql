@@ -5,11 +5,9 @@ input DT {
 }
 
 input Doc {
-  documentType: DT
+  documentType: ID
   source: String
   format: String
-  category: String
-  subcategory: String
   title: String
   geometry: JSON
   publishedDate: Date,
@@ -29,8 +27,7 @@ input Pub {
 
 input RecordInput {
   title: String
-  category: String
-  subcategory: String
+  documentType: DT
   documents: [Doc],
 }
 
