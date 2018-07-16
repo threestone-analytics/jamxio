@@ -6,6 +6,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.config.js');
 const Dotenv = require('dotenv-webpack');
 
+// /.*(fs\.js).*/,  ?
 module.exports = merge(common, {
   cache: true, // for rebuilding faster
   output: {
@@ -15,7 +16,7 @@ module.exports = merge(common, {
     pathinfo: true,
   },
   module: {
-    noParse: [/.*(fs\.js).*/],
+    noParse: [/.*(aws-sdk\.js).*/],
     rules: [
       {
         test: /\.jsx?$/,

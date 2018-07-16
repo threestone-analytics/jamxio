@@ -141,11 +141,11 @@ const UF = props => {
         </AlertBox>
         <DropzoneBox>
           <Field
-            name="geometry"
+            name="file"
             component={dropzone}
             data={sources}
             valueField="value"
-            textField="geometry"
+            textField="file"
             actions={props.actions}
             change={props.change}
           />

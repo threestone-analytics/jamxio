@@ -50,7 +50,7 @@ const Dropzone = props => {
 
   const handleSaveFile = document => {
     props.actions.save_file(document);
-    props.change(['geometry'], document.geometry);
+    props.change(['file'], document.file);
     props.change(['format'], document.format);
     props.actions.set_file();
   };
@@ -70,13 +70,15 @@ const Dropzone = props => {
       let data;
       const reader = new FileReader();
       reader.onload = (function(f) {
+        console.log(f)
         return function(e) {
+          console.log(e)
           try {
             data = JSON.parse(e.target.result);
             if (GeoJSON.valid(data)) {
               handleSaveFile({
                 format: file.type,
-                geometry: data,
+                file,
               });
               handleHide('alertText');
             } else {
