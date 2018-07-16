@@ -14,9 +14,15 @@ $ yarn install
 
 Creaete **src/.env** file with all tokens and url, should look like this:
 ``` bash
-MAPBOX_TOKEN=
-GRAPHQL_SERVER_URL=
-GRAPHQL_SERVER_ENDPOINT=
+    MAPBOX_TOKEN=
+    GRAPHQL_SERVER_URL=
+    GRAPHQL_SERVER_ENDPOINT=
+    AWS_ACCESS_KEY_ID=
+    AWS_SECRET_ACCESS_KEY=
+    IDENTITY_POOL_NAME=
+    IDENTITY_POOL_ID=
+    IDENTITY_POOL_REGION=
+    DOCUMENTS_BUCKET_NAME=
 ```
 
 Run the App in dev mode:
