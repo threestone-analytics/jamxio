@@ -1,33 +1,27 @@
 import * as AWS from 'aws-sdk';
 
-const bucketName = 'jamxio-documents';
+const bucketName = process.env.DOCUMENTS_BUCKET_NAME;
 const bucketRegion = process.env.IDENTITY_POOL_REGION;
 const IdentityPoolId = process.env.IDENTITY_POOL_ID;
 
-console.log(bucketRegion, IdentityPoolId)
-
-
 const addFile = file => {
+  if (!file) {
+    return alert('Please choose a file to upload first.');
+  }
   AWS.config.update({
     region: bucketRegion,
     credentials: new AWS.CognitoIdentityCredentials({
       IdentityPoolId,
     }),
   });
-  
+
   const s3 = new AWS.S3({
     apiVersion: '2006-03-01',
     params: { Bucket: bucketName },
   });
-  
-  if (!file) {
-    return alert('Please choose a file to upload first.');
-  }
-
   const fileName = file.name;
   const filesRocordKey = `${encodeURIComponent('docs')}/`;
   const fileKey = filesRocordKey + fileName;
-  console.log(fileKey)
   s3.upload(
     {
       Key: fileKey,
