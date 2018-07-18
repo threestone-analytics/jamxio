@@ -1,34 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import AppLayout from './app/AppLayout';
-import DataLayout from './app/Dasboard/Data';
+import MapLayout from './app/Map';
+import DataLayout from './app/Data';
+
 /* import AuthLayout from './auth/AuthLayout'; */
 
 const RootLayout = ({ loggedInUser, loading }) =>
-  !loggedInUser ? (
+  loggedInUser ? (
     // private routes
     <Switch>
-      <Route render={() => <Redirect to="/auth" />} />
+      <Route path="/home" component={MapLayout} />
+      <Route path="/data" component={DataLayout} />
+      <Route render={() => <Redirect to="/home" />} />
     </Switch>
   ) : !loading ? (
     // public routes
     <Switch>
-      <Route path="/app" component={AppLayout} />
-      <Route path="/data" component={DataLayout} />
-      <Route render={() => <Redirect to="/app" />} />
+      <Route path="/home" component={MapLayout} />
+      <Route path="/data" component={MapLayout} />
+      <Route render={() => <Redirect to="/home" />} />
     </Switch>
   ) : (
     <Switch />
   );
-
 RootLayout.defaultProps = {
-  loggedInUser: false,
+  loggedInUser: false
 };
 
 RootLayout.propTypes = {
   loggedInUser: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 export default RootLayout;

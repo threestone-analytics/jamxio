@@ -1,5 +1,4 @@
 import DropzoneComponent from 'react-dropzone-component';
-import ReactDOMServer from 'react-dom/server';
 import React from 'react';
 import GeoJSON from 'geojson-validation';
 import PropTypes from 'prop-types';
@@ -9,7 +8,7 @@ import '../../styles/app/dropzone/dropzone.scss';
 const componentConfig = {
   iconFiletypes: ['.GeoJSON'],
   showFiletypeIcon: true,
-  postUrl: 'no-url',
+  postUrl: 'no-url'
 };
 
 const djsConfig = {
@@ -20,44 +19,27 @@ const djsConfig = {
   params: {
     myParam: 'Hello from a parameter!',
     dictRemoveFile: 'lol',
-    anotherParam: 43,
-  },
-  previewTemplate: ReactDOMServer.renderToStaticMarkup(
-    <div className="dz-preview dz-file-preview">
-      <div className="uploaded-files">
-        <div className="dz-details">
-          <div className="dz-file-description">
-            <div className="dz-filename">
-              <span data-dz-name="true" />
-            </div>
-            <div className="dz-remove dz-remove-icon" data-dz-remove>
-              <img alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  ),
+    anotherParam: 43
+  }
 };
 
 const Dropzone = props => {
   const handleShow = name => {
-    props.actions.show_alert(name);
+    props.actions.showAlert(name);
   };
   const handleHide = name => {
-    props.actions.hide_alert(name);
+    props.actions.hideAlert(name);
   };
 
   const handleSaveFile = document => {
-    props.actions.save_file(document);
+    props.actions.saveFile(document);
     props.change(['file'], document.file);
     props.change(['format'], document.format);
-    props.actions.set_file();
   };
   let myDropzone;
 
   const eventHandlers = {
-    maxfilesexceeded: file => {
+    maxfilesexceeded: () => {
       // let previousFile = myDropzone.getAcceptedFiles();
       // previousFile = previousFile[0];
       myDropzone.removeAllFiles();
@@ -69,16 +51,15 @@ const Dropzone = props => {
       // new browsers do not show file.path anymore (for security reasons) so we need the next code in order the bea able to read the file, and of course validate it's GeoJSON format
       let data;
       const reader = new FileReader();
-      reader.onload = (function(f) {
-        console.log(f)
+      reader.onload = (function() {
         return function(e) {
-          console.log(e)
           try {
             data = JSON.parse(e.target.result);
             if (GeoJSON.valid(data)) {
               handleSaveFile({
                 format: file.type,
-                file,
+                geometry: data,
+                file
               });
               handleHide('alertText');
             } else {
@@ -86,12 +67,12 @@ const Dropzone = props => {
             }
           } catch (ex) {
             handleShow('alertText');
-            console.log(`ex when trying to parse json = ${ex}`);
+            console.log(`ex when trying to parse json = ${ex}`);// eslint-disable-line
           }
         };
       })(file);
       reader.readAsText(file);
-    },
+    }
   };
   return (
     <div>
@@ -106,4 +87,8 @@ const Dropzone = props => {
   );
 };
 
+Dropzone.propTypes = {
+  change: PropTypes.func.isRequired,
+  actions: PropTypes.object.isRequired
+};
 export default Dropzone;

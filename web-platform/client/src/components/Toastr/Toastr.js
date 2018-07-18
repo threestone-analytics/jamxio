@@ -20,7 +20,7 @@ Toastr.defaultProps = {
   newestOnTop: false,
   position: 'top-right',
   transitionIn: 'fadeIn',
-  transitionOut: 'fadeOut',
+  transitionOut: 'fadeOut'
 };
 
 Toastr.propTypes = {
@@ -28,7 +28,7 @@ Toastr.propTypes = {
   newestOnTop: PropTypes.bool,
   position: PropTypes.string,
   transitionIn: PropTypes.string,
-  transitionOut: PropTypes.string,
+  transitionOut: PropTypes.string
 };
 
 export default Toastr;

@@ -8,24 +8,25 @@ import gql from 'graphql-tag';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
-import { UploadForm } from '../../../components/Form';
 
 /* show, handleHide, message, title */
 import { ModalOuter, ModalBox } from './style';
 
 // Actions
-import * as alertActions from '../../../redux/reducers/alert/alertActions';
-import * as dropzoneActions from '../../../redux/reducers/dropzone/dropzoneActions';
-import * as validateActions from '../../../redux/reducers/form/validateFileForm/validateActions';
+import * as alertActions from '../../../store/reducers/alert/alertActions';
+import * as dropzoneActions from '../../../store/reducers/dropzone/dropzoneActions';
+import * as validateActions from '../../../store/reducers/form/validateFileForm/validateActions';
 
 // Selectors
-import { getUploadFileForm } from '../../../utils/selectors/common';
+import { getUploadFileForm, getAlert } from '../../../utils/selectors/common';
+import UploadForm from '../../Form/uploadForm';
 
 const actions = [alertActions, dropzoneActions, validateActions];
 
 function mapStateToProps(state) {
   return {
     forms: getUploadFileForm(state),
+    alertState: getAlert(state)
   };
 }
 
@@ -37,7 +38,7 @@ function mapDispatchToProps(dispatch) {
 
   return {
     actions: bindActionCreators(creators, dispatch),
-    dispatch,
+    dispatch
   };
 }
 
@@ -49,7 +50,7 @@ Modal.defaultStyles.content = {
   WebkitOverflowScrolling: 'touch',
   borderRadius: '4px',
   outline: 'none',
-  padding: '20px',
+  padding: '20px'
 };
 
 const UploadModal = props => (
@@ -61,7 +62,7 @@ const UploadModal = props => (
   >
     <ModalOuter>
       <ModalBox>
-        <UploadForm handleHide={props.handleHide} {...props} />
+        <UploadForm {...props} handleHide={props.handleHide} />
       </ModalBox>
     </ModalOuter>
   </Modal>
@@ -69,10 +70,7 @@ const UploadModal = props => (
 
 UploadModal.propTypes = {
   show: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired,
-  handleHide: PropTypes.func.isRequired,
-  handleAddRecord: PropTypes.func.isRequired,
+  handleHide: PropTypes.func.isRequired
 };
 
 const UM = compose(
@@ -83,15 +81,15 @@ const UM = compose(
       }
     `,
     {
-      name: 'addDocument',
+      name: 'addDocument'
     }
   ),
   withHandlers({
     handleAddRecord: ({ addDocument }) => record => {
       addDocument({
-        variables: { record },
+        variables: { record }
       });
-    },
+    }
   }),
   connect(
     mapStateToProps,
@@ -101,5 +99,5 @@ const UM = compose(
 
 export default connectModal({
   name: 'uploadModal',
-  getModalState: state => state.get('modal'),
+  getModalState: state => state.get('modal')
 })(UM);

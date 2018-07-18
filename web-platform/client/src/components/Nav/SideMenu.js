@@ -19,6 +19,7 @@ const AppSideMenu = ({ actions, client }) => (
       Query
     </NavLink>
     <button
+      type="button"
       onClick={() => {
         actions.signInStateForm();
         actions.logOut(client);
@@ -31,7 +32,7 @@ const AppSideMenu = ({ actions, client }) => (
 
 AppSideMenu.propTypes = {
   client: PropTypes.instanceOf(ApolloClient).isRequired,
-  actions: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 export default withApollo(AppSideMenu);

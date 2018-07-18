@@ -5,7 +5,7 @@ import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { persistCache } from 'apollo-cache-persist';
 
-const ENDPOINT = process.env.GRAPHQL_SERVER_ENDPOINT;
+const ENDPOINT = process.env.GRAPHQL_SERVER_URL;
 
 const httpLink = createHttpLink({ uri: ENDPOINT });
 
@@ -18,7 +18,7 @@ const httpLink = createHttpLink({ uri: ENDPOINT });
 }); */
 
 const middlewareLink = setContext(() => ({
-  headers: {},
+  headers: {}
 }));
 
 const cache = new InMemoryCache({
@@ -28,20 +28,20 @@ const cache = new InMemoryCache({
     }
     return null;
   },
-  addTypename: true,
+  addTypename: true
 });
 
 // Set up cache persistence.
 persistCache({
   cache,
-  storage: window.localStorage,
+  storage: window.localStorage
 });
 
 const client = new ApolloClient({
   link: concat(middlewareLink, httpLink),
   cache: cache.restore(window.__APOLLO_CLIENT__),
   connectToDevTools: true,
-  queryDeduplication: true,
+  queryDeduplication: true
 });
 
 export default client;

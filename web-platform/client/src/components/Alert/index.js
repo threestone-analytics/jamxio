@@ -1,30 +1,31 @@
 import React from 'react';
 /* show, handleHide, message, title */
-import { Alert } from './style';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
+import { Alert } from './style';
 // Components
 
 // Actions
-import * as alertActions from '../../redux/reducers/alert/alertActions';
+import * as alertActions from '../../store/reducers/alert/alertActions';
 
 // Selectors
 import { getAlert } from '../../utils/selectors/common';
 
-const AlertText = ( props ) => {
-  return (
-<Alert isOpen={props.alertState.isShown} red>* Fallo al ser comparado con el esquema</Alert>
-
+const AlertText = props => (
+  <Alert isOpen={props.alertState.isShown} red>
+    * Fallo al ser comparado con el esquema
+  </Alert>
 );
-}
-
-
+AlertText.propTypes = {
+  alertState: PropTypes.object.isRequired
+};
 const actions = [alertActions];
 
 function mapStateToProps(state) {
   return {
-    alertState: getAlert(state),
+    alertState: getAlert(state)
   };
 }
 
@@ -36,7 +37,7 @@ function mapDispatchToProps(dispatch) {
 
   return {
     actions: bindActionCreators(creators, dispatch),
-    dispatch,
+    dispatch
   };
 }
 

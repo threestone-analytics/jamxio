@@ -5,14 +5,14 @@ export const Button = styled.button`
   height: 67px;
   width: 496px;
   color: #fff;
-  background: #00FF94;
+  background: #00ff94;
   border: none;
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   font-size: 24px;
-  `;
+`;
 
 export const RegisterButton = styled.button`
   width: 289px;
@@ -25,7 +25,7 @@ export const RegisterButton = styled.button`
   font-size: 20px;
   text-align: center;
   text-decoration-line: underline;
-  background-color: #fff; 
+  background-color: #fff;
   border: none;
   color: #292a2b;
 `;
@@ -56,7 +56,7 @@ export const FormBox = styled.div`
   height: 30%;
   width: 100%;
   display: flex;
-  flex-direction:  column;
+  flex-direction: column;
   justify-content: space-between;
   margin-bottom: 60px;
   margin-top: 30px;
@@ -73,8 +73,6 @@ export const ItemBox = styled.div`
   justify-content: space-between;
   margin-bottom: 15px;
 `;
-
-
 
 export const ModalButtonBox = styled.div`
   background-color: white;
@@ -117,7 +115,7 @@ export const Label = styled.h1`
   font-weight: bold;
   line-height: normal;
   font-size: 24px;
-  color: #9D9A9A;
+  color: #9d9a9a;
 `;
 export const Alert = styled.h1`
   font-family: 'Roboto', sans-serif;
@@ -207,19 +205,11 @@ export const DropzoneBox = styled.div`
   left: 15px;
 `;
 
-
 export const FieldBox = styled.div`
   width: 50%;
   height: 80%;
   rigth: 0;
 `;
-
-
-
-
-
-
-
 
 export const ModalTitleBox = styled.div`
   background-color: white;
@@ -230,7 +220,6 @@ export const ModalTitleBox = styled.div`
   display: flex;
   flex-direction: ${props => (props.vertical ? 'column' : 'row')};
 `;
-
 
 export const ModalInfo = styled.div`
   background-color: white;
@@ -255,4 +244,3 @@ export const AlertBox = styled.div`
   flex-direction: ${props => (props.vertical ? 'column' : 'row')};
   justify-content: space-between;
 `;
-

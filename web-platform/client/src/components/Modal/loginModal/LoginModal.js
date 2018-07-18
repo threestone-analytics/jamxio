@@ -2,18 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connectModal } from 'redux-modal';
 import Modal from 'react-modal';
-import { LoginForm } from '../../../components/Form';
-
 /* show, handleHide, message, title */
-import { ModalOuter, ExitButton, ModalBox, ModalHeader, Title } from './style';
-
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
+import { LoginForm } from '../../Form';
+import { ModalOuter, ExitButton, ModalBox, ModalHeader, Title } from './style';
 // Actions
-import * as alertActions from '../../../redux/reducers/alert/alertActions';
+import * as alertActions from '../../../store/reducers/alert/alertActions';
 
 // Selectors
 import { getAlert } from '../../../utils/selectors/common';
@@ -22,7 +20,7 @@ const actions = [alertActions];
 
 function mapStateToProps(state) {
   return {
-    alertState: getAlert(state),
+    alertState: getAlert(state)
   };
 }
 
@@ -34,7 +32,7 @@ function mapDispatchToProps(dispatch) {
 
   return {
     actions: bindActionCreators(creators, dispatch),
-    dispatch,
+    dispatch
   };
 }
 
@@ -46,7 +44,7 @@ Modal.defaultStyles.content = {
   WebkitOverflowScrolling: 'touch',
   borderRadius: '4px',
   outline: 'none',
-  padding: '20px',
+  padding: '20px'
 };
 
 const LoginModal = props => {
@@ -57,7 +55,8 @@ const LoginModal = props => {
       isOpen={props.show}
       onRequestClose={props.handleHide}
       contentLabel="Modal"
-      ariaHideApp={false}>
+      ariaHideApp={false}
+    >
       <ModalOuter>
         <ModalBox>
           <ModalHeader>
@@ -75,7 +74,7 @@ LoginModal.propTypes = {
   show: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
-  handleHide: PropTypes.func.isRequired,
+  handleHide: PropTypes.func.isRequired
 };
 
 const LM = compose(
@@ -87,5 +86,5 @@ const LM = compose(
 
 export default connectModal({
   name: 'loginModal',
-  getModalState: state => state.get('modal'),
+  getModalState: state => state.get('modal')
 })(LM);

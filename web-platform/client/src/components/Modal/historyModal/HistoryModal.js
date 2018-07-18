@@ -24,7 +24,7 @@ import {
   HistoryBox,
   HistoryItem,
   HistoryInfoTab,
-  HistoryItemContainer,
+  HistoryItemContainer
 } from './style';
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(0, 0, 0, 0.75)';
@@ -35,7 +35,7 @@ Modal.defaultStyles.content = {
   WebkitOverflowScrolling: 'touch',
   borderRadius: '4px',
   outline: 'none',
-  padding: '20px',
+  padding: '20px'
 };
 
 const GET_DOCUMENTS = gql`
@@ -74,7 +74,7 @@ const Items = ({ _id }) => (
 );
 
 Items.propTypes = {
-  _id: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired
 };
 
 const HistoryModal = props => (
@@ -125,9 +125,10 @@ const HistoryModal = props => (
 HistoryModal.propTypes = {
   show: PropTypes.bool.isRequired,
   handleHide: PropTypes.func.isRequired,
+  record: PropTypes.object.isRequired
 };
 
 export default connectModal({
   name: 'historyModal',
-  getModalState: state => state.get('modal'),
+  getModalState: state => state.get('modal')
 })(HistoryModal);

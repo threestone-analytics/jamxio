@@ -1,4 +1,4 @@
-import UploadForm from './uploadForm/uploadForm';
+import UploadForm from './uploadForm';
 import LoginForm from './logInForm/loginForm';
 
-export {UploadForm, LoginForm};
+export { UploadForm, LoginForm };

@@ -4,8 +4,8 @@ const isRequired = value => (value ? undefined : 'auth.form.warning.isRequired')
 const isEmail = value => {
   const emailConstraints = {
     from: {
-      email: true,
-    },
+      email: true
+    }
   };
   return validate({ from: value }, emailConstraints) ? 'auth.form.warning.email' : undefined;
 };
@@ -15,9 +15,9 @@ const isPassword = value => {
     password: {
       format: {
         pattern: passwordPattern,
-        flags: 'i',
-      },
-    },
+        flags: 'i'
+      }
+    }
   };
   return validate({ password: value }, passwordConstraints)
     ? 'auth.form.warning.password'
@@ -30,9 +30,9 @@ const isUsername = value => {
     username: {
       format: {
         pattern: usernamePattern,
-        flags: 'i',
-      },
-    },
+        flags: 'i'
+      }
+    }
   };
   return validate({ username: value }, usernameConstraints)
     ? 'auth.form.warning.password'
@@ -43,13 +43,13 @@ const isSamePassword = (value, allValues) => {
   const password = allValues.get('password') || '';
   const passwordAgainConstraints = {
     confirmPassword: {
-      equality: 'password',
-    },
+      equality: 'password'
+    }
   };
   return validate(
     {
       password,
-      confirmPassword: value,
+      confirmPassword: value
     },
     passwordAgainConstraints
   )

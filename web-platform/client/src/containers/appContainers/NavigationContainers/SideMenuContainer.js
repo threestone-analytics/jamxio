@@ -3,19 +3,19 @@ import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import { Map } from 'immutable';
 // Components
-import SideMenu from '../../../components/Nav/SideMenu';
+import SideMenu from 'Components/Nav/SideMenu';
 // Actions
-import * as authActions from '../../../redux/reducers/app/forms/auth/authActions';
-import * as intlActions from '../../../redux/reducers/intl/intlActions';
+import { getAuthForm, getIntl } from 'Utils/selectors/common';
+import * as authActions from '../../../store/reducers/app/forms/auth/authActions';
+import * as intlActions from '../../../store/reducers/intl/intlActions';
 // Selectors
-import { getAuthForm, getIntl } from '../../../utils/selectors/common';
 
 const actions = [authActions, intlActions];
 
 function mapStateToProps(state) {
   return {
     formState: getAuthForm(state),
-    intlState: getIntl(state),
+    intlState: getIntl(state)
   };
 }
 
@@ -27,7 +27,7 @@ function mapDispatchToProps(dispatch) {
 
   return {
     actions: bindActionCreators(creators, dispatch),
-    dispatch,
+    dispatch
   };
 }
 

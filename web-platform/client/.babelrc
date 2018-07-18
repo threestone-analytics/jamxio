@@ -1,6 +1,10 @@
 {
   "presets": [
-    "@babel/env",
+    [
+      "@babel/env", {
+        "modules": false
+      }
+    ],
     "@babel/preset-react",
     [
       "@babel/preset-stage-2",
@@ -10,11 +14,12 @@
     ]
   ],
   "plugins": [
-    "syntax-async-functions",
     "react-hot-loader/babel", 
     "transform-regenerator",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties",
     "react-html-attrs", 
-    "transform-class-properties",
-    "babel-plugin-styled-components"
+    "babel-plugin-styled-components",
+    "babel-plugin-root-import"
   ]
 }

@@ -7,7 +7,17 @@
     "airbnb",
     "prettier"
   ],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "./webpack/base.config.js"
+      }
+    }
+  },
   "rules": {
+    "react/require-default-props": 0,
+    "react/destructuring-assignment": 0,
+    "react/jsx-one-expression-per-line": 0,
     "react/forbid-prop-types": 0,
     "no-nested-ternary": 0,
     "no-underscore-dangle": 0,

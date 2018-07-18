@@ -1,14 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import { ButtonGroup } from 'reactstrap';
 import React from 'react';
-import { Button } from '../../Button/MenuButton';
+import { Button } from './style';
 
 const Menu = () => (
-  <ButtonGroup className="bm-burger-button">
-    <NavLink className="btn-font" replace to="/">
+  <ButtonGroup className="nav-buttons">
+    <NavLink replace to="/">
       <Button> Map </Button>
     </NavLink>
-    <NavLink className="btn-font" replace to="/data">
+    <NavLink replace to="/data">
       <Button> Data </Button>
     </NavLink>
   </ButtonGroup>
