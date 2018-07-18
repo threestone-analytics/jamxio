@@ -2,14 +2,16 @@ import RecordModel from '../../../db/models/record.model';
 import UserModel from '../../../db/models/user.model';
 import PublisherModel from '../../../db/models/publisher.model';
 import DocumentModel from '../../../db/models/document.model';
-import DocumentTypeModel from '../../../db/models/documentType.model';
-import RecordType from '../types/record';
+import { saveMap } from './handlers';
 
 const handleError = function(err) {
   console.log('error', err);
 };
 export default function addDocument(root, { record }) {
   console.log(record);
+
+  saveMap(record.document.geometry);
+
   const uModel = new UserModel();
   uModel.set({ username: 'alexter42' });
   uModel.save(function(err) {
@@ -41,7 +43,7 @@ export default function addDocument(root, { record }) {
     // saved!
   });
 
-  //Create record solo tienes que hacer push
+  //Update record solo tienes que hacer push
   const rModel = RecordModel.findByIdAndUpdate(
     record.id,
     { $push: { documents: dModel } },

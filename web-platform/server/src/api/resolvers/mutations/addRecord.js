@@ -41,6 +41,7 @@ export default function addRecord(root, { record }) {
     geometry: { data: 'data' },
     publishedDate: record.publishedDate,
     publisher: pModel,
+    thumbnail: "",
   });
   dModel.save(function(err) {
     if (err) return handleError(err);
