@@ -1,5 +1,4 @@
 // MapContainer.js
-
 import React from 'react';
 import '../App.css';
 import '../Map.css';
@@ -7,10 +6,12 @@ import IncidentFeed from '../IncidentFeed';
 // import MessageFeed from '../MessageFeed';
 import mapboxgl from 'mapbox-gl';
 import request from 'request';
+//import express from 'express';
+//import Promise from 'bluebird';
+//import sqlite from 'sqlite';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXAPIKEY;
 
-// TODO: Add mines porque pesa 25 MB
 const dataLayers = [
 	{
 		type: 'circle',
@@ -68,25 +69,17 @@ const dataLayers = [
 		color: '#8A2BC8',
 		filename: 'sms.geojson'
 	},
-	// {
-	// 	type: 'circle',
-	// 	color: '#3F80E1',
-	// 	filename: 'ej_atlas_data.json',
-	// 	name: 'Environmental Justice Atlas'
-	// },
 	{
 		type: 'circle',
 		name: 'Refineries',
 		color: '#F16950',
 		filename: 'refinerias.geojson.json'
-	}//,
-	// {
-	// 	type: 'line',
-	// 	name: '',
-	// 	color: '#F16950',
-	// 	filename: 'vias_ferreas.geojson.json'
-	// }
+	}
 ];
+
+//const app = express();
+//const port = process.env.PORT || 3000;
+//const dbPromise = sqlite.open('./database.sqlite', { Promise });
 
 export default class MapContainer extends React.Component {
 	constructor() {
@@ -95,7 +88,11 @@ export default class MapContainer extends React.Component {
 			lat: 23.2199952,
 			lng: -102.1720662,
 			zoom: 6,
+<<<<<<< HEAD:ui/src/Containers/MapContainer.jsx
+			layers: ['Mines', 'Polluted water sources', 'Dams', 'Poverty', 'Indigenous communities', 'Landfills', 'PM2.5', 'Power plants', 'Fuel storage', 'Twitter Feed', 'SMS Feed']
+=======
 			layers: ['Mines', 'Polluted water sources', 'Dams', 'Poverty', 'Indigenous communities', 'Landfills', 'PM2.5', 'Power plants', 'Fuel storage', 'Twitter Feed', 'SMS Feed'] // power plants includes refineries
+>>>>>>> 5280a2b1ec1942edbe4e868bf453cd946340ec90:ui/src/Containers/MapContainer.jsx
 		};
 	}
 	componentDidMount() {

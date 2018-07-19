@@ -39,7 +39,12 @@ def get_geojson (lat, lng):
     return geojson
 
 def retrieve_tweets (key_word):
+<<<<<<< HEAD
+    url_pattern = re.compile('((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$')
+    loc_pattern = re.compile('M\wxico')
+=======
     pattern = re.compile('((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$')
+>>>>>>> 5280a2b1ec1942edbe4e868bf453cd946340ec90
     count = 0
     for tweet in tweepy.Cursor(api.search, q=key_word).items():
         if count == 200:
@@ -47,6 +52,27 @@ def retrieve_tweets (key_word):
         try:
             count += 1
             data = get_data(tweet)
+<<<<<<< HEAD
+            url_match = re.search(url_pattern, tweet.text)
+            print(data)
+            if url_match:
+                data['url'] = match.group(0)
+            print('user place:', tweet.user.location)
+            if tweet.place:
+                print('geo enable, testing country...')
+                print('tweet country:', tweet.place.country)
+                if re.search(loc_pattern, tweet.place.country):
+                    data['coordinates'] = tweet.place.bounding_box.coordinates[0][0]
+                    geojson = get_geojson(lat, lng)
+                    c.execute("insert into tweets (keyword, data, geojson) values (?, ?, ?)", [key_word, json.dumps(data), json.dumps(geojson)])
+                    print('successfuly retrieved from geolocation!')
+            else if re.search():
+                print('no enable geo, using user location to continue...')
+
+                sleep(5)
+                continue
+                #c.execute("insert into tweets (keyword, data) values (?, ?)", [key_word, json.dumps(data)])
+=======
             match = re.search(pattern, tweet.text)
             if match:
                 data['url'] = match.group(0)
@@ -57,6 +83,7 @@ def retrieve_tweets (key_word):
             else:
                 c.execute("insert into tweets (keyword, data) values (?, ?)", [key_word, json.dumps(data)])
             print(data)
+>>>>>>> 5280a2b1ec1942edbe4e868bf453cd946340ec90
             conn.commit()
             tweet.retweet()
             tweet.favorite()
