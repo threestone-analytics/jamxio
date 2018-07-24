@@ -9,6 +9,7 @@ input Doc {
   source: String
   format: String
   title: String
+  url: String
   geometry: JSON
   publishedDate: Date,
   publisher: Pub,

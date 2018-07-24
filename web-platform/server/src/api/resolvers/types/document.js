@@ -14,7 +14,4 @@ export default {
   async publishedDate({ _id }, contex, { loaders }) {
     return (await loaders.getDocument.load(_id)).publishedDate;
   },
-  async documentType(parentId, contex, { loaders }) {
-    return await loaders.getDocument.load(parentId);
-  },
 };

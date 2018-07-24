@@ -6,10 +6,10 @@ import { Button } from './style';
 const Menu = () => (
   <ButtonGroup className="nav-buttons">
     <NavLink replace to="/">
-      <Button> Map </Button>
+      <Button> Mapa </Button>
     </NavLink>
     <NavLink replace to="/data">
-      <Button> Data </Button>
+      <Button> Datos </Button>
     </NavLink>
   </ButtonGroup>
 );

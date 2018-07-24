@@ -3,7 +3,6 @@ const DocumentType = `
     _id: ID
     category: String,
     subcategory: String,
-    records: [Record]
   }
 `;
 export default () => [DocumentType];

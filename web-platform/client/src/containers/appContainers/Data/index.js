@@ -31,8 +31,8 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const data = gql`
-  {
+const GET_DOCUMENT = gql`
+  query {
     getRecords {
       _id
       title
@@ -46,10 +46,13 @@ const data = gql`
 `;
 
 export default compose(
-  graphql(data),
-  withProps(({ data: { document } }) => ({
-    d: document
-  })),
+  graphql(GET_DOCUMENT, {
+    // If you think it's clear enough, you can abbreviate this as:
+    //   options: ({pollInterval}) => ({pollInterval}),
+    options: props => ({
+      pollInterval: '500'
+    })
+  }),
   connect(
     mapStateToProps,
     mapDispatchToProps

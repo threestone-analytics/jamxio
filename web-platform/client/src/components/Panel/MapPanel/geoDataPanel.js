@@ -1,24 +1,28 @@
 import React from 'react';
 import { GeoDataContainer, PanelHeader, PanelItemContainer, CheckBox, Label } from './style';
 
-const categories = ['00-water'];
-
-const GeoPanel = () => (
-  <GeoDataContainer>
-    <PanelHeader>GEO DATA</PanelHeader>
-    {categories.map(category => (
-      <PanelItemContainer key={category[0]}>
-        <CheckBox>
-          <input
-            type="checkbox"
-            onClick={e => {
-              this.props.toggleLayer('00-water', e);
-            }}
-          />
-        </CheckBox>
-        <Label>{category}</Label>
-      </PanelItemContainer>
-    ))}
-  </GeoDataContainer>
-);
+const GeoPanel = props => {
+  const array = props.categories;
+  if (array === undefined || array.length === 0) {
+    return <div />;
+  }
+  return (
+    <GeoDataContainer>
+      <PanelHeader>Datos Geoespaciales</PanelHeader>
+      {props.categories.map(category => (
+        <PanelItemContainer key={category.documentType._id}>
+          <CheckBox>
+            <input
+              type="checkbox"
+              onClick={e => {
+                props.toggleLayer(category.documentType._id, e);
+              }}
+            />
+          </CheckBox>
+          <Label>{category.documentType.subcategory}</Label>
+        </PanelItemContainer>
+      ))}
+    </GeoDataContainer>
+  );
+};
 export default GeoPanel;

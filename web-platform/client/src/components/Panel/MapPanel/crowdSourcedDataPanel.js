@@ -3,9 +3,9 @@ import { CrowdSourcedContainer, PanelHeader, PanelItemContainer, CheckBox, Label
 
 const crowdSourced = ['sms', 'twitter', 'Direct Message'];
 
-const CrowdSourcedPanel = () => (
+const CrowdSourcedPanel = props => (
   <CrowdSourcedContainer>
-    <PanelHeader>CrowdSourced</PanelHeader>
+    <PanelHeader>Contribuciones</PanelHeader>
 
     {crowdSourced.map(category => (
       <PanelItemContainer key={category[0]}>
@@ -13,7 +13,7 @@ const CrowdSourcedPanel = () => (
           <input
             type="checkbox"
             onClick={e => {
-              this.props.toggleLayer('00-water', e);
+              props.toggleLayer('00-water', e);
             }}
           />
         </CheckBox>

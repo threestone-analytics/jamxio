@@ -6,6 +6,7 @@ const Document = `
     format: String
     source: String
     geometry: JSON
+    url: String
     publisher: String
     publishedDate: Date
     documentType: DocumentType
