@@ -45,7 +45,7 @@ class MapContainer extends React.Component {
     const { lng, lat, zoom } = this.state;
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v10',
+      style: 'mapbox://styles/mapbox/light-v9',
       center: [lng, lat],
       width: this.props.width || window.innerWidth,
       height: this.props.height || window.innerHeight,

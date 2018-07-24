@@ -5,7 +5,7 @@ const crowdSourced = ['sms', 'twitter', 'Direct Message'];
 
 const CrowdSourcedPanel = props => (
   <CrowdSourcedContainer>
-    <PanelHeader>Contribuciones</PanelHeader>
+    <PanelHeader>Reportes en linea</PanelHeader>
 
     {crowdSourced.map(category => (
       <PanelItemContainer key={category[0]}>

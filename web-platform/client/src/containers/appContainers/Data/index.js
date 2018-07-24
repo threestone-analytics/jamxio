@@ -47,9 +47,7 @@ const GET_DOCUMENT = gql`
 
 export default compose(
   graphql(GET_DOCUMENT, {
-    // If you think it's clear enough, you can abbreviate this as:
-    //   options: ({pollInterval}) => ({pollInterval}),
-    options: props => ({
+    options: () => ({
       pollInterval: '500'
     })
   }),

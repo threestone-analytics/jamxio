@@ -52,7 +52,7 @@ const GET_DOCUMENTS = gql`
 `;
 
 const Items = ({ _id }) => (
-  <Query query={GET_DOCUMENTS} variables={{ _id }}>
+  <Query pollInterval={500} query={GET_DOCUMENTS} variables={{ _id }}>
     {({ loading, error, data }) => {
       if (loading)
         return (
@@ -61,6 +61,7 @@ const Items = ({ _id }) => (
           </SpinnerBox>
         );
       if (error) return `Error! ${error.message}`;
+      console.log(data.getRecordById.documents);
       return data.getRecordById.documents.map(d => (
         <HistoryItem key={d._id}>
           <CheckBox />

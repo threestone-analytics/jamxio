@@ -48,7 +48,7 @@ export const CrowdSourcedContainer = styled.div`
   max-width: 320px;
   margin: 20px;
   margin-right: 10%;
-  margin-top: 300px;
+  margin-top: 480px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
   font-size: 13px;
   line-height: 2;
