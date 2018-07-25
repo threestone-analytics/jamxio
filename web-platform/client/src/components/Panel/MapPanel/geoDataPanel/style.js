@@ -25,15 +25,31 @@ export const SubItem = styled.li`
   position: relative;
   background: #fff;
   display: flex;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+  padding-left: 15px;
   width: 100%;
   z-index: 99;
+  background: #fb5767;
 `;
+
+export const SubItemLabel = styled.div`
+  width: 100%;
+  color: #fff;
+  align-content: flex-start;
+  vertical-align: middle;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 14px;
+  text-align: left;
+  padding: 10px;
+`;
+
 export const SubSubItem = styled.li`
   position: relative;
   background: #fff;
   display: flex;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+  padding-left: 35px;
   width: 100%;
   z-index: 999;
 `;

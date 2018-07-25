@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CheckBox, Label, Item, ItemContainer, SubItem, SubSubItem } from './style';
+import { CheckBox, Label, Item, ItemContainer, SubItem, SubSubItem, SubItemLabel } from './style';
 
 export class Dropdown extends React.Component {
   constructor(props) {
@@ -17,6 +17,18 @@ export class Dropdown extends React.Component {
     });
   }
 
+  closeDropdown() {
+    this.setState({
+      active: false
+    });
+  }
+
+  openDropdown() {
+    this.setState({
+      active: true
+    });
+  }
+
   handleClick(i) {
     this.setState({
       selected: i
@@ -30,10 +42,10 @@ export class Dropdown extends React.Component {
 
     const Record = records.map((record, i) => (
       <SubSubItem>
+        <Label onClick={() => this.toggleDropdown()}>{record.recordId}</Label>
         <CheckBox>
           <input type="checkbox" onClick={e => {}} />
         </CheckBox>
-        <Label onClick={() => this.toggleDropdown()}>{record.recordId}</Label>
       </SubSubItem>
     ));
 
@@ -55,6 +67,7 @@ export class Dropdown extends React.Component {
     const Subcategory = subcategories.map((subcategory, i) => (
       <div>
         <SubItem>
+          <SubItemLabel onClick={() => this.toggleDropdown()}>{subcategory}</SubItemLabel>
           <CheckBox>
             <input
               type="checkbox"
@@ -63,7 +76,6 @@ export class Dropdown extends React.Component {
               }}
             />
           </CheckBox>
-          <Label onClick={() => this.toggleDropdown()}>{subcategory}</Label>
         </SubItem>
         {this.renderRecords(groupedData[subcategory])}
       </div>
