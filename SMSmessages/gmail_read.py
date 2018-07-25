@@ -62,6 +62,21 @@ def get_messages (user_id, label_id_one, label_id_two):
             else:
                 pass
             temp_dict['Snippet'] = message['snippet'] # fetching message snippet
+<<<<<<< HEAD
+        for part in message['payload']['parts']:
+            if part['filename']:
+                if 'data' in part['body']:
+                    data=part['body']['data']
+                else:
+                    att_id=part['body']['attachmentId']
+                    att=GMAIL.users().messages().attachments().get(userId=user_id, messageId=m_id,id=att_id).execute()
+                    data=att['data']
+                file_data = base64.urlsafe_b64decode(data.encode('UTF-8'))
+                path = part['filename']
+                with open(path, 'wb') as f:
+                    f.write(file_data)
+=======
+>>>>>>> 5280a2b1ec1942edbe4e868bf453cd946340ec90
         try:
             mssg_parts = payld['parts'] # fetching the message parts
             part_one  = mssg_parts[0] # fetching first element of the part 
@@ -110,8 +125,13 @@ def get_location (message):
 def send_to_db (message):
     lat, lng = get_location(message)
     geojson = get_geojson(lat, lng)
+<<<<<<< HEAD
+    #c.execute("insert into sms (data, geojson) values (?, ?)", [json.dumps(message), json.dumps(geojson)])
+    #conn.commit()
+=======
     c.execute("insert into sms (data, geojson) values (?, ?)", [json.dumps(message), json.dumps(geojson)])
     conn.commit()
+>>>>>>> 5280a2b1ec1942edbe4e868bf453cd946340ec90
     return True
 
 def send_reply (text, sender):

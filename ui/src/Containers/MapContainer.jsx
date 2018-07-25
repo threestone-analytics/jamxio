@@ -87,7 +87,7 @@ export default class MapContainer extends React.Component {
 			lat: 23.2199952,
 			lng: -102.1720662,
 			zoom: 6,
-			layers: ['Mines', 'Polluted water sources', 'Dams', 'Poverty', 'Indigenous communities', 'Landfills', 'PM2.5', 'Power plants', 'Fuel storage', 'Twitter Feed', 'SMS Feed']
+			layers: ['Mines', 'Polluted water sources', 'Dams', 'Poverty', 'Indigenous communities', 'Landfills', 'PM2.5', 'Power plants', 'Fuel storage', 'Twitter Feed', 'SMS Feed'] // power plants includes refineries
 		};
 	}
 	componentDidMount() {
