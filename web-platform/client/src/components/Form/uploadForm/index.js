@@ -7,6 +7,7 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
+
 import {
   Button,
   ModalButtonBox,

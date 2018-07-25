@@ -14,8 +14,7 @@ mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 async function plotData(docs, m) {
   docs.map(async doc => {
     const { url } = doc;
-    console.log(doc);
-    m.addSource(doc.documentType._id, {
+    m.addSource(doc.recordId, {
       type: 'geojson',
       data: url
     });
@@ -24,8 +23,8 @@ async function plotData(docs, m) {
       layout: {
         visibility: 'none'
       },
-      id: doc.documentType._id, // Sets id as current child's key
-      source: doc.documentType._id // The source layer defined above
+      id: doc.recordId, // Sets id as current child's key
+      source: doc.recordId // The source layer defined above
     });
   });
 }
@@ -54,8 +53,9 @@ class MapContainer extends React.Component {
     });
     this.map = map;
     const a = this.map;
-    if (this.props.data.getLastDocument) {
-      const datos = this.props.data.getLastDocument;
+    if (this.props.data.getLatestDocuments) {
+      const datos = this.props.data.getLatestDocuments;
+      console.log(datos, 'received datos');
       this.setState({ categories: datos });
       map.on('load', () => {
         plotData(datos, a);
@@ -90,13 +90,14 @@ class MapContainer extends React.Component {
 
 const GET_DOCUMENTS = gql`
   query {
-    getLastDocument {
+    getLatestDocuments {
       documentType {
         _id
         category
         subcategory
       }
       source
+      recordId
       url
     }
   }
