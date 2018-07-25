@@ -55,7 +55,6 @@ class MapContainer extends React.Component {
     const a = this.map;
     if (this.props.data.getLatestDocuments) {
       const datos = this.props.data.getLatestDocuments;
-      console.log(datos, 'received datos');
       this.setState({ categories: datos });
       map.on('load', () => {
         plotData(datos, a);

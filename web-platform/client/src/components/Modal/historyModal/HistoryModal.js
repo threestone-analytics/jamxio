@@ -67,8 +67,6 @@ const Items = ({ _id }) => (
           </SpinnerBox>
         );
       if (error) return `Error! ${error.message}`;
-      console.log(data.getRecordById.documents);
-
       return data.getRecordById.documents.map(d => {
         const timestamp = d.publishedDate.toString();
         const date = new Intl.DateTimeFormat('en-US', {

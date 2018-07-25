@@ -11,6 +11,7 @@ export const Item = styled.div`
   box-sizing: border-box;
   display: flex;
   width: 100%;
+  z-index: 97;
 `;
 
 export const ItemContainer = styled.div`
@@ -23,8 +24,18 @@ export const ItemContainer = styled.div`
 export const SubItem = styled.li`
   position: relative;
   background: #fff;
+  display: flex;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
   width: 100%;
+  z-index: 99;
+`;
+export const SubSubItem = styled.li`
+  position: relative;
+  background: #fff;
+  display: flex;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  z-index: 999;
 `;
 
 export const Label = styled.div`

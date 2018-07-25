@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CheckBox, Label, Item, ItemContainer } from './style';
+import { CheckBox, Label, Item, ItemContainer, SubItem, SubSubItem } from './style';
 
 export class Dropdown extends React.Component {
   constructor(props) {
@@ -23,36 +23,53 @@ export class Dropdown extends React.Component {
     });
   }
 
-  renderOptions() {
+  renderRecords(records) {
+    if (!records) {
+      return;
+    }
+
+    const Record = records.map((record, i) => (
+      <SubSubItem>
+        <CheckBox>
+          <input type="checkbox" onClick={e => {}} />
+        </CheckBox>
+        <Label onClick={() => this.toggleDropdown()}>{record.recordId}</Label>
+      </SubSubItem>
+    ));
+
+    return Record;
+  }
+
+  renderSubcategories() {
     if (!this.props.options) {
       return;
     }
 
-    const ItemList = this.props.options.map((option, i) => (
-      <Item>
-        <li
-          role="presentation"
-          onClick={_evt => this.handleClick(i)}
-          key={i}
-          className={`dropdown__list-item ${
-            i === this.state.selected ? 'dropdown__list-item--active' : ''
-          }`}
-        >
+    const array = this.props.options;
+    const groupedData = _.mapValues(_.groupBy(array, 'documentType.subcategory'));
+    const subcategories = [];
+    Object.keys(groupedData).forEach(element => {
+      subcategories.push(element);
+    });
+
+    const Subcategory = subcategories.map((subcategory, i) => (
+      <div>
+        <SubItem>
           <CheckBox>
             <input
               type="checkbox"
               onClick={e => {
-                this.props.toggleLayer(option.recordId, e);
+                props.toggleLayer(props._id, e);
               }}
             />
           </CheckBox>
-          <Label sub onClick={() => this.toggleDropdown()}>
-            {option.recordId}
-          </Label>
-        </li>
-      </Item>
+          <Label onClick={() => this.toggleDropdown()}>{subcategory}</Label>
+        </SubItem>
+        {this.renderRecords(groupedData[subcategory])}
+      </div>
     ));
-    return ItemList;
+
+    return Subcategory;
   }
 
   render() {
@@ -67,10 +84,7 @@ export class Dropdown extends React.Component {
               }}
             />
           </CheckBox>
-          <Label
-            onMouseEnter={() => this.toggleDropdown()}
-            onMouseLeave={() => this.toggleDropdown()}
-          >
+          <Label onClick={() => this.toggleDropdown()}>
             {this.props.title} <i className="fa fa-angle-down" aria-hidden="true" />
           </Label>
         </Item>
@@ -78,7 +92,7 @@ export class Dropdown extends React.Component {
           id="subcategory-list"
           className={`dropdown__list ${this.state.active ? 'dropdown__list--active' : ''}`}
         >
-          {this.renderOptions()}
+          <ItemContainer>{this.renderSubcategories()}</ItemContainer>
         </ul>
       </ItemContainer>
     );
