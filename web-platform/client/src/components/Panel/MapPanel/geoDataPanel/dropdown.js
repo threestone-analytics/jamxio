@@ -67,7 +67,10 @@ export class Dropdown extends React.Component {
               }}
             />
           </CheckBox>
-          <Label onClick={() => this.toggleDropdown()}>
+          <Label
+            onMouseEnter={() => this.toggleDropdown()}
+            onMouseLeave={() => this.toggleDropdown()}
+          >
             {this.props.title} <i className="fa fa-angle-down" aria-hidden="true" />
           </Label>
         </Item>
