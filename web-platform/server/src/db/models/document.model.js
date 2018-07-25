@@ -4,9 +4,9 @@ const { Schema } = mongoose;
 
 const documentsSchema = new Schema(
   {
+    _id: Schema.Types.ObjectId,
     format: String,
     source: String,
-    _id: String,
     geometry: JSON,
     url: String,
     publishedDate: Date,

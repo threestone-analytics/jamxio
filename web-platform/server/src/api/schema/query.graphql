@@ -11,5 +11,6 @@ type Query {
   getRecords: [Record]
   getCategories: [DocumentType]
   getRecordById(_id: ID!): Record
+  getLatestDocuments: [Document]
   getRecordByCategory: [Document]
 }
