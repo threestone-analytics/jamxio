@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl';
 import gql from 'graphql-tag';
-import { Query, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import { compose, withProps } from 'recompose';
 
 import GeoDataPanel from '../../../components/Panel/MapPanel/geoDataPanel';
@@ -14,6 +14,7 @@ mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 async function plotData(docs, m) {
   docs.map(async doc => {
     const { url } = doc;
+    console.log(doc);
     m.addSource(doc.documentType._id, {
       type: 'geojson',
       data: url
@@ -53,8 +54,8 @@ class MapContainer extends React.Component {
     });
     this.map = map;
     const a = this.map;
-    if (this.props.data.getRecordByCategory) {
-      const datos = this.props.data.getRecordByCategory;
+    if (this.props.data.getLastDocument) {
+      const datos = this.props.data.getLastDocument;
       this.setState({ categories: datos });
       map.on('load', () => {
         plotData(datos, a);
@@ -89,12 +90,13 @@ class MapContainer extends React.Component {
 
 const GET_DOCUMENTS = gql`
   query {
-    getRecordByCategory {
+    getLastDocument {
       documentType {
         _id
         category
         subcategory
       }
+      source
       url
     }
   }

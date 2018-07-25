@@ -41,11 +41,17 @@ Modal.defaultStyles.content = {
 const GET_DOCUMENTS = gql`
   query($_id: ID!) {
     getRecordById(_id: $_id) {
+      title
       documents {
         _id
         source
+        url
+        documentType {
+          _id
+          category
+          subcategory
+        }
         publishedDate
-        publisher
       }
     }
   }
@@ -62,14 +68,23 @@ const Items = ({ _id }) => (
         );
       if (error) return `Error! ${error.message}`;
       console.log(data.getRecordById.documents);
-      return data.getRecordById.documents.map(d => (
-        <HistoryItem key={d._id}>
-          <CheckBox />
-          <Date> On {d.publishedDate} </Date>
-          <User> alexter42</User>
-          <DataType> {d.source} </DataType>
-        </HistoryItem>
-      ));
+
+      return data.getRecordById.documents.map(d => {
+        const timestamp = d.publishedDate.toString();
+        const date = new Intl.DateTimeFormat('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+        }).format(timestamp);
+        return (
+          <HistoryItem key={d._id}>
+            <CheckBox />
+            <Date> On {date} </Date>
+            <User> alexter42</User>
+            <DataType> {d.source} </DataType>
+          </HistoryItem>
+        );
+      });
     }}
   </Query>
 );
