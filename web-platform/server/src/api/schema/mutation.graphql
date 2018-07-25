@@ -1,0 +1,45 @@
+
+input DT {
+  category: String
+  subcategory: String
+}
+
+input Doc {
+  documentType: ID
+  source: String
+  format: String
+  title: String
+  url: String
+  geometry: JSON
+  publishedDate: Date,
+  publisher: Pub,
+}
+
+input U {
+  name: String
+  lastname: String
+  username: String!
+}
+
+input Pub {
+  user: U
+  records: [RecordInput]
+}
+
+input RecordInput {
+  title: String
+  documentType: DT
+  documents: [Doc],
+}
+
+input DocumentInput {
+  id: ID
+  document: Doc,
+}
+
+
+type Mutation {
+  test: User
+  addRecord(record: RecordInput): JSON
+  addDocument(record: DocumentInput): JSON
+}

@@ -60,7 +60,6 @@ const dataLayers = [
 		type: 'circle',
 		name: 'Twitter Feed',
 		color: '#32B6DD',
-		//filename: 'almacenamiento_refi.geojson'
 		filename: 'twitter.geojson'
 	},
 	{
@@ -88,11 +87,7 @@ export default class MapContainer extends React.Component {
 			lat: 23.2199952,
 			lng: -102.1720662,
 			zoom: 6,
-<<<<<<< HEAD:ui/src/Containers/MapContainer.jsx
-			layers: ['Mines', 'Polluted water sources', 'Dams', 'Poverty', 'Indigenous communities', 'Landfills', 'PM2.5', 'Power plants', 'Fuel storage', 'Twitter Feed', 'SMS Feed']
-=======
 			layers: ['Mines', 'Polluted water sources', 'Dams', 'Poverty', 'Indigenous communities', 'Landfills', 'PM2.5', 'Power plants', 'Fuel storage', 'Twitter Feed', 'SMS Feed'] // power plants includes refineries
->>>>>>> 5280a2b1ec1942edbe4e868bf453cd946340ec90:ui/src/Containers/MapContainer.jsx
 		};
 	}
 	componentDidMount() {
