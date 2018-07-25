@@ -41,6 +41,7 @@ def get_geojson (lat, lng):
 def retrieve_tweets (key_word):
     url_pattern = re.compile('((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$')
     loc_pattern = re.compile('M\wxico')
+    pattern = re.compile('((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$')
     count = 0
     for tweet in tweepy.Cursor(api.search, q=key_word).items():
         if count == 200:
@@ -67,6 +68,17 @@ def retrieve_tweets (key_word):
                 sleep(5)
                 continue
                 #c.execute("insert into tweets (keyword, data) values (?, ?)", [key_word, json.dumps(data)])
+            match = re.search(pattern, tweet.text)
+            if match:
+                data['url'] = match.group(0)
+            print('user place:', tweet.user.location)
+            if tweet.place:
+                data['coordinates'] = tweet.place.bounding_box.coordinates[0][0]
+                geojson = get_geojson(lat, lng)
+                c.execute("insert into tweets (keyword, data, geojson) values (?, ?, ?)", [key_word, json.dumps(data), json.dumps(geojson)])
+            else:
+                c.execute("insert into tweets (keyword, data) values (?, ?)", [key_word, json.dumps(data)])
+            print(data)
             conn.commit()
             tweet.retweet()
             tweet.favorite()
