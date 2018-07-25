@@ -62,6 +62,7 @@ export const GeoDataContainer = styled.div`
   color: #000;
   text-transform: uppercase;
   vertical-align: middle;
+  z-index: 98;
 `;
 export const PanelHeader = styled.h5`
   width: 100%;

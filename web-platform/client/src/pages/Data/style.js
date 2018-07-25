@@ -9,7 +9,7 @@ export const CardContainer = styled.div`
   bottom: 0;
   margin: auto;
   margin-bottom: 0;
-  background-color: #e5e5e5;
+  background-color: #cad2d3;
   overflow-y: scroll;
 `;
 

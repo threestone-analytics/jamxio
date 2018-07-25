@@ -50,9 +50,11 @@
       text-align: left;
       background: #fff;
       padding-left: 35px;
+      z-index: 99;
       
       &--active {
         background: #fff;
+        z-index: 99;
       }
       
       &:hover {
