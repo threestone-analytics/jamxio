@@ -22,8 +22,8 @@ from email.mime.text import MIMEText
 gmaps = googlemaps.Client(key=google_map_key)
 
 # db setup
-conn = sqlite3.connect('../db.sqlite')
-c = conn.cursor()
+#conn = sqlite3.connect('../db.sqlite')
+#c = conn.cursor()
 
 # gmail credential
 SCOPES = 'https://www.googleapis.com/auth/gmail.modify'
@@ -101,15 +101,21 @@ def split_text (data, text):
     data["comments"] = re.search('comments:\s(.*)', text_list[3]).group(1)
     return True
 
-def get_geojson (lat, lng):
+def get_geojson (data_list):
     geojson = {
-            "type" : "Feature",
-            "properties" : { "id" : 0 },
-            "geometry" : {
-                 "type" : "Point",
-                "coordinates" : [lat, lng],
-                }
-            }
+        "type" : "FeatureCollection",
+        "features" : [
+            {
+                "type" :
+                "Feature",
+                "geometry" : {
+                    "type" : "Point",
+                    "coordinates" : [item['location'][1], item['location'][0]],
+                    },
+                "properties" : item,
+                } for item in data_list
+            ]
+        }
     return geojson
 
 def get_location (message):
@@ -119,9 +125,11 @@ def get_location (message):
     lng = location[0]['geometry']['location']['lng']
     return lat, lng
 
-def send_to_db (message):
+def add_to_data (message, data_list):
     lat, lng = get_location(message)
-    geojson = get_geojson(lat, lng)
+    message['location'] = [lat, lng]
+    data_list.append(message)
+    #geojson = get_geojson(lat, lng)
     #c.execute("insert into sms (data, geojson) values (?, ?)", [json.dumps(message), json.dumps(geojson)])
     #conn.commit()
     return True
@@ -160,13 +168,24 @@ def success_feedback (message):
 
 if __name__ == "__main__":
     messages = get_messages('me', 'INBOX', 'UNREAD')
+    f = open('data.json', 'r+')
+    try:
+        data_list = json.load(f)
+    except:
+        data_list = [ ]
     for m in messages:
         try:
-            send_to_db(m)
+            add_to_data(m, data_list)
             success_feedback(m)
         except:
             schema_feedback(m)
-    conn.close()
+    json.dump(data_list, f)
+    f.close()
+    f = open('data.geojson', 'w')
+    geojson_data = get_geojson(data_list)
+    json.dump(geojson_data, f)
+    f.close()
+    #conn.close()
 
 '''
 {	'Sender': '"email.com" <name@email.com>', 
