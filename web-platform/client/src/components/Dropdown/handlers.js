@@ -2,21 +2,20 @@ import React from 'react';
 import { CheckBox, Label, SubItem, SubSubItem, SubItemLabel } from './style';
 import { layerColor } from '../../styles/app/map/layers';
 
-export const renderRecords = function(records, toggleLayer) {
+export const renderRecords = function(records, props) {
   if (!records) {
     return;
   }
-
   const data = records.map(record => {
     const _id = record.recordId;
     return (
       <SubSubItem>
-        <Label onClick={() => console.log('toggleDropdown()')}>{_id}</Label>
+        <Label>{_id}</Label>
         <CheckBox>
           <input
             type="checkbox"
             onClick={e => {
-              toggleLayer(_id, e);
+              props.toggleLayer(_id, e);
             }}
           />
         </CheckBox>
@@ -29,7 +28,6 @@ export const renderRecords = function(records, toggleLayer) {
 
 export const renderSubcategories = function(props) {
   const category = props.title;
-  console.log(props, 'subcategories options', category);
   if (!props) {
     return;
   }
@@ -43,9 +41,9 @@ export const renderSubcategories = function(props) {
   const data = subcategories.map((subcategory, i) => (
     <div>
       <SubItem color={color[i]}>
-        <SubItemLabel onClick={() => console.log('toggleDropdown()')}>{subcategory}</SubItemLabel>
+        <SubItemLabel>{subcategory}</SubItemLabel>
       </SubItem>
-      {renderRecords(groupedData[subcategory], color)}
+      {renderRecords(groupedData[subcategory], props)}
     </div>
   ));
 
