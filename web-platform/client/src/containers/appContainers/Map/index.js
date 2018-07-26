@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import { compose, withProps } from 'recompose';
+import { compose } from 'recompose';
+import { layerColor } from '../../../styles/app/map/layers';
 
 import GeoDataPanel from '../../../components/Panel/MapPanel/geoDataPanel';
 import CrowdSourcedDataPanel from '../../../components/Panel/MapPanel/crowdSourcedDataPanel';
@@ -12,14 +13,17 @@ import NewsFeedPanel from '../../../components/Panel/MapPanel/newsFeedPanel';
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 
 async function plotData(docs, m) {
-  docs.map(async doc => {
+  docs.map(async (doc, i) => {
     const { url } = doc;
+    console.log();
+    const color = layerColor.category[doc.documentType.category][i];
     m.addSource(doc.recordId, {
       type: 'geojson',
       data: url
     });
     m.addLayer({
       type: 'fill',
+      paint: { 'fill-color': color },
       layout: {
         visibility: 'none'
       },

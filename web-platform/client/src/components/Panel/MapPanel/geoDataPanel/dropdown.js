@@ -77,7 +77,7 @@ export class Dropdown extends React.Component {
     const Subcategory = subcategories.map((subcategory, i) => (
       // console.log(subcategory);
       <div>
-        <SubItem color={color}>
+        <SubItem color={color[i]}>
           <SubItemLabel onClick={() => this.toggleDropdown()}>{subcategory}</SubItemLabel>
         </SubItem>
         {this.renderRecords(groupedData[subcategory], color)}
