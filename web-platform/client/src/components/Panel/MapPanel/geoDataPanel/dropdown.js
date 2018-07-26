@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CheckBox, Label, Item, ItemContainer, SubItem, SubSubItem, SubItemLabel } from './style';
+import { layerColor } from '../../../../styles/app/map/layers';
 
 export class Dropdown extends React.Component {
   constructor(props) {
@@ -35,28 +36,37 @@ export class Dropdown extends React.Component {
     });
   }
 
-  renderRecords(records) {
+  renderRecords(records, color) {
     if (!records) {
       return;
     }
 
-    const Record = records.map((record, i) => (
-      <SubSubItem>
-        <Label onClick={() => this.toggleDropdown()}>{record.recordId}</Label>
-        <CheckBox>
-          <input type="checkbox" onClick={e => {}} />
-        </CheckBox>
-      </SubSubItem>
-    ));
+    const Record = records.map((record, i) => {
+      const _id = record.recordId;
+      console.log(color);
+      return (
+        <SubSubItem>
+          <Label onClick={() => this.toggleDropdown()}>{_id}</Label>
+          <CheckBox>
+            <input
+              type="checkbox"
+              onClick={e => {
+                this.props.toggleLayer(_id, e);
+              }}
+            />
+          </CheckBox>
+        </SubSubItem>
+      );
+    });
 
     return Record;
   }
 
-  renderSubcategories() {
+  renderSubcategories(category) {
     if (!this.props.options) {
       return;
     }
-
+    const color = layerColor.category[category];
     const array = this.props.options;
     const groupedData = _.mapValues(_.groupBy(array, 'documentType.subcategory'));
     const subcategories = [];
@@ -65,19 +75,12 @@ export class Dropdown extends React.Component {
     });
 
     const Subcategory = subcategories.map((subcategory, i) => (
+      // console.log(subcategory);
       <div>
-        <SubItem>
+        <SubItem color={color}>
           <SubItemLabel onClick={() => this.toggleDropdown()}>{subcategory}</SubItemLabel>
-          <CheckBox>
-            <input
-              type="checkbox"
-              onClick={e => {
-                props.toggleLayer(props._id, e);
-              }}
-            />
-          </CheckBox>
         </SubItem>
-        {this.renderRecords(groupedData[subcategory])}
+        {this.renderRecords(groupedData[subcategory], color)}
       </div>
     ));
 
@@ -88,23 +91,13 @@ export class Dropdown extends React.Component {
     return (
       <ItemContainer>
         <Item>
-          <CheckBox>
-            <input
-              type="checkbox"
-              onClick={e => {
-                props.toggleLayer(props._id, e);
-              }}
-            />
-          </CheckBox>
-          <Label onClick={() => this.toggleDropdown()}>
-            {this.props.title} <i className="fa fa-angle-down" aria-hidden="true" />
-          </Label>
+          <Label onClick={() => this.toggleDropdown()}>{this.props.title}</Label>
         </Item>
         <ul
           id="subcategory-list"
           className={`dropdown__list ${this.state.active ? 'dropdown__list--active' : ''}`}
         >
-          <ItemContainer>{this.renderSubcategories()}</ItemContainer>
+          <ItemContainer>{this.renderSubcategories(this.props.title)}</ItemContainer>
         </ul>
       </ItemContainer>
     );

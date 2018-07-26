@@ -28,7 +28,7 @@ export const SubItem = styled.li`
   padding-left: 15px;
   width: 100%;
   z-index: 99;
-  background: #fb5767;
+  background: ${props => (props.color ? props.color : '10px')};
 `;
 
 export const SubItemLabel = styled.div`
