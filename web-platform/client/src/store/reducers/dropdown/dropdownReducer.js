@@ -15,7 +15,7 @@ export default (state = initialState, action = {}) => {
       }
       return {
         [action.payload.input]: {
-          show: false
+          show: true
         }
       };
 
