@@ -7,16 +7,18 @@ import intlReducer from './intl/intlReducer';
 import alertReducer from './alert/alertReducer';
 import dropzoneReducer from './dropzone/dropzoneReducer';
 import uploadFileFormReducer from './form/uploadFileForm/uploadFileFormReducer';
+import dropdownReducer from './dropdown/dropdownReducer';
 import modalReducer from './modal/modalReducer';
 
 const rootReducer = combineReducers({
+  app: appReducer,
   intl: intlReducer,
-  toastr: toastrReducer,
-  modal: modalReducer,
   form: formReducer,
+  modal: modalReducer,
   alert: alertReducer,
+  toastr: toastrReducer,
   dropzone: dropzoneReducer,
-  uploadFileForm: uploadFileFormReducer,
-  app: appReducer
+  dropdown: dropdownReducer,
+  uploadFileForm: uploadFileFormReducer
 });
 export default rootReducer;

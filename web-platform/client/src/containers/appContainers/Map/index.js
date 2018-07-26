@@ -15,7 +15,6 @@ mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 async function plotData(docs, m) {
   docs.map(async (doc, i) => {
     const { url } = doc;
-    console.log();
     const color = layerColor.category[doc.documentType.category][i];
     m.addSource(doc.recordId, {
       type: 'geojson',
@@ -116,5 +115,6 @@ export default compose(
 
 MapContainer.propTypes = {
   width: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
   height: PropTypes.object.isRequired
 };
