@@ -1,0 +1,30 @@
+import RecordModel from '../../../db/models/record.model';
+
+export default async function(root, { _id }, context) {
+  const show = await RecordModel.aggregate([
+    {
+      $lookup: {
+        from: 'documenType',
+        localField: 'documenType',
+        foreignField: '_id',
+        as: 'documenType',
+      },
+    },
+    { $group: { _id: '$documentType.category' } },
+    { $project: { title: 1, documentType: 1, documents: 1 } },
+    {
+      $lookup: {
+        from: 'documents',
+        localField: 'documents',
+        foreignField: '_id',
+        as: 'document',
+      },
+    },
+    { $project: { documents: 0 } },
+    { $unwind: '$document' },
+    { $sort: { 'document.publishedDate': -1 } },
+    { $limit: 1 },
+  ]).exec();
+  console.log(show, 'showing');
+  return show;
+}
