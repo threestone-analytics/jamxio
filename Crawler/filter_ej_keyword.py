@@ -16,9 +16,23 @@ for item in keywords:
     for news in newsfeed:
         org = news['Organization']
         f = open(org + '.json', encoding='latin-1', mode='r')
-        articles = json.load(f)
+        try:
+            articles = json.load(f)
+        except:
+            break
         f.close()
         for article in articles:
+            '''
+            words = [ ]
+            if article['title']:
+                words.append(article['title'].lower().split())
+            if article['summary']:
+                words.append(article['summary'].lower().split())
+            if article['keywords']:
+                words.append(article['keywords'])
+            if article['text']:
+                words.append(article['text'].lower().split())
+                '''
             words = article['keywords']
             if keyword.lower() in words:
                 article['ej_keyword'] = keyword
