@@ -3,6 +3,7 @@ import DocumentType from './documentType';
 const Document = `
   type Document  @cacheControl(maxAge: 240){
     _id: ID
+    recordId: ID
     format: String
     source: String
     geometry: JSON

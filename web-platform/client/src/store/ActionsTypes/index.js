@@ -45,5 +45,10 @@ export default keyMirror({
   SHOW_ALERT: null,
   HIDE_ALERT: null,
   /* Dropzone */
-  SAVE_FILE: null
+  SAVE_FILE: null,
+  /* PanelDropdown */
+  SHOW_ITEMS: null,
+  HIDE_ITEMS: null,
+  SET_IS_ACTIVE: null,
+  TOGGLE_ITEMS: null
 });

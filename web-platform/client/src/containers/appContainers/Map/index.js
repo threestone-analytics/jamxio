@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl';
 import gql from 'graphql-tag';
-import { Query, graphql } from 'react-apollo';
-import { compose, withProps } from 'recompose';
+import { graphql } from 'react-apollo';
+import { compose } from 'recompose';
+import { layerColor } from '../../../styles/app/map/layers';
 
 import GeoDataPanel from '../../../components/Panel/MapPanel/geoDataPanel';
 import CrowdSourcedDataPanel from '../../../components/Panel/MapPanel/crowdSourcedDataPanel';
@@ -12,19 +13,21 @@ import NewsFeedPanel from '../../../components/Panel/MapPanel/newsFeedPanel';
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 
 async function plotData(docs, m) {
-  docs.map(async doc => {
+  docs.map(async (doc, i) => {
     const { url } = doc;
-    m.addSource(doc.documentType._id, {
+    const color = layerColor.category[doc.documentType.category][i];
+    m.addSource(doc.recordId, {
       type: 'geojson',
       data: url
     });
     m.addLayer({
       type: 'fill',
+      paint: { 'fill-color': color },
       layout: {
         visibility: 'none'
       },
-      id: doc.documentType._id, // Sets id as current child's key
-      source: doc.documentType._id // The source layer defined above
+      id: doc.recordId, // Sets id as current child's key
+      source: doc.recordId // The source layer defined above
     });
   });
 }
@@ -53,8 +56,8 @@ class MapContainer extends React.Component {
     });
     this.map = map;
     const a = this.map;
-    if (this.props.data.getRecordByCategory) {
-      const datos = this.props.data.getRecordByCategory;
+    if (this.props.data.getLatestDocuments) {
+      const datos = this.props.data.getLatestDocuments;
       this.setState({ categories: datos });
       map.on('load', () => {
         plotData(datos, a);
@@ -89,12 +92,14 @@ class MapContainer extends React.Component {
 
 const GET_DOCUMENTS = gql`
   query {
-    getRecordByCategory {
+    getLatestDocuments {
       documentType {
         _id
         category
         subcategory
       }
+      source
+      recordId
       url
     }
   }
@@ -110,5 +115,6 @@ export default compose(
 
 MapContainer.propTypes = {
   width: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
   height: PropTypes.object.isRequired
 };

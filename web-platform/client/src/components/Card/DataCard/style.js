@@ -91,7 +91,7 @@ export const Buttons = styled.div`
 export const Button = styled.button`
   background: #ffffff;
   width: 150px;
-  border: 1px solid #2f80ed;
+  border: 2px solid rgb(0, 255, 148);
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   outline: none;
