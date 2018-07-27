@@ -71,7 +71,7 @@ module.exports = merge(baseConfig, {
       {
         oneOf: [
           {
-            test: /\.(png|svg|jpg|gif)$/,
+            test: /\.(png|svg|jpg|ico|gif)$/,
             include: path.join(__dirname, '../src'),
             loader: 'file-loader',
             options: {
@@ -239,6 +239,7 @@ module.exports = merge(baseConfig, {
       filename: './index.html',
       hash: true,
       inlineSource: '/static/js/runtime~.+\\.js',
+      favicon: path.join(__dirname, '../public/favicon.ico'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,

@@ -1,8 +1,10 @@
 export default {
-  async category({ _id }, contex, { loaders }) {
-    return (await loaders.getDocumentType.load(_id)).category;
+  async category(parentId, contex, { loaders }) {
+    const data = await loaders.getDocumentType.load(parentId);
+    return data.category;
   },
-  async subcategory({ _id }, contex, { loaders }) {
-    return (await loaders.getDocumentType.load(_id)).subcategory;
+  async subcategory(parentId, contex, { loaders }) {
+    const data = await loaders.getDocumentType.load(parentId);
+    return data.subcategory;
   },
 };

@@ -7,13 +7,10 @@ import {
   PictureContainer,
   TextContent,
   Picture,
-  FeedTitle,
-  Label
+  FeedTitle
 } from './style';
 
-const categories = ['00-water'];
-
-const NewsPanel = props => (
+const NewsPanel = () => (
   <NewsFeedContainer>
     <PanelHeader>Noticias Recientes</PanelHeader>
     <FeedPanelItemContainer>

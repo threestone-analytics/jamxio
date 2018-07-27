@@ -73,7 +73,7 @@ module.exports = merge(baseConfig, {
         use: ['svg-inline-loader']
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|ico|gif)$/,
         use: [
           {
             loader: 'url-loader'
@@ -95,6 +95,7 @@ module.exports = merge(baseConfig, {
     new WebpackNotifierPlugin(),
     new HtmlWebPackPlugin({
       inject: true,
+      favicon: path.join(__dirname, '../public/favicon.ico'),
       template: path.join(__dirname, '../public/index.html'),
       filename: './index.html'
     }),

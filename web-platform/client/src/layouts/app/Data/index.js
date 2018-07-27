@@ -14,6 +14,7 @@ import { HistoryModal, UploadModal } from 'Components/Modal';
 // Styles ; FIXME too many styles instead we sould use styled-components
 import '../../../styles/app/map/mapbox-gl.css';
 import '../../../styles/app/dashboard/home-container.scss';
+import '../../../styles/app/dashboard/dropdown.scss';
 import '../../../styles/app/nav/sidebar.scss';
 import '../../../styles/app/dashboard/index.scss';
 
