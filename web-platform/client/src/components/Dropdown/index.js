@@ -39,7 +39,6 @@ const DD = props => {
   if (props.dropdownState[props.title] && props.dropdownState[props.title].show) {
     active = props.dropdownState[props.title].show;
   }
-  console.log(active, props.dropdownState);
   return (
     <ItemContainer>
       <Item>
