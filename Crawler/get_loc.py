@@ -1,27 +1,45 @@
 import json
 import csv
 
-def check_loc (cities, municipios, states, words_list):
+def check_loc (cities, municipios, states, words_list, article):
     if cities:
-        if len(cities) == 1:    
-            return [cities[0]['lat_dd'], cities[0]['lon_dd']]
-        for item in cities:
-            if item['NOM_ENT'] in words_list:
-                return [item['lat_dd'], item['lon_dd']]
+        if len(cities) == 1:
+            article['city'] = cities[0]['NOM_LOC']
+            article['location'] = [cities[0]['lat_dd'], cities[0]['lon_dd']]
+            return article
         for item in cities:
             if item['NOM_MUN'] in words_list:
-                return [item['lat_dd'], item['lon_dd']]
-        return [cities[0]['lat_dd'], cities[0]['lon_dd']]
+                article['location'] = [item['lat_dd'], item['lon_dd']]
+                article['city'] = item['NOM_LOC']
+                article['municipio'] = item['NOM_MUN']
+                return article
+        for item in cities:
+            if item['NOM_ENT'] in words_list:
+                article['city'] = item['NOM_LOC']
+                article['state'] = item['NOM_ENT']
+                article['location'] = [item['lat_dd'], item['lon_dd']]
+                return article
+        article['location'] = [cities[0]['lat_dd'], cities[0]['lon_dd']]
+        article['city'] = cities[0]['NOM_LOC']
+        return article
     if municipios:
         if len(municipios) == 1:
-            return [municipios[0]['lat_dd'], municipios[0]['lon_dd']]
+            article['location'] = [municipios[0]['lat_dd'], municipios[0]['lon_dd']]
+            article['municipio'] = municipios[0]['NOM_MUN']
         for item in municipios:
             if item['NOM_ENT'] in words_list:
-                return [item['lat_dd'], item['lon_dd']]
-        return [municipios[0]['lat_dd'], municipios[0]['lon_dd']]
+                article['location'] = [item['lat_dd'], item['lon_dd']]
+                article['municipio'] = item['NOM_MUN']
+                article['state'] = item['NOM_ENT']
+                return article
+        article['location'] = [municipios[0]['lat_dd'], municipios[0]['lon_dd']]
+        article['municipio'] = municipios[0]['NOM_MUN']
+        return article
     if states:
-        return [states[0]['lat_dd'], states[0]['lon_dd']]
-    return None
+        article['location'] = [states[0]['lat_dd'], states[0]['lon_dd']]
+        article['state'] = states[0]['NOM_ENT']
+        return article
+    return article
 
 def add_keywords (words_list, add):
     for item in add:
@@ -51,7 +69,7 @@ def find_loc (article, location_list):
             states.append(row)
         else:
             pass
-    article['location'] = check_loc(cities, municipios, states, words_list)
+    article = check_loc(cities, municipios, states, words_list, article)
     return article
 
 def get_geojson (data_list):
@@ -95,7 +113,6 @@ if __name__ == "__main__":
             #f = open(word + '.json', encoding='latin-1', mode='w')
             #json.dump(articles, f)
         f.close()
-    print(data_list)
     geojson_list = get_geojson(data_list)
     f = open('data.geojson', encoding='latin-1', mode='w')
     json.dump(geojson_list, f)
