@@ -107,8 +107,12 @@ if __name__ == "__main__":
     keywords_f = open('key_words_es.json', encoding='latin-1', mode='r')
     keywords = json.load(keywords_f)
     location_f = open('mex_shape.csv', encoding='latin-1', mode='r')
-    location_list = csv.DictReader(location_f)
+    reader = csv.DictReader(location_f)
+    location_list = [ ]
     data_list = [ ]
+    for row in reader:
+        location_list.append(row)
+    location_f.close()
     for keyword in keywords:
         word = keyword['Environmental Keywords in Spanish']
         print(word)
@@ -124,12 +128,9 @@ if __name__ == "__main__":
                 print('got one!')
             else:
                 print('no location found')
-            #f = open(word + '.json', encoding='latin-1', mode='w')
-            #json.dump(articles, f)
         f.close()
     geojson_list = get_geojson(data_list)
     f = open('data.geojson', encoding='latin-1', mode='w')
     json.dump(geojson_list, f)
     f.close()
     keywords_f.close()
-    location_f.close()
