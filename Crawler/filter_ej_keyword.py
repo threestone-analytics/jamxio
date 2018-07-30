@@ -9,6 +9,11 @@ f = open('newsfeed.json', encoding='latin-1', mode='r')
 newsfeed = json.load(f)
 f.close()
 
+def add_items (words, add):
+    for item in add:
+        words.append(item)
+    return words
+
 for item in keywords:
     article_list = [ ]
     keyword = item['Environmental Keywords in Spanish']
@@ -22,20 +27,22 @@ for item in keywords:
             break
         f.close()
         for article in articles:
-            '''
             words = [ ]
             if article['title']:
-                words.append(article['title'].lower().split())
+                words = add_items(words, article['title'].lower().split())
             if article['summary']:
-                words.append(article['summary'].lower().split())
+                words = add_items(words, article['summary'].lower().split())
             if article['keywords']:
-                words.append(article['keywords'])
+                words = add_items(words, article['keywords'])
             if article['text']:
-                words.append(article['text'].lower().split())
-                '''
-            words = article['keywords']
+                words = add_items(words, article['text'].lower().split())
+            #words = article['keywords']
             if keyword.lower() in words:
                 article['ej_keyword'] = keyword
+                try:
+                    authors = article['authors']
+                except:
+                    article['authors'] = org
                 article_list.append(article)
                 print('got one!')
     f = open(keyword + '.json', encoding='latin-1', mode='w')

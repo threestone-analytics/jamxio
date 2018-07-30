@@ -4,41 +4,40 @@ import csv
 def check_loc (cities, municipios, states, words_list, article):
     if cities:
         if len(cities) == 1:
-            article['city'] = cities[0]['NOM_LOC']
+            article['address'] = "city: " + cities[0]['NOM_LOC']
             article['location'] = [cities[0]['lat_dd'], cities[0]['lon_dd']]
             return article
         for item in cities:
             if item['NOM_MUN'] in words_list:
                 article['location'] = [item['lat_dd'], item['lon_dd']]
-                article['city'] = item['NOM_LOC']
-                article['municipio'] = item['NOM_MUN']
+                article['address'] = 'city: ' + item['NOM_LOC'] + '; monicipio: ' + item['NOM_MUN']
                 return article
         for item in cities:
             if item['NOM_ENT'] in words_list:
-                article['city'] = item['NOM_LOC']
-                article['state'] = item['NOM_ENT']
+                article['address'] = 'city: ' + item['NOM_LOC'] + '; state: ' +  item['NOM_ENT']
                 article['location'] = [item['lat_dd'], item['lon_dd']]
                 return article
         article['location'] = [cities[0]['lat_dd'], cities[0]['lon_dd']]
-        article['city'] = cities[0]['NOM_LOC']
+        article['address'] = 'city: ' + cities[0]['NOM_LOC']
         return article
     if municipios:
         if len(municipios) == 1:
             article['location'] = [municipios[0]['lat_dd'], municipios[0]['lon_dd']]
-            article['municipio'] = municipios[0]['NOM_MUN']
+            article['address'] = 'municipio: ' + municipios[0]['NOM_MUN']
         for item in municipios:
             if item['NOM_ENT'] in words_list:
                 article['location'] = [item['lat_dd'], item['lon_dd']]
-                article['municipio'] = item['NOM_MUN']
-                article['state'] = item['NOM_ENT']
+                article['address'] = 'municipio: ' + item['NOM_MUN'] + '; state: ' + item['NOM_ENT']
                 return article
         article['location'] = [municipios[0]['lat_dd'], municipios[0]['lon_dd']]
-        article['municipio'] = municipios[0]['NOM_MUN']
+        article['address'] = 'municipio: ' + municipios[0]['NOM_MUN']
         return article
     if states:
         article['location'] = [states[0]['lat_dd'], states[0]['lon_dd']]
-        article['state'] = states[0]['NOM_ENT']
+        article['address'] = 'state: ' + states[0]['NOM_ENT']
         return article
+    article['location'] = None
+    article['address'] = None
     return article
 
 def add_keywords (words_list, add):
@@ -52,8 +51,11 @@ def find_loc (article, location_list):
     summary = article['summary'].lower().split()
     keywords = article['keywords']
     body = article['text'].lower().split()
-    words_list = add_keywords(add_keywords(add_keywords(add_keywords(words_list, title), summary), keywords), body)
-    #words_list.append(title.append(summary.append(keywords.append(body))))
+    words_list = add_keywords(words_list, title)
+    words_list = add_keywords(words_list, summary)
+    words_list = add_keywords(words_list, keywords)
+    words_list = add_keywords(words_list, body)
+    #words_list = add_keywords(add_keywords(add_keywords(add_keywords(words_list, title), summary), keywords), body)
     cities = [ ]
     municipios = [ ]
     states = [ ]
@@ -81,9 +83,21 @@ def get_geojson (data_list):
                 "Feature",
                 "geometry" : {
                     "type" :  "Point",
-                    "coordinates" : [item['location'][1], item['location'][0]],
+                    "coordinates" : [float(item['location'][1]), float(item['location'][0])],
                     },
-                "properties" : item,
+                "properties" : {
+                    "title" : item['title'],
+                    "date" : item['date'],
+                    "authors" : item['authors'],
+                    "image" : item['image'],
+                    "movies" : item['movies'],
+                    "url" : item['url'],
+                    "summary" : item['summary'],
+                    "text" : item['text'],
+                    "ej_keyword" : item['ej_keyword'],
+                    "address" : item['address'],
+                    "location" : item['location']
+                    }
                 } for item in data_list
             ]
         }
@@ -106,7 +120,7 @@ if __name__ == "__main__":
         for article in articles:
             article = find_loc(article, location_list)
             if article['location']:
-                data_list.append(article)
+                data_list.append(article) 
                 print('got one!')
             else:
                 print('no location found')
