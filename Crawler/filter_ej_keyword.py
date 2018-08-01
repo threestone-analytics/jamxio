@@ -2,13 +2,6 @@ import json
 
 keyword_list = [ ]
 
-f = open('key_words_es.json', encoding='latin-1', mode='r')
-keywords = json.load(f)
-f.close()
-f = open('newsfeed.json', encoding='latin-1', mode='r')
-newsfeed = json.load(f)
-f.close()
-
 def add_items (words, add):
     for item in add:
         words.append(item)

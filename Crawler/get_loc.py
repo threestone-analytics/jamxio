@@ -9,12 +9,12 @@ def check_loc (cities, municipios, states, words_list, article):
             return article
         for item in cities:
             if item['NOM_MUN'] in words_list:
-                article['location'] = [item['lat_dd'], item['lon_dd']]
+                articl e['location'] = [item['lat_dd'], item['lon_dd']]
                 article['address'] = 'city: ' + item['NOM_LOC'] + '; monicipio: ' + item['NOM_MUN']
                 return article
         for item in cities:
             if item['NOM_ENT'] in words_list:
-                article['address'] = 'city: ' + item['NOM_LOC'] + '; state: ' +  item['NOM_ENT']
+                 article['address'] = 'city: ' + item['NOM_LOC'] + '; state: ' +  item['NOM_ENT']
                 article['location'] = [item['lat_dd'], item['lon_dd']]
                 return article
         article['location'] = [cities[0]['lat_dd'], cities[0]['lon_dd']]
@@ -82,7 +82,7 @@ def get_geojson (data_list):
                 "type" : 
                 "Feature",
                 "geometry" : {
-                    "type" :  "Point",
+                    "type" :   "Point",
                     "coordinates" : [float(item['location'][1]), float(item['location'][0])],
                     },
                 "properties" : {
@@ -124,13 +124,16 @@ if __name__ == "__main__":
         for article in articles:
             article = find_loc(article, location_list)
             if article['location']:
-                data_list.append(article) 
+                 data_list.append(article) 
                 print('got one!')
             else:
                 print('no location found')
         f.close()
-    geojson_list = get_geojson(data_list)
-    f = open('data.geojson', encoding='latin-1', mode='w')
-    json.dump(geojson_list, f)
+    f = open('data.json', encoding='latin-1', mode='w')
+    json.dump(data_list, f)
     f.close()
+    #geojson_list = get_geojson(data_list)
+    #f = open('data.geojson', encoding='latin-1', mode='w')
+    #json.dump(geojson_list, f)
+    #f.close()
     keywords_f.close()
