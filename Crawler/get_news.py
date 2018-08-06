@@ -57,27 +57,25 @@ def read_articles (org_news, org, data_list):
             print('bad data')
     return data_list
 
-def add_items (words, add):
-    for item in add:
-        words.append(item)
-    return words
-
 def filter_ej_keywords (data_list):
     for item in KEYWORDS:
-        article_list = [ ]
         keyword = item['Environmental Keywords in Spanish']
         print(keyword)
         for article in data_list:
+            article['ej_keyword'] = [ ]
             words = [ ]
             words = add_items(words, article['title'].lower().split())
             words = add_items(words, article['summary'].lower().split())
             words = add_items(words, article['keywords'])
             words = add_items(words, article['text'].lower().split())
             if keyword.lower() in words:
-                article['ej_keyword'] = keyword
-                article_list.append(article)
+                article['ej_keyword'].append(keyword)
             print('got one!')
-        return article_list
+    article_list = [ ]
+    for article in data_list:
+        if (article['ej_keyword']):
+            article_list.append(article)
+    return article_list
 
 def check_loc (cities, municipios, states, words_list, article):
     if cities:
@@ -87,12 +85,12 @@ def check_loc (cities, municipios, states, words_list, article):
             return article
         for item in cities:
             if item['NOM_MUN'] in words_list:
-                articl e['location'] = [item['lat_dd'], item['lon_dd']]
+                article['location'] = [item['lat_dd'], item['lon_dd']]
                 article['address'] = 'city: ' + item['NOM_LOC'] + '; monicipio: ' + item['NOM_MUN']
                 return article
         for item in cities:
             if item['NOM_ENT'] in words_list:
-                 article['address'] = 'city: ' + item['NOM_LOC'] + '; state: ' +  item['NOM_ENT']
+                article['address'] = 'city: ' + item['NOM_LOC'] + '; state: ' +  item['NOM_ENT']
                 article['location'] = [item['lat_dd'], item['lon_dd']]
                 return article
         article['location'] = [cities[0]['lat_dd'], cities[0]['lon_dd']]
@@ -118,10 +116,10 @@ def check_loc (cities, municipios, states, words_list, article):
     article['address'] = None
     return article
 
-def add_keywords (words_list, add):
+def add_items (words, add):
     for item in add:
-        words_list.append(item)
-    return words_list
+        words.append(item)
+    return words
 
 def find_loc (article):
     words_list = [ ]
@@ -155,23 +153,54 @@ def get_location (data_list):
     article_list = [ ]
     for article in data_list:
         article = find_loc(article)
-        article_list.append(articl)
+        article_list.append(article)
     return article_list
     
+def get_geojson (data_list):
+    article_list = [ ]
+    for article in data_list:
+        if (article['location']):
+            article_list.append(article)
+    geojson = {
+        "type" : "FeatureCollection",
+        "features" : [
+            {
+                "type"  :  
+                "Feature",
+                "geometry" : {
+                    "type" :   "Point",
+                    "coordinates" : [float(item['location'][1]), float(item['location'][0])],
+                    },
+                "properties" : {
+                   "title" : item['title'],
+                    "date" : item['date'],
+                    "authors" : item['authors'],
+                    "image" : item['image'],
+                    "movies" : item['movies'],
+                    "url" : item['url'],
+                    "summary" : item['summary'],
+                    "text" : item['text'],
+                    "ej_keyword" : item['ej_keyword'],
+                    "address" : item['address'],
+                    "location" : item['location']
+                    }
+                } for item in article_list
+            ]
+        }
+    return geojson
+
 if __name__ == '__main__':
-    data_list = [ ]
+    try:
+        f = open('data.json', encoding='latin-1', mode='r')
+        data_list = json.load(f)
+        f.close()
+    except:
+        data_list = [ ]
     data_list = retrive_articles(data_list)
     data_list = filter_ej_keywords(data_list)
     data_list = get_location(data_list)
-    try:
-        f = open('data.json', encoding='latin-1', mode='r')
-        old_data_list = json.load(f)
-        data_list = add_items(data_list, old_data_list)
-        f.close()
-    except:
-        pass
-    f = open('data.json', encoding='latin-1', mode='w')
-    json.dump(data_list, f)
-    f.close()
     geojson = get_geojson(data_list)
-    f = open('data.geosjson')
+    with open('data.json', encoding='latin-1', mode='w') as f:
+        json.dump(data_list, f)
+    with open('data.geojson', encoding='latin-1', mode='w') as f:
+        json.dump(geojson, f)

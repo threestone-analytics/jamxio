@@ -9,12 +9,12 @@ def check_loc (cities, municipios, states, words_list, article):
             return article
         for item in cities:
             if item['NOM_MUN'] in words_list:
-                articl e['location'] = [item['lat_dd'], item['lon_dd']]
+                article['location'] = [item['lat_dd'], item['lon_dd']]
                 article['address'] = 'city: ' + item['NOM_LOC'] + '; monicipio: ' + item['NOM_MUN']
                 return article
         for item in cities:
             if item['NOM_ENT'] in words_list:
-                 article['address'] = 'city: ' + item['NOM_LOC'] + '; state: ' +  item['NOM_ENT']
+                article['address'] = 'city: ' + item['NOM_LOC'] + '; state: ' +  item['NOM_ENT']
                 article['location'] = [item['lat_dd'], item['lon_dd']]
                 return article
         article['location'] = [cities[0]['lat_dd'], cities[0]['lon_dd']]
