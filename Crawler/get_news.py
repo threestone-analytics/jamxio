@@ -2,9 +2,10 @@ import newspaper
 import json
 import os
 import csv
+from collections import Counter
 from bs4 import BeautifulSoup
 
-MEMOIZE_STATUS = True
+MEMOIZE_STATUS = False
 
 f = open('key_words_es.json', encoding='latin-1', mode='r')
 KEYWORDS = json.load(f)
@@ -58,22 +59,28 @@ def read_articles (org_news, org, data_list):
     return data_list
 
 def filter_ej_keywords (data_list):
-    for item in KEYWORDS:
-        keyword = item['Environmental Keywords in Spanish']
-        print(keyword)
-        for article in data_list:
-            article['ej_keyword'] = [ ]
-            words = [ ]
-            words = add_items(words, article['title'].lower().split())
-            words = add_items(words, article['summary'].lower().split())
-            words = add_items(words, article['keywords'])
-            words = add_items(words, article['text'].lower().split())
+    for article in data_list:
+        print(article['title'])
+        ej_keywords = [ ]
+        words = [ ]
+        words = add_items(words, article['title'].lower().split())
+        words = add_items(words, article['summary'].lower().split())
+        words = add_items(words, article['keywords'])
+        words = add_items(words, article['text'].lower().split())
+        for item in KEYWORDS:
+            keyword = item['Environmental Keywords in Spanish']
             if keyword.lower() in words:
-                article['ej_keyword'].append(keyword)
-            print('got one!')
+                ej_keywords.append(keyword)
+                print(keyword)
+        if (ej_keywords):
+            counts = Counter(ej_keywords)
+            top_two_cate = counts.most_common(2)
+            article['ej_keywords'] = top_two_cate
+        else:
+            article['ej_keywords'] = None
     article_list = [ ]
     for article in data_list:
-        if (article['ej_keyword']):
+        if (article['ej_keywords']):
             article_list.append(article)
     return article_list
 
@@ -121,6 +128,23 @@ def add_items (words, add):
         words.append(item)
     return words
 
+def get_three_words (words_list, index):
+    return [words_list[index - 3], words_list[index - 2], words_list[index - 1], words_list[index + 1], words_list[index + 2], words_list[index + 3]]
+
+def check_three_words (row, three_words, origin_loc, cities, municipio, states):
+    if 'colonia' in three_words:
+        city = row['NOM_LOC']
+        cities.append(row)
+        cities[-1]['NOM_LOC'] = 'colonia ' + city
+    elif 'municip' in three_words:
+        municipios.append(row)
+    elif 'locadidad' in three_words:
+        cities.append(row)
+    elif 'estado' in three_words:
+        states.append(row)
+    else:
+        origin_loc.append(row)
+
 def find_loc (article):
     words_list = [ ]
     title = article['title'].lower().split()
@@ -131,6 +155,10 @@ def find_loc (article):
     words_list = add_items(words_list, summary)
     words_list = add_items(words_list, keywords)
     words_list = add_items(words_list, body)
+    if not 'méxico' in words_list:
+        article['location'] = None
+        article['address'] = None
+        return article
     cities = [ ]
     municipios = [ ]
     states = [ ]
@@ -139,11 +167,17 @@ def find_loc (article):
         municipio = row['NOM_MUN'].lower()
         city = row['NOM_LOC'].lower()
         if city in words_list:
-            cities.append(row)
+            index = words_list.index(city)
+            three_words = get_three_words(words_list, index)
+            check_three_words(row, three_words, cities, cities, municipios, states)
         elif municipio in words_list:
-            municipios.append(row)
+            index = words_list.index(municipio)
+            three_words = get_three_words(words_list, index)
+            check_three_words(row, three_words, municipios, cities, municipios, states)
         elif state in words_list:
-            states.append(row)
+            index = words_list.index(state)
+            three_words = get_three_words(words_list, index)
+            check_three_words(row, three_words, states, cities, municipios, states)
         else:
             pass
     article = check_loc(cities, municipios, states, words_list, article)
@@ -153,6 +187,8 @@ def get_location (data_list):
     article_list = [ ]
     for article in data_list:
         article = find_loc(article)
+        if article['location']:
+            print('got one!')
         article_list.append(article)
     return article_list
     
@@ -180,7 +216,7 @@ def get_geojson (data_list):
                     "url" : item['url'],
                     "summary" : item['summary'],
                     "text" : item['text'],
-                    "ej_keyword" : item['ej_keyword'],
+                    "ej_keywords" : item['ej_keywords'],
                     "address" : item['address'],
                     "location" : item['location']
                     }
@@ -190,17 +226,36 @@ def get_geojson (data_list):
     return geojson
 
 if __name__ == '__main__':
+    '''
     try:
         f = open('data.json', encoding='latin-1', mode='r')
         data_list = json.load(f)
         f.close()
     except:
         data_list = [ ]
-    data_list = retrive_articles(data_list)
-    data_list = filter_ej_keywords(data_list)
+        '''
+    #data_list = [ ]
+    #data_list = retrive_articles(data_list)
+    #with open('original_data.json', encoding='latin-1', mode='w') as f:
+    #    json.dump(data_list, f)
+    #f = open('original_data.json', encoding='latin-1', mode='r')
+    #data_list = json.load(f)
+    #f.close()
+    #data_list = filter_ej_keywords(data_list)
+    #with open('ej_keywords_data.json', encoding='latin-1', mode='w') as f:
+    #    json.dump(data_list, f)
+    f = open('ej_keywords_data.json', encoding='latin-1', mode='r')
+    data_list = json.load(f)
+    f.close()
     data_list = get_location(data_list)
     geojson = get_geojson(data_list)
     with open('data.json', encoding='latin-1', mode='w') as f:
         json.dump(data_list, f)
     with open('data.geojson', encoding='latin-1', mode='w') as f:
         json.dump(geojson, f)
+    #data_list = get_location(data_list)
+    #geojson = get_geojson(data_list)
+    #with open('data.json', encoding='latin-1', mode='w') as f:
+    #    json.dump(data_list, f)
+    #with open('data.geojson', encoding='latin-1', mode='w') as f:
+    #    json.dump(geojson, f)
