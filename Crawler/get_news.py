@@ -7,19 +7,32 @@ from bs4 import BeautifulSoup
 
 MEMOIZE_STATUS = False
 
+# ej keywords
 f = open('key_words_es.json', encoding='latin-1', mode='r')
 KEYWORDS = json.load(f)
 f.close()
 
+# newsfeed list
 f = open('newsfeed.json', encoding='latin-1', mode='r')
 NEWSFEED = json.load(f)
 f.close()
 
+# mexico location list
 f = open('mex_shape.csv', encoding='latin-1', mode='r')
 reader = csv.DictReader(f)
 LOCATIONS = [ ] #location_list
 for row in reader:
     LOCATIONS.append(row)
+f.close()
+
+# country list
+f = open('countries.csv', encoding='latin-1', mode='r')
+reader = csv.DictReader(f)
+COUNTRIES = [ ]
+for row in reader:
+    country = row['Spanish short']
+    if country:
+        COUNTRIES.append(row['Spanish short'])
 f.close()
 
 def retrive_articles (data_list):
@@ -62,11 +75,12 @@ def filter_ej_keywords (data_list):
     for article in data_list:
         print(article['title'])
         ej_keywords = [ ]
-        words = [ ]
-        words = add_items(words, article['title'].lower().split())
-        words = add_items(words, article['summary'].lower().split())
-        words = add_items(words, article['keywords'])
-        words = add_items(words, article['text'].lower().split())
+        #words = [ ]
+        #words = add_items(words, article['title'].lower().split())
+        #words = add_items(words, article['summary'].lower().split())
+        #words = add_items(words, article['keywords'])
+        #words = add_items(words, article['text'].lower().split())
+        words = article['title'].lower() + '\n' + article['summary'].lower() + '\n' + ' '.join(article['keywords']) + '\n' + article['text']
         for item in KEYWORDS:
             keyword = item['Environmental Keywords in Spanish']
             if keyword.lower() in words:
@@ -84,43 +98,63 @@ def filter_ej_keywords (data_list):
             article_list.append(article)
     return article_list
 
+def filter_wrong_loc (loc_list, words_list, colomn):
+    true_loc = [ ]
+    for loc in loc_list:
+        loc_name = loc[colomn].lower()
+        three_words = get_three_words(words_list, loc_name)
+        find = re.findall(' ' + loc_name)
+        counts = 0
+        for i in find:
+            counts += 1
+        if (check_three_words(three_words) or loc not in COUNTRIES) and counts > 1:
+            true_loc.append(loc)
+    return true_loc
+
 def check_loc (cities, municipios, states, words_list, article):
     if cities:
-        if len(cities) == 1:
-            article['address'] = "city: " + cities[0]['NOM_LOC']
-            article['location'] = [cities[0]['lat_dd'], cities[0]['lon_dd']]
-            return article
-        for item in cities:
-            if item['NOM_MUN'] in words_list:
-                article['location'] = [item['lat_dd'], item['lon_dd']]
-                article['address'] = 'city: ' + item['NOM_LOC'] + '; monicipio: ' + item['NOM_MUN']
+        for city in cities:
+            municipio = city['NOM_MUN'].lower()
+            state = city['NOM_ENT'].lower()
+            index = words_list.index(city['NOM_LOC'].lower())
+            words_list_without = words_list[:index:] + words_list[index+1::]
+            if (' ' + municipio) in words_list_without and (' ' + state) in words_list_without:
+                article['address'] = "city: " + city['NOM_LOC'].lower() + ' municipio: ' + city['NOM_MUN'].lower() + ' estado: ' + city['NOM_ENT'].lower()
+                article['location'] = [city['lat_dd'], city['lon_dd']]
                 return article
-        for item in cities:
-            if item['NOM_ENT'] in words_list:
-                article['address'] = 'city: ' + item['NOM_LOC'] + '; state: ' +  item['NOM_ENT']
-                article['location'] = [item['lat_dd'], item['lon_dd']]
+        for city in cities:
+            municipio = city['NOM_MUN'].lower()
+            state = city['NOM_ENT'].lower()
+            index = words_list.index(city['NOM_LOC'].lower())
+            words_list_without = words_list[:index:] + words_list[index+1::]
+            if (' ' + municipio) in words_list_without or (' ' + state) in words_list_without:
+                article['address'] = "city: " + city['NOM_LOC'].lower() + ' municipio: ' + city['NOM_MUN'].lower() + ' estado: ' + city['NOM_ENT'].lower()
+                article['location'] = [city['lat_dd'], city['lon_dd']]
                 return article
-        article['location'] = [cities[0]['lat_dd'], cities[0]['lon_dd']]
-        article['address'] = 'city: ' + cities[0]['NOM_LOC']
-        return article
     if municipios:
-        if len(municipios) == 1:
-            article['location'] = [municipios[0]['lat_dd'], municipios[0]['lon_dd']]
-            article['address'] = 'municipio: ' + municipios[0]['NOM_MUN']
-        for item in municipios:
-            if item['NOM_ENT'] in words_list:
-                article['location'] = [item['lat_dd'], item['lon_dd']]
-                article['address'] = 'municipio: ' + item['NOM_MUN'] + '; state: ' + item['NOM_ENT']
+        for municipio in municipios:
+            state = municipio['NOM_ENT'].lower()
+            index = words_list.index(municipio['NOM_MUN'].lower())
+            words_list_without = words_list[:index:] + words_list[index+1::]
+            if (' ' + state) in words_list_without:
+                article['address'] = 'municipio: ' + municipio['NOM_MUN'].lower() + ' estado: ' + municipio['NOM_ENT'].lower()
+                article['location'] = [municipio['lat_dd'], municipio['lon_dd']]
                 return article
-        article['location'] = [municipios[0]['lat_dd'], municipios[0]['lon_dd']]
-        article['address'] = 'municipio: ' + municipios[0]['NOM_MUN']
-        return article
     if states:
-        article['location'] = [states[0]['lat_dd'], states[0]['lon_dd']]
-        article['address'] = 'state: ' + states[0]['NOM_ENT']
-        return article
-    article['location'] = None
+        if 'méxico' in words_list:
+            article['address'] = 'state: ' + states[0]['NOM_ENT'].lower()
+            article['location'] = [states[0]['lat_dd'], states[0]['lon_dd']]
+            return article
+        else:
+            article['address'] = 'estado matched but mexico not in text, assign mexico city. '
+            article['location'] = [19.432608, -99.133209]
+            return article
+    if 'méxico' in words_list:
+            article['address'] = 'nothing matched but mexico in text, assign mexico city. '
+            article['location'] = [19.432608, -99.133209]
+            return article
     article['address'] = None
+    article['location'] = None
     return article
 
 def add_items (words, add):
@@ -128,37 +162,22 @@ def add_items (words, add):
         words.append(item)
     return words
 
-def get_three_words (words_list, index):
-    return [words_list[index - 3], words_list[index - 2], words_list[index - 1], words_list[index + 1], words_list[index + 2], words_list[index + 3]]
+def get_three_words (words_list, word):
+    index = words_list.index(' ' + word + ' ')
+    return words_list[index - 6:index + 7:]
+    #return [words_list[index - 3], words_list[index - 2], words_list[index - 1], words_list[index + 1], words_list[index + 2], words_list[index + 3]]
 
-def check_three_words (row, three_words, origin_loc, cities, municipio, states):
-    if 'colonia' in three_words:
-        city = row['NOM_LOC']
-        cities.append(row)
-        cities[-1]['NOM_LOC'] = 'colonia ' + city
-    elif 'municip' in three_words:
-        municipios.append(row)
-    elif 'locadidad' in three_words:
-        cities.append(row)
-    elif 'estado' in three_words:
-        states.append(row)
-    else:
-        origin_loc.append(row)
+def check_three_words (three_words):
+    if 'municip' in three_words or 'localidad' in three_words or 'estado' in three_words or 'ciudad' in three_words:
+        return True
+    return False
 
 def find_loc (article):
-    words_list = [ ]
-    title = article['title'].lower().split()
-    summary = article['summary'].lower().split()
-    keywords = article['keywords']
-    body = article['text'].lower().split()
-    words_list = add_items(words_list, title)
-    words_list = add_items(words_list, summary)
-    words_list = add_items(words_list, keywords)
-    words_list = add_items(words_list, body)
-    if not 'méxico' in words_list:
-        article['location'] = None
-        article['address'] = None
-        return article
+    title = article['title'].lower()
+    summary = article['summary'].lower()
+    keywords = ' '.join(article['keywords'])
+    body = article['text'].lower()
+    words_list = title + '\n' + summary + '\n' + keywords + '\n' + body
     cities = [ ]
     municipios = [ ]
     states = [ ]
@@ -166,20 +185,17 @@ def find_loc (article):
         state = row['NOM_ENT'].lower()
         municipio = row['NOM_MUN'].lower()
         city = row['NOM_LOC'].lower()
-        if city in words_list:
-            index = words_list.index(city)
-            three_words = get_three_words(words_list, index)
-            check_three_words(row, three_words, cities, cities, municipios, states)
-        elif municipio in words_list:
-            index = words_list.index(municipio)
-            three_words = get_three_words(words_list, index)
-            check_three_words(row, three_words, municipios, cities, municipios, states)
-        elif state in words_list:
-            index = words_list.index(state)
-            three_words = get_three_words(words_list, index)
-            check_three_words(row, three_words, states, cities, municipios, states)
+        if (' ' + city + ' ') in words_list:
+            cities.append(row)
+        elif (' ' + municipio + ' ') in words_list:
+            municipios.append(row)
+        elif (' ' + state + ' ') in words_list:
+            states.append(row)
         else:
             pass
+    cities = filter_wrong_loc(cities, words_list, 'NOM_LOC')
+    municipios = filter_wrong_loc(municipios, words_list, 'NOM_MUN')
+    states = filter_wrong_loc(states, words_list, 'NOM_ENT')
     article = check_loc(cities, municipios, states, words_list, article)
     return article
     
