@@ -149,7 +149,7 @@ def check_loc_from_high (cities, municipios, states, words_list, article):
         if 'méxico' in words_list:
             counted = 0
             for state in states:
-                find = re.findall(state, words_list)
+                find = re.findall(state['NOM_ENT'].lower(), words_list)
                 counts = len(find)
                 if counts > counted:
                     article['address'] = 'city: ' + state['NOM_LOC'].lower() + ' municipio: ' + state['NOM_MUN'].lower() + ' state: ' + state['NOM_ENT']
@@ -201,10 +201,10 @@ def check_loc_from_low (cities, municipios, states, words_list, article):
         if 'méxico' in words_list:
             counted = 0
             for city in cities:
-                find = re.findall(city, words_list)
+                find = re.findall(city['NOM_LOC'].lower(), words_list)
                 counts = len(find)
                 if counts > counted:
-                    article['address'] = 'city: ' + city['NOM_LOC'] + ' municipio: ' + city['NOM_MUN'].lower() + ' state: ' + state['NOM_ENT'].lower()
+                    article['address'] = 'city: ' + city['NOM_LOC'] + ' municipio: ' + city['NOM_MUN'].lower() + ' state: ' + city['NOM_ENT'].lower()
                     article['location'] = [city['lat_dd'], city['lon_dd']]
                     counted = counts
             #article['address'] = 'city: ' + cities[0]['NOM_LOC'] + ' municipio: ' + cities[0]['NOM_MUN'].lower() + 'state: ' + cities[0]['NOM_ENT'].lower()
