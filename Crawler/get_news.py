@@ -110,7 +110,7 @@ def filter_wrong_loc (loc_list, words_list, colomn):
         #    true_loc.append(loc)
         #print(three_words)
         #print(i)
-        if (check_three_words(three_words) or loc_name not in COUNTRIES) and counts > 1:
+        if check_three_words(three_words) and counts > 1: #or loc_name not in COUNTRIES) and counts > 1:
             true_loc.append(loc)
         else:
             pass
@@ -126,6 +126,7 @@ def check_loc_from_high (cities, municipios, states, words_list, article):
             if municipio in words_list_without and state in words_list_without:
                 article['address'] = "city: " + city['NOM_LOC'] + ' municipio: ' + city['NOM_MUN'].lower() + ' estado: ' + city['NOM_ENT'].lower()
                 article['location'] = [city['lat_dd'], city['lon_dd']]
+                print('found by city with muni and estado in it. ')
                 return article
         for city in cities:
             municipio = city['NOM_MUN'].lower()
@@ -135,6 +136,7 @@ def check_loc_from_high (cities, municipios, states, words_list, article):
             if municipio in words_list_without or state in words_list_without:
                 article['address'] = "city: " + city['NOM_LOC'] + ' municipio: ' + city['NOM_MUN'].lower() + ' estado: ' + city['NOM_ENT'].lower()
                 article['location'] = [city['lat_dd'], city['lon_dd']]
+                print('found by city with muni or estado in it. ')
                 return article
     if municipios:
         for municipio in municipios:
@@ -144,6 +146,7 @@ def check_loc_from_high (cities, municipios, states, words_list, article):
             if state in words_list_without:
                 article['address'] = 'city: ' + municipio['NOM_LOC'].lower() + ' municipio: ' + municipio['NOM_MUN'] + ' estado: ' + municipio['NOM_ENT'].lower()
                 article['location'] = [municipio['lat_dd'], municipio['lon_dd']]
+                print('found by muni with estado in it. ')
                 return article
     if states:
         if 'méxico' in words_list:
@@ -155,6 +158,7 @@ def check_loc_from_high (cities, municipios, states, words_list, article):
                     article['address'] = 'city: ' + state['NOM_LOC'].lower() + ' municipio: ' + state['NOM_MUN'].lower() + ' state: ' + state['NOM_ENT']
                     article['location'] = [state['lat_dd'], state['lon_dd']]
                     counted = counts
+            print('found by estado with mexico in it, got the highest counted. ')
             return article
         else:
             article['address'] = 'estado matched but mexico not in text, assign mexico city. '
@@ -163,9 +167,11 @@ def check_loc_from_high (cities, municipios, states, words_list, article):
     if 'méxico' in words_list:
             article['address'] = 'nothing matched but mexico in text, assign mexico city. '
             article['location'] = [19.432608, -99.133209]
+            print('nothing found but mexico in it. ')
             return article
     article['address'] = None
     article['location'] = None
+    print('nothing found and mexico is not in it, skip the article. ')
     return article
 
 def check_loc_from_low (cities, municipios, states, words_list, article):
@@ -228,35 +234,25 @@ def add_items (words, add):
     return words
 
 def get_three_words (words_list, word):
-    three_words =  ' '
+    #three_words =  ' '
+    find = re.findall('[,.](.*' + word + '.*?)[,.]', words_list)
+    return ' '.join(find)
+'''
     start = 0
     while True:
         if start > len(words_list) - 1:
             break
         try:
             index = words_list[start::].index(word)
+            three_words += words_list[start + index - 6:start + index + 7:]
+            start += start + index + 1
         except:
             break
-        three_words += words_list[index - 6:index + 7:]
-        start += index + 1
-        '''
-    for i in range(0, len(words_list)):
-        if words_list[i] == word:
-            three_words += words_list[i - 6:i + 7:]
-            
-            try:
-                three_words += words_list[i - 6:i + 7:]
-            except:
-                try:
-                    three_words += words_list[i - 6::]
-                except:
-                    three_words += words_list[:i + 7:]
-                    '''
     return three_words
-    #return [words_list[index - 3], words_list[index - 2], words_list[index - 1], words_list[index + 1], words_list[index + 2], words_list[index + 3]]https://github.com/threestone-analytics/jamxio/blob/master/News/data.geojson
+    '''
 
 def check_three_words (three_words):
-    if 'municip' in three_words or 'localidad' in three_words or 'estado' in three_words or 'ciudad ' in three_words or 'zona' in three_words or 'lugar' in three_words:
+    if 'municip' or 'localidad' or 'estado' or 'ciudad ' or 'zona' or 'lugar' in three_words:
         return True
     return False
 
@@ -357,9 +353,9 @@ if __name__ == '__main__':
     f.close()
     data_list = get_location(data_list)
     geojson = get_geojson(data_list)
-    with open('data.json', encoding='latin-1', mode='w') as f:
-        json.dump(data_list, f)
-    with open('data.geojson', encoding='latin-1', mode='w') as f:
+    #with open('data.json', encoding='latin-1', mode='w') as f:
+    #    json.dump(data_list, f)
+    with open('data_test.geojson', encoding='latin-1', mode='w') as f:
         json.dump(geojson, f)
     #data_list = get_location(data_list)
     #geojson = get_geojson(data_list)
