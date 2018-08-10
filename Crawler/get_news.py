@@ -81,7 +81,7 @@ def filter_ej_keywords (data_list):
         #words = add_items(words, article['summary'].lower().split())
         #words = add_items(words, article['keywords'])
         #words = add_items(words, article['text'].lower().split())
-        words = article['title'].lower() + '\n' + article['summary'].lower() + '\n' + ' '.join(article['keywords']) + '\n' + article['text']
+        words = article['title'].lower() + ' ' + article['summary'].lower() + ' ' + ' '.join(article['keywords']) + ' ' + article['text']
         for item in KEYWORDS:
             keyword = item['Environmental Keywords in Spanish']
             if keyword.lower() in words:
@@ -105,12 +105,12 @@ def filter_wrong_loc (loc_list, words_list, colomn):
         loc_name = loc[colomn].lower()
         three_words = get_three_words(words_list, loc_name)
         find = re.findall(loc_name, words_list)
-        counts = 0
-        for i in find:
-            counts += 1
+        counts = len(find)
         #if not loc in COUNTRIES: 
         #    true_loc.append(loc)
-        if check_three_words(three_words) and counts > 1:
+        #print(three_words)
+        #print(i)
+        if (check_three_words(three_words) or loc_name not in COUNTRIES) and counts > 1:
             true_loc.append(loc)
         else:
             pass
@@ -147,8 +147,14 @@ def check_loc_from_high (cities, municipios, states, words_list, article):
                 return article
     if states:
         if 'méxico' in words_list:
-            article['address'] = 'city: ' + states[0]['NOM_LOC'].lower() + ' municipio: ' + states[0]['NOM_MUN'].lower() + ' state: ' + states[0]['NOM_ENT']
-            article['location'] = [states[0]['lat_dd'], states[0]['lon_dd']]
+            counted = 0
+            for state in states:
+                find = re.findall(state, words_list)
+                counts = len(find)
+                if counts > counted:
+                    article['address'] = 'city: ' + state['NOM_LOC'].lower() + ' municipio: ' + state['NOM_MUN'].lower() + ' state: ' + state['NOM_ENT']
+                    article['location'] = [state['lat_dd'], state['lon_dd']]
+                    counted = counts
             return article
         else:
             article['address'] = 'estado matched but mexico not in text, assign mexico city. '
@@ -193,8 +199,16 @@ def check_loc_from_low (cities, municipios, states, words_list, article):
                 return article
     if cities:
         if 'méxico' in words_list:
-            article['address'] = 'city: ' + cities[0]['NOM_LOC'] + ' municipio: ' + cities[0]['NOM_MUN'].lower() + 'state: ' + cities[0]['NOM_ENT'].lower()
-            article['location'] = [cities[0]['lat_dd'], cities[0]['lon_dd']]
+            counted = 0
+            for city in cities:
+                find = re.findall(city, words_list)
+                counts = len(find)
+                if counts > counted:
+                    article['address'] = 'city: ' + city['NOM_LOC'] + ' municipio: ' + city['NOM_MUN'].lower() + ' state: ' + state['NOM_ENT'].lower()
+                    article['location'] = [city['lat_dd'], city['lon_dd']]
+                    counted = counts
+            #article['address'] = 'city: ' + cities[0]['NOM_LOC'] + ' municipio: ' + cities[0]['NOM_MUN'].lower() + 'state: ' + cities[0]['NOM_ENT'].lower()
+            #article['location'] = [cities[0]['lat_dd'], cities[0]['lon_dd']]
             return article
         else:
             article['address'] = 'city matched but mexico not in text, assign mexico city. '
@@ -215,20 +229,34 @@ def add_items (words, add):
 
 def get_three_words (words_list, word):
     three_words =  ' '
+    start = 0
+    while True:
+        if start > len(words_list) - 1:
+            break
+        try:
+            index = words_list[start::].index(word)
+        except:
+            break
+        three_words += words_list[index - 6:index + 7:]
+        start += index + 1
+        '''
     for i in range(0, len(words_list)):
         if words_list[i] == word:
+            three_words += words_list[i - 6:i + 7:]
+            
             try:
-                three_words += words_list[index - 6:index + 7:]
+                three_words += words_list[i - 6:i + 7:]
             except:
                 try:
-                    three_words += words_list[index - 6::]
+                    three_words += words_list[i - 6::]
                 except:
-                    three_words += words_list[:index + 7:]
+                    three_words += words_list[:i + 7:]
+                    '''
     return three_words
     #return [words_list[index - 3], words_list[index - 2], words_list[index - 1], words_list[index + 1], words_list[index + 2], words_list[index + 3]]https://github.com/threestone-analytics/jamxio/blob/master/News/data.geojson
 
 def check_three_words (three_words):
-    if 'municip' in three_words or 'localidad' in three_words or 'estado' in three_words or 'ciudad ' in three_words: #or 'zona' or 'lugar' in three_words:
+    if 'municip' in three_words or 'localidad' in three_words or 'estado' in three_words or 'ciudad ' in three_words or 'zona' in three_words or 'lugar' in three_words:
         return True
     return False
 
@@ -237,7 +265,7 @@ def find_loc (article):
     summary = article['summary'].lower()
     keywords = ' '.join(article['keywords'])
     body = article['text'].lower()
-    words_list = title + '\n' + summary + '\n' + keywords + '\n' + body
+    words_list = title + ' ' + summary + ' ' + keywords + ' ' + body
     cities = [ ]
     municipios = [ ]
     states = [ ]
@@ -251,11 +279,14 @@ def find_loc (article):
             municipios.append(row)
         elif (state) in words_list:
             states.append(row)
-        else:
-            pass
+        #else:
+        #    pass
     cities = filter_wrong_loc(cities, words_list, 'NOM_LOC')
+    print(len(cities))
     municipios = filter_wrong_loc(municipios, words_list, 'NOM_MUN')
+    print(len(municipios))
     states = filter_wrong_loc(states, words_list, 'NOM_ENT')
+    print(len(states))
     article = check_loc_from_high(cities, municipios, states, words_list, article)
     #article = check_loc_from_low(cities, municipios, states, words_list, article)
     return article
