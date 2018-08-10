@@ -237,25 +237,27 @@ def get_three_words (words_list, word):
     #three_words =  ' '
     find = re.findall('[,.](.*' + word + '.*?)[,.]', words_list)
     return ' '.join(find)
-'''
-    start = 0
-    while True:
-        if start > len(words_list) - 1:
-            break
-        try:
-            index = words_list[start::].index(word)
-            three_words += words_list[start + index - 6:start + index + 7:]
-            start += start + index + 1
-        except:
-            break
-    return three_words
-    '''
 
 def check_three_words (three_words):
     if 'municip' or 'localidad' or 'estado' or 'ciudad ' or 'zona' or 'lugar' in three_words:
         return True
     return False
 
+'''
+TO: check title first and return a check base for after checking
+
+def check_title (title):
+    for row in LOCATIONS:
+        state = row['NOM_ENT'].lower()
+        municipio = row['NOM_MUN'].lower()
+        city = row['NOM_LOC'].lower()
+        if state in title:
+           return state
+        elif municipio in title:
+            return municipio
+        elif city in title:
+        '''
+        
 def find_loc (article):
     title = article['title'].lower()
     summary = article['summary'].lower()
@@ -265,6 +267,7 @@ def find_loc (article):
     cities = [ ]
     municipios = [ ]
     states = [ ]
+    #check_base = check_title(title)
     for row in LOCATIONS:
         state = row['NOM_ENT'].lower()
         municipio = row['NOM_MUN'].lower()
@@ -275,8 +278,6 @@ def find_loc (article):
             municipios.append(row)
         elif (state) in words_list:
             states.append(row)
-        #else:
-        #    pass
     cities = filter_wrong_loc(cities, words_list, 'NOM_LOC')
     print(len(cities))
     municipios = filter_wrong_loc(municipios, words_list, 'NOM_MUN')
