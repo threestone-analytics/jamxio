@@ -36,6 +36,13 @@ for row in reader:
         COUNTRIES.append(row['Spanish short'])
 f.close()
 
+'''
+Todo List:
+    [ ] checking base implementing
+    [ ] some articles text body are not retrieved properly
+    [ ] author geting method
+'''
+
 def retrive_articles (data_list):
     for news in NEWSFEED:
         org = news['Organization']
