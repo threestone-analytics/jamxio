@@ -4,6 +4,7 @@ import os
 import csv
 from collections import Counter
 from bs4 import BeautifulSoup
+import re
 
 MEMOIZE_STATUS = False
 
@@ -103,15 +104,15 @@ def filter_wrong_loc (loc_list, words_list, colomn):
     for loc in loc_list:
         loc_name = loc[colomn].lower()
         three_words = get_three_words(words_list, loc_name)
-        find = re.findall(' ' + loc_name)
-        counts = 0
-        for i in find:
-            counts += 1
-        if (check_three_words(three_words) or loc not in COUNTRIES) and counts > 1:
+        #find = re.findall(' ' + loc_name, words_list)
+        #counts = 0
+        #for i in find:
+        #    counts += 1
+        if (check_three_words(three_words) or loc not in COUNTRIES): # and counts > 1:
             true_loc.append(loc)
     return true_loc
 
-def check_loc (cities, municipios, states, words_list, article):
+def check_loc_from_high (cities, municipios, states, words_list, article):
     if cities:
         for city in cities:
             municipio = city['NOM_MUN'].lower()
@@ -119,7 +120,7 @@ def check_loc (cities, municipios, states, words_list, article):
             index = words_list.index(city['NOM_LOC'].lower())
             words_list_without = words_list[:index:] + words_list[index+1::]
             if (' ' + municipio) in words_list_without and (' ' + state) in words_list_without:
-                article['address'] = "city: " + city['NOM_LOC'].lower() + ' municipio: ' + city['NOM_MUN'].lower() + ' estado: ' + city['NOM_ENT'].lower()
+                article['address'] = "city: " + city['NOM_LOC'] + ' municipio: ' + city['NOM_MUN'].lower() + ' estado: ' + city['NOM_ENT'].lower()
                 article['location'] = [city['lat_dd'], city['lon_dd']]
                 return article
         for city in cities:
@@ -128,7 +129,7 @@ def check_loc (cities, municipios, states, words_list, article):
             index = words_list.index(city['NOM_LOC'].lower())
             words_list_without = words_list[:index:] + words_list[index+1::]
             if (' ' + municipio) in words_list_without or (' ' + state) in words_list_without:
-                article['address'] = "city: " + city['NOM_LOC'].lower() + ' municipio: ' + city['NOM_MUN'].lower() + ' estado: ' + city['NOM_ENT'].lower()
+                article['address'] = "city: " + city['NOM_LOC'] + ' municipio: ' + city['NOM_MUN'].lower() + ' estado: ' + city['NOM_ENT'].lower()
                 article['location'] = [city['lat_dd'], city['lon_dd']]
                 return article
     if municipios:
@@ -137,12 +138,12 @@ def check_loc (cities, municipios, states, words_list, article):
             index = words_list.index(municipio['NOM_MUN'].lower())
             words_list_without = words_list[:index:] + words_list[index+1::]
             if (' ' + state) in words_list_without:
-                article['address'] = 'municipio: ' + municipio['NOM_MUN'].lower() + ' estado: ' + municipio['NOM_ENT'].lower()
+                article['address'] = 'city: ' + municipio['NOM_LOC'].lower() + ' municipio: ' + municipio['NOM_MUN'] + ' estado: ' + municipio['NOM_ENT'].lower()
                 article['location'] = [municipio['lat_dd'], municipio['lon_dd']]
                 return article
     if states:
         if 'méxico' in words_list:
-            article['address'] = 'state: ' + states[0]['NOM_ENT'].lower()
+            article['address'] = 'city: ' + states[0]['NOM_LOC'].lower() + ' municipio: ' + states[0]['NOM_MUN'].lower() + ' state: ' + states[0]['NOM_ENT']
             article['location'] = [states[0]['lat_dd'], states[0]['lon_dd']]
             return article
         else:
@@ -157,6 +158,55 @@ def check_loc (cities, municipios, states, words_list, article):
     article['location'] = None
     return article
 
+def check_loc_from_low (cities, municipios, states, words_list, article):
+    if states:
+        for state in states:
+            municipio = state['NOM_MUN'].lower()
+            city = state['NOM_LOC'].lower()
+            index = words_list.index(state['NOM_ENT'].lower())
+            words_list_without = words_list[:index:] + words_list[index+1::]
+            if (' ' + municipio) in words_list_without and (' ' + city) in words_list_without:
+                article['address'] = "city: " + state['NOM_LOC'].lower() + ' municipio: ' + state['NOM_MUN'].lower() + ' estado: ' + state['NOM_ENT']
+                article['location'] = [state['lat_dd'], state['lon_dd']]
+                return article
+        for state in states:
+            municipio = state['NOM_MUN'].lower()
+            city = state['NOM_LOC'].lower()
+            index = words_list.index(state['NOM_ENT'].lower())
+            words_list_without = words_list[:index:] + words_list[index+1::]
+            if (' ' + municipio) in words_list_without or (' ' + city) in words_list_without:
+                article['address'] = "city: " + state['NOM_LOC'].lower() + ' municipio: ' + state['NOM_MUN'].lower() + ' estado: ' + state['NOM_ENT']
+                article['location'] = [state['lat_dd'], state['lon_dd']]
+                return article
+    if municipios:
+        for municipio in municipios:
+            city = municipio['NOM_LOC'].lower()
+            index = words_list.index(municipio['NOM_MUN'].lower())
+            words_list_without = words_list[:index:] + words_list[index+1::]
+            if (' ' + city) in words_list_without:
+                article['address'] = 'city: ' + municipio['NOM_LOC'].lower() + 'municipio: ' + municipio['NOM_MUN'] + ' estado: ' + municipio['NOM_ENT'].lower()
+                article['location'] = [municipio['lat_dd'], municipio['lon_dd']]
+                return article
+    if cities:
+        if 'méxico' in words_list:
+            article['address'] = 'city: ' + cities[0]['NOM_LOC'] + ' municipio: ' + cities[0]['NOM_MUN'].lower() + 'state: ' + cities[0]['NOM_ENT'].lower()
+            article['location'] = [cities[0]['lat_dd'], cities[0]['lon_dd']]
+            return article
+        else:
+            article['address'] = 'city matched but mexico not in text, assign mexico city. '
+            article['location'] = [19.432608, -99.133209]
+            return article
+    if 'méxico' in words_list:
+            article['address'] = 'nothing matched but mexico in text, assign mexico city. '
+            article['location'] = [19.432608, -99.133209]
+            return article
+    article['address'] = None
+    article['location'] = None
+    return article
+
+def add_items (words, add):
+    for item in add:
+        words.append(item)
 def add_items (words, add):
     for item in add:
         words.append(item)
@@ -168,7 +218,7 @@ def get_three_words (words_list, word):
     #return [words_list[index - 3], words_list[index - 2], words_list[index - 1], words_list[index + 1], words_list[index + 2], words_list[index + 3]]
 
 def check_three_words (three_words):
-    if 'municip' in three_words or 'localidad' in three_words or 'estado' in three_words or 'ciudad' in three_words:
+    if 'municip' or 'localidad' or 'estado' or 'ciudad ' or 'zona' or 'lugar' in three_words:
         return True
     return False
 
@@ -196,7 +246,8 @@ def find_loc (article):
     cities = filter_wrong_loc(cities, words_list, 'NOM_LOC')
     municipios = filter_wrong_loc(municipios, words_list, 'NOM_MUN')
     states = filter_wrong_loc(states, words_list, 'NOM_ENT')
-    article = check_loc(cities, municipios, states, words_list, article)
+    article = check_loc_from_high(cities, municipios, states, words_list, article)
+    #article = check_loc_from_low(cities, municipios, states, words_list, article)
     return article
     
 def get_location (data_list):
