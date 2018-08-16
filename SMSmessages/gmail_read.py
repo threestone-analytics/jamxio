@@ -17,6 +17,10 @@ import json
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from collections import Counter
+from pymongo import MongoClient
+from pprint import pprint
+import json
 
 # google map credential
 gmaps = googlemaps.Client(key=google_map_key)
@@ -95,10 +99,10 @@ def get_messages (user_id, label_id_one, label_id_two):
 
 def split_text (data, text):
     text_list = text.split(';')
-    data["name"] = re.search('name:\s(.*)', text_list[0]).group(1)
-    data["issue"] = re.search('issue:\s(.*)', text_list[1]).group(1)
-    data["location"] = re.search('location:\s(.*)', text_list[2]).group(1)
-    data["comments"] = re.search('comments:\s(.*)', text_list[3]).group(1)
+    #data["name"] = re.search('name:\s(.*)', text_list[0]).group(1)
+    data["issue"] = re.search('issue:\s(.*)', text_list[0]).group(1)
+    data["location"] = re.search('location:\s(.*)', text_list[1]).group(1)
+    data["comments"] = re.search('comments:\s(.*)', text_list[2]).group(1)
     return True
 
 def get_geojson (data_list):
@@ -121,14 +125,41 @@ def get_geojson (data_list):
 def get_location (message):
     split_text(message, message['Snippet'])
     location = gmaps.geocode(message['location'])
-    lat = location[0]['geometry']['location']['lat']
-    lng = location[0]['geometry']['location']['lng']
-    return lat, lng
+    try:
+        lat = location[0]['geometry']['location']['lat']
+        lng = location[0]['geometry']['location']['lng']
+        return lat, lng
+    except:
+        return None, None
+
+f = open('key_words_es.json', encoding='latin-1', mode='r')
+KEYWORDS = json.load(f)
+f.close()
+
+def get_ejkeyword (message):
+    ej_keywords = [ ]
+    words = message['Snippet'].lower() + ' ' + message['issue'].lower() + ' ' + message['comments'].lower()
+    for item in KEYWORDS:
+        keyword = item['Environmental Keywords in Spanish']
+        if keyword.lower() in words:
+            ej_keywords.append(keyword)
+            print(keyword)
+    print(ej_keywords)
+    if (ej_keywords):
+        counts = Counter(ej_keywords)
+        top_two_cate = counts.most_common(2)
+        return top_two_cate
+    return None
 
 def add_to_data (message, data_list):
     lat, lng = get_location(message)
+    print('got location')
+    ej_keyword = get_ejkeyword(message)
+    print('got ej keyword')
+    message['ej_keyword'] = ej_keyword
     message['location'] = [lat, lng]
     data_list.append(message)
+    print('appended')
     #geojson = get_geojson(lat, lng)
     #c.execute("insert into sms (data, geojson) values (?, ?)", [json.dumps(message), json.dumps(geojson)])
     #conn.commit()
@@ -168,23 +199,31 @@ def success_feedback (message):
 
 if __name__ == "__main__":
     messages = get_messages('me', 'INBOX', 'UNREAD')
-    f = open('data.json', 'r+')
-    try:
-        data_list = json.load(f)
-    except:
-        data_list = [ ]
+    #f = open('data.json', encoding='latin-1', mode='r')
+    #try:
+    #    data_list = json.load(f)
+    #    f.close()
+    #except:
+    #    data_list = [ ]
+    data_list = [ ]
     for m in messages:
         try:
             add_to_data(m, data_list)
             success_feedback(m)
         except:
             schema_feedback(m)
+    f = open('data.json', encoding='latin-1', mode='w')
     json.dump(data_list, f)
     f.close()
-    f = open('data.geojson', 'w')
+    f = open('data.geojson', encoding='latin-1', mode='w')
     geojson_data = get_geojson(data_list)
     json.dump(geojson_data, f)
     f.close()
+    client = MongoClient('mongodb+srv://gabrielchen:passwordgabrielchen@jamxio-kloz1.mongodb.net/admin')
+    db = client.Axian
+    for sms in data_list:
+        result = db.sms.insert_one(sms)
+        print('Created 1 entry in the Axian database')
     #conn.close()
 
 '''

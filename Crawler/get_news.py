@@ -83,11 +83,6 @@ def filter_ej_keywords (data_list):
     for article in data_list:
         print(article['title'])
         ej_keywords = [ ]
-        #words = [ ]
-        #words = add_items(words, article['title'].lower().split())
-        #words = add_items(words, article['summary'].lower().split())
-        #words = add_items(words, article['keywords'])
-        #words = add_items(words, article['text'].lower().split())
         words = article['title'].lower() + ' ' + article['summary'].lower() + ' ' + ' '.join(article['keywords']) + ' ' + article['text']
         for item in KEYWORDS:
             keyword = item['Environmental Keywords in Spanish']
@@ -113,14 +108,8 @@ def filter_wrong_loc (loc_list, words_list, colomn):
         three_words = get_three_words(words_list, loc_name)
         find = re.findall(loc_name, words_list)
         counts = len(find)
-        #if not loc in COUNTRIES: 
-        #    true_loc.append(loc)
-        #print(three_words)
-        #print(i)
         if check_three_words(three_words) and counts > 1: #or loc_name not in COUNTRIES) and counts > 1:
             true_loc.append(loc)
-        else:
-            pass
     return true_loc
 
 def check_loc_from_high (cities, municipios, states, words_list, article):
@@ -220,8 +209,6 @@ def check_loc_from_low (cities, municipios, states, words_list, article):
                     article['address'] = 'city: ' + city['NOM_LOC'] + ' municipio: ' + city['NOM_MUN'].lower() + ' state: ' + city['NOM_ENT'].lower()
                     article['location'] = [city['lat_dd'], city['lon_dd']]
                     counted = counts
-            #article['address'] = 'city: ' + cities[0]['NOM_LOC'] + ' municipio: ' + cities[0]['NOM_MUN'].lower() + 'state: ' + cities[0]['NOM_ENT'].lower()
-            #article['location'] = [cities[0]['lat_dd'], cities[0]['lon_dd']]
             return article
         else:
             article['address'] = 'city matched but mexico not in text, assign mexico city. '
@@ -241,7 +228,6 @@ def add_items (words, add):
     return words
 
 def get_three_words (words_list, word):
-    #three_words =  ' '
     find = re.findall('[,.](.*' + word + '.*?)[,.]', words_list)
     return ' '.join(find)
 
@@ -250,31 +236,54 @@ def check_three_words (three_words):
         return True
     return False
 
-'''
-TO: check title first and return a check base for after checking
+#TODO: check title first and return a check base list for after checking
+# check from title to keywords, to summary then stop
+# following checking methods only perform on text body to check from the checking bases to pick the right one
+# if no checking base found, check from high to low resolution for text body
 
-def check_title (title):
+def checkbase_title (title):
     for row in LOCATIONS:
         state = row['NOM_ENT'].lower()
         municipio = row['NOM_MUN'].lower()
         city = row['NOM_LOC'].lower()
-        if state in title:
-           return state
-        elif municipio in title:
-            return municipio
-        elif city in title:
-        '''
+        loc_title = [ ]
+        if state in title and state not in loc_title:
+            loc_title.append(state)
+        elif municipio in title and municipio not in loc_title:
+            loc_title.append(municipio)
+        elif city in title and municipio not in loc_title:
+            loc_title.append(city)
+        return loc_title
+
+def checkbase_keywords (keywords):
+    for row in LOCATIONS:
+        state = row['NOM_ENT'].lower()
+        municipio = row['NOM_MUN'].lower()
+        city = row['NOM_LOC'].lower()
+        loc_keywords = [ ]
+        if state in keywords and state not in loc_keywords:
+            loc_keywords.append(state)
+        elif municipio in keywords and municipio not in loc_keywords:
+            loc_keywords.append(municipio)
+        elif city in keywords and city not in loc_keywords:
+            loc_keywords.append(city)
+        return loc_keywords
         
 def find_loc (article):
     title = article['title'].lower()
     summary = article['summary'].lower()
     keywords = ' '.join(article['keywords'])
     body = article['text'].lower()
-    words_list = title + ' ' + summary + ' ' + keywords + ' ' + body
     cities = [ ]
     municipios = [ ]
     states = [ ]
-    #check_base = check_title(title)
+    #check_base = checkbase_title(title)
+    #if not check_base:
+    #    check_base = checkbase_keywords(keywords)
+    if check_base:
+        words_list = body
+    else:
+        words_list = title + ' ' + summary + ' ' + keywords + ' ' + body
     for row in LOCATIONS:
         state = row['NOM_ENT'].lower()
         municipio = row['NOM_MUN'].lower()

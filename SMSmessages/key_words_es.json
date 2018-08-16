@@ -1,0 +1,310 @@
+[
+  {
+    "Environmental Keywords in Spanish": "Medio ambiente",
+	"symbol" : "garden"
+  },
+  {
+    "Environmental Keywords in Spanish": "Contaminacion",
+	"symbol" : "roadblock"
+  },
+  {
+    "Environmental Keywords in Spanish": "Contaminacion ambiental",
+	"symbol" : "triangle"
+  },
+  {
+    "Environmental Keywords in Spanish": "Contaminacion de aire",
+	"symbol" : "circle-stroked"
+  },
+  {
+    "Environmental Keywords in Spanish": "Contaminacion de agua",
+	"symbol" : "water" 
+  },
+  {
+    "Environmental Keywords in Spanish": "Contaminacion mar",
+	"symbol" : "swimming"
+  },
+  {
+    "Environmental Keywords in Spanish": "Contaminacion playas",
+	"symbol" : "marker-stroked"
+  },
+  {
+    "Environmental Keywords in Spanish": "Contaminacion rios",
+	"symbol" : "marker-stroked"
+  },
+  {
+    "Environmental Keywords in Spanish": "Basurero",
+	"symbol" : "waste-basket"
+  },
+  {
+    "Environmental Keywords in Spanish": "Basura",
+	"symbol" : "waste-basket"
+  },
+  {
+    "Environmental Keywords in Spanish": "Vertedero",
+	"symbol" : "waste-basket"
+  },
+  {
+    "Environmental Keywords in Spanish": "Desechos",
+	"symbol" : "waste-basket"
+  },
+  {
+    "Environmental Keywords in Spanish": "Suelos",
+	"symbol" : "natural"
+  },
+  {
+    "Environmental Keywords in Spanish": "Degradacion de suelos",
+	"symbol" : "natural"
+  },
+  {
+    "Environmental Keywords in Spanish": "Fracking",
+	"symbol" : "water"
+  },
+  {
+    "Environmental Keywords in Spanish": "Falta de agua potable",
+	"symbol" : "water"
+  },
+  {
+    "Environmental Keywords in Spanish": "Minas",
+	"symbol" : "minefield"
+  },
+  {
+    "Environmental Keywords in Spanish": "Mineras",
+	"symbol" : "minefield"
+  },
+  {
+    "Environmental Keywords in Spanish": "Extraccion",
+	"symbol" : "minefield"
+  },
+  {
+    "Environmental Keywords in Spanish": "Extraccion de recursos",
+	"symbol" : "natural"
+  },
+  {
+    "Environmental Keywords in Spanish": "Contaminacion industrial",
+	"symbol" : "ferry"
+  },
+  {
+    "Environmental Keywords in Spanish": "Bosques",
+	"symbol" : "park2"
+  },
+  {
+    "Environmental Keywords in Spanish": "Deforestacion",
+	"symbol" : "park2"
+  },
+  {
+    "Environmental Keywords in Spanish": "Permisos ambientales",
+	"symbol" : "fence"
+  },
+  {
+    "Environmental Keywords in Spanish": "Permiso de aprovechamiento",
+	"symbol" : "fence"
+  },
+  {
+    "Environmental Keywords in Spanish": "Pesca",
+	"symbol" : "wetland"
+  },
+  {
+    "Environmental Keywords in Spanish": "Pesca ilegal",
+	"symbol" : "wetland"
+  },
+  {
+    "Environmental Keywords in Spanish": "Biodiversidad",
+	"symbol" : "library"
+  },
+  {
+    "Environmental Keywords in Spanish": "Emisiones",
+	"symbol" : "cross"
+  },
+  {
+    "Environmental Keywords in Spanish": "Aguas negras",
+	"symbol" : "water"
+  },
+  {
+    "Environmental Keywords in Spanish": "Manejo de residuos",
+	"symbol" : "waste-basket"
+  },
+  {
+    "Environmental Keywords in Spanish": "Reglas ambientales",
+	"symbol" : "library"
+  },
+  {
+    "Environmental Keywords in Spanish": "Sustancias toxicas",
+	"symbol" : "danger"
+  },
+  {
+    "Environmental Keywords in Spanish": "Autoridad ambiental",
+	"symbol" : "circle-stroked"
+  },
+  {
+    "Environmental Keywords in Spanish": "Transgenicos",
+	"symbol" : "square-stroked"
+  },
+  {
+    "Environmental Keywords in Spanish": "Insalubre",
+	"symbol" : "danger"
+  },
+  {
+    "Environmental Keywords in Spanish": "Relleno sanitario",
+	"symbol" : "waste-basket"
+  },
+  {
+    "Environmental Keywords in Spanish": "Daño ambiental",
+	"symbol" : "cross"
+  },
+  {
+    "Environmental Keywords in Spanish": "Peligro ambiental",
+	"symbol" : "danger"
+  },
+  {
+    "Environmental Keywords in Spanish": "Multa ambiental",
+	"symbol" : "bank"
+  },
+  {
+    "Environmental Keywords in Spanish": "Multa contaminacion",
+	"symbol" : "bank"
+  },
+  {
+    "Environmental Keywords in Spanish": "Evaluacion ambiental",
+	"symbol" : "embassy"
+  },
+  {
+    "Environmental Keywords in Spanish": "Impacto ambiental",
+	"symbol" : "library"
+  },
+  {
+    "Environmental Keywords in Spanish": "Tala de arboles",
+	"symbol" : "park"
+  },
+  {
+    "Environmental Keywords in Spanish": "Tala de bosques",
+	"symbol" : "logging"
+  },
+  {
+    "Environmental Keywords in Spanish": "Protesta ambiental",
+	"symbol" : "star-stroked"
+  },
+  {
+    "Environmental Keywords in Spanish": "Limpieza ambiental",
+	"symbol" : "garden-center"
+  },
+  {
+    "Environmental Keywords in Spanish": "Vigilancia ambiental",
+	"symbol" : "camera"
+  },
+  {
+    "Environmental Keywords in Spanish": "Calidad de aire",
+	"symbol" : "airport"
+  },
+  {
+    "Environmental Keywords in Spanish": "Solar plant",
+	"symbol" : "star-stroked"
+  },
+  {
+    "Environmental Keywords in Spanish": "Energia renovable",
+	"symbol" : "oil-well"
+  },
+  {
+    "Environmental Keywords in Spanish": "Ambientalista",
+	"symbol" : "garden"
+  },
+  {
+    "Environmental Keywords in Spanish": "Activista ambiental",
+	"symbol" : "star-stroked"
+  },
+  {
+    "Environmental Keywords in Spanish": "Reportero ambiental",
+	"symbol" : "star-stroked"
+  },
+  {
+    "Environmental Keywords in Spanish": "Reforestacion",
+	"symbol" : "park2"
+  },
+  {
+    "Environmental Keywords in Spanish": "Proteger ambiente",
+	"symbol" : "defibrillator"
+  },
+  {
+    "Environmental Keywords in Spanish": "Conflictos de tierra",
+	"symbol" : "square"
+  },
+  {
+    "Environmental Keywords in Spanish": "Conflictos ambientales",
+	"symbol" : "cross"
+  },
+  {
+    "Environmental Keywords in Spanish": "Empresas contaminantes",
+	"symbol" : "building"
+  },
+  {
+    "Environmental Keywords in Spanish": "Industria de ladrillos",
+	"symbol" : "industry"
+  },
+  {
+    "Environmental Keywords in Spanish": "Ladrilleras",
+	"symbol" : "fire-station"
+  },
+  {
+    "Environmental Keywords in Spanish": "Quema de llantas",
+	"symbol" : "danger"
+  },
+  {
+    "Environmental Keywords in Spanish": "Foco de contaminacion",
+	"symbol" : "danger"
+  },
+  {
+    "Environmental Keywords in Spanish": "Tiradero de basura",
+	"symbol" : "waste-basket"
+  },
+  {
+    "Environmental Keywords in Spanish": "Incendio forestal",
+	"symbol" : "fire-station"
+  },
+  {
+    "Environmental Keywords in Spanish": "Emergencia atmosferica",
+	"symbol" : "defibrillator"
+  },
+  {
+    "Environmental Keywords in Spanish": "Drenaje sanitario",
+	"symbol" : "toilet"
+  },
+  {
+    "Environmental Keywords in Spanish": "Contingencia ambiental",
+	"symbol" : "heliport"
+  },
+  {
+    "Environmental Keywords in Spanish": "Explotar recursos",
+	"symbol" : "natural"
+  },
+  {
+    "Environmental Keywords in Spanish": "Explotacion de tierras",
+	"symbol" : "square"
+  },
+  {
+    "Environmental Keywords in Spanish": "Pueblos indigenas",
+	"symbol" : "village"
+  },
+  {
+    "Environmental Keywords in Spanish": "Ecocidio",
+	"symbol" : "triangle"
+  },
+  {
+    "Environmental Keywords in Spanish": "Calidad ambiental",
+	"symbol" : "heart"
+  },
+  {
+    "Environmental Keywords in Spanish": "Distribucion de calidad ambiental",
+	"symbol" : "heart"
+  },
+  {
+    "Environmental Keywords in Spanish": "Toma de tierras indigenas",
+	"symbol" : "landuse"
+  },
+  {
+    "Environmental Keywords in Spanish": "Conflictos de tierras indigenas",
+	"symbol" : "land-use"
+  },
+  {
+    "Environmental Keywords in Spanish": "Ejidos",
+	"symbol" : "land-use"
+  }
+]
